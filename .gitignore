@@ -1,3 +1,6 @@
+# Adoptal - custom ignores
+secrets.js
+
 # Logs
 logs
 *.log
