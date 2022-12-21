@@ -2,16 +2,10 @@
 // For storing mongoose schemas for Express to MongoDB connection
 
 const mongoose = require('mongoose');
-
-// const privateNotesSchema = new mongoose.Schema({
-//     petId: Number,
-//     petNote: String
-// })
-
-// const publicCommentsSchema = new mongoose.Schema({
-//     petId: Number,
-//     petComment: String
-// })
+// Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
+require('dotenv').config();
+// connecting to the mongo db for User collection
+const db_users_connection = mongoose.createConnection(process.env.mongodb_connect_string, { useNewUrlParser: true, retryWrites: true, w: "majority"});
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -45,4 +39,6 @@ const userSchema = new mongoose.Schema({
 
 }, { collection: 'Users' });
 
-module.exports = mongoose.model("User", userSchema)
+const User = db_users_connection.model("User", userSchema)
+
+module.exports = { User, db_users_connection };
