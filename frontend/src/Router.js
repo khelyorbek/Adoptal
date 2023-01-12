@@ -11,7 +11,7 @@ import EditProfile from "./profile/EditProfile";
 import GlobalContext from './GlobalContext';
 import LoginRequiredPage from "./profile/LoginRequiredPage";
 
-const Router = ({ getUser }) => {
+const Router = () => {
     const { currentUser, setCurrentUser } = useContext(GlobalContext)
 
     return (<>
@@ -27,7 +27,7 @@ const Router = ({ getUser }) => {
                 path="/adoptlist"
                 element={
                     currentUser
-                        ? <AdoptList getUser={getUser} currentUser={currentUser} setCurrentUser={setCurrentUser}> </AdoptList>
+                        ? <AdoptList currentUser={currentUser} setCurrentUser={setCurrentUser}> </AdoptList>
                         : <LoginRequiredPage></LoginRequiredPage>
                         }>
             </Route>
@@ -36,7 +36,7 @@ const Router = ({ getUser }) => {
                 path="/mynotes"
                 element={
                     currentUser
-                    ? <MyNotes getUser={getUser}></MyNotes>
+                    ? <MyNotes></MyNotes>
                     : <LoginRequiredPage></LoginRequiredPage>
                 }>
             </Route>
@@ -45,7 +45,7 @@ const Router = ({ getUser }) => {
                 path="/mycomments"
                 element={
                     currentUser
-                    ? <MyComments getUser={getUser}></MyComments>
+                    ? <MyComments></MyComments>
                     : <LoginRequiredPage></LoginRequiredPage>
                 }>
             </Route>
