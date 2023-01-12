@@ -171,11 +171,19 @@ const CatDetail = () => {
         // preventing default behavior
         // e.preventDefault();
         setCommentLoadingSubmit(true);
-        const res = await AdoptalApi.addComment(currentUser.username, cat.id, noteData.txtInput)
+        const res = await AdoptalApi.addComment(currentUser.username, cat.id, commentData.txtInput)
         // console.log(res);
         if (res.msg === "Successfully added public note") {
             setCommentLoadingSubmit(false);
             setCommentSuccess(true)
+            setCommentSuccess(true);
+
+            setCurrentUser({
+                ...currentUser,
+                publicComments: {
+                    [parseInt(cat.id)]: commentData.txtInput
+                }
+            })
         } else {
             console.log("Error while saving public note")
         }
@@ -191,6 +199,14 @@ const CatDetail = () => {
         if (res.msg === "Successfully deleted public comment") {
             setCommentLoadingDelete(false);
             setCommentData(null);
+            setCommentSuccess(true);
+
+            setCurrentUser({
+                ...currentUser,
+                publicComments: {
+                    [parseInt(cat.id)]: null
+                }
+            })
         } else {
             console.log("Error while deleting public comment")
         }
@@ -489,97 +505,102 @@ const CatDetail = () => {
                                 </Grid.Container>
                             </Grid>
 
-                            <Grid xs={3} alignItems="flex-start">
-                                <Grid.Container aria-label="third column">
-                                    <div className='cat-detail-section' aria-label="adopt list status">
-                                        <Grid xs={12}>
-                                            <Text b size={24} color="secondary">
-                                                Adopt List
-                                            </Text>
-                                        </Grid>
+                            {
+                                currentUser
+                                    ? <Grid xs={3} alignItems="flex-start">
+                                        <Grid.Container aria-label="third column">
+                                            <div className='cat-detail-section' aria-label="adopt list status">
+                                                <Grid xs={12}>
+                                                    <Text b size={24} color="secondary">
+                                                        Adopt List
+                                                    </Text>
+                                                </Grid>
 
-                                        <Grid xs={12}>
-                                            <Text
-                                                size={18}>
-                                                {cat.name} is {adopted ? '' : 'not'} in your Adopt List
-                                            </Text>
+                                                <Grid xs={12}>
+                                                    <Text
+                                                        size={18}>
+                                                        {cat.name} is {adopted ? '' : 'not'} in your Adopt List
+                                                    </Text>
 
-                                            <Button
-                                                color={adopted ? "error" : "primary"}
-                                                onPress={handleAdoptToggle}
-                                                flat>
-                                                {
-                                                    adoptedLoading
-                                                        ? <Loading type="points" color="currentColor" size="md" />
-                                                        : adopted
-                                                            ? `Remove ${cat.name}`
-                                                            : `Add ${cat.name}`
-                                                }
-                                            </Button>
-
-
-                                        </Grid>
-                                    </div>
-
-                                    <div className='cat-detail-section' aria-label="private notes">
-                                        <Grid xs={12}>
-                                            <Text b size={24} color="secondary">
-                                                My Private Notes
-                                            </Text>
-                                        </Grid>
-
-                                        <Row>
-                                            <Textarea
-                                                aria-label="private note input"
-                                                fullWidth
-                                                size="md"
-                                                name='txtInput'
-                                                onChange={handleNoteChange}
-                                                minRows={7}
-                                                maxRows={20}
-                                                initialValue={noteData ? noteData.txtInput : ''}
-                                                bordered
-                                            ></Textarea>
-                                        </Row>
-                                        <div aria-label="success message">
-                                            {noteSuccess ? <Text color="success" size={16}> Successfully updated note.</Text> : ''}
-                                        </div>
-                                        <Row justify="space-between" css={{ paddingTop: "1rem" }}>
-
-                                            <Button
-                                                flat
-                                                onPress={handleNoteDelete}
-                                                color="error"
-                                                type="submit"
-                                                auto>
-                                                {
-                                                    noteLoadingDelete
-                                                        ? <Loading type="points" color="currentColor" size="md" />
-                                                        : "Delete"
-                                                }
-                                            </Button>
-
-                                            <Button
-                                                flat
-                                                onPress={handleNoteSubmit}
-                                                auto
-                                                type="submit" color="success">
-                                                {
-                                                    noteLoadingSubmit
-                                                        ? <Loading type="points" color="currentColor" size="md" />
-                                                        : "Save"
-                                                }
-                                            </Button>
+                                                    <Button
+                                                        color={adopted ? "error" : "primary"}
+                                                        onPress={handleAdoptToggle}
+                                                        flat>
+                                                        {
+                                                            adoptedLoading
+                                                                ? <Loading type="points" color="currentColor" size="md" />
+                                                                : adopted
+                                                                    ? `Remove ${cat.name}`
+                                                                    : `Add ${cat.name}`
+                                                        }
+                                                    </Button>
 
 
-                                        </Row>
-                                    </div>
-                                </Grid.Container>
-                            </Grid>
+                                                </Grid>
+                                            </div>
+
+                                            <div className='cat-detail-section' aria-label="private notes">
+                                                <Grid xs={12}>
+                                                    <Text b size={24} color="secondary">
+                                                        My Private Notes
+                                                    </Text>
+                                                </Grid>
+
+                                                <Row>
+                                                    <Textarea
+                                                        aria-label="private note input"
+                                                        fullWidth
+                                                        size="md"
+                                                        name='txtInput'
+                                                        onChange={handleNoteChange}
+                                                        minRows={7}
+                                                        maxRows={20}
+                                                        initialValue={noteData ? noteData.txtInput : ''}
+                                                        bordered
+                                                    ></Textarea>
+                                                </Row>
+                                                <div aria-label="success message">
+                                                    {noteSuccess ? <Text color="success" size={16}> Successfully updated note.</Text> : ''}
+                                                </div>
+                                                <Row justify="space-between" css={{ paddingTop: "1rem" }}>
+
+                                                    <Button
+                                                        flat
+                                                        onPress={handleNoteDelete}
+                                                        color="error"
+                                                        type="submit"
+                                                        auto>
+                                                        {
+                                                            noteLoadingDelete
+                                                                ? <Loading type="points" color="currentColor" size="md" />
+                                                                : "Delete"
+                                                        }
+                                                    </Button>
+
+                                                    <Button
+                                                        flat
+                                                        onPress={handleNoteSubmit}
+                                                        auto
+                                                        type="submit" color="success">
+                                                        {
+                                                            noteLoadingSubmit
+                                                                ? <Loading type="points" color="currentColor" size="md" />
+                                                                : "Save"
+                                                        }
+                                                    </Button>
+
+
+                                                </Row>
+                                            </div>
+                                        </Grid.Container>
+                                    </Grid>
+                                    : ''
+                            }
+
                         </Grid.Container>
 
-                        <Row >
-                            <Col xs={12} >
+                        <Row style={{marginBottom: "2rem"}}>
+                            <Col xs={12} className='cat-detail-section'>
                                 <Text h2 color="secondary" style={{ textAlign: "center" }}>Comments from users</Text>
 
                                 {
@@ -603,6 +624,8 @@ const CatDetail = () => {
                                                                     <Grid xs={12}>
                                                                         <Text h4 css={{ lineHeight: "$xs" }}>
                                                                             {comment.firstName} {' '} {comment.lastName}
+                                                                            {' '}
+                                                                            {comment.username === currentUser.username ? <span style={{ color: "#8d4ad1" }}>(You)</span> : ''}
                                                                         </Text>
                                                                     </Grid>
                                                                     <Grid xs={12}>
@@ -611,9 +634,31 @@ const CatDetail = () => {
                                                                 </Grid.Container>
                                                             </Card.Header>
                                                             <Card.Body css={{ py: "$2" }}>
-                                                                <Text>
-                                                                    {comment.publicComments[parseInt(cat.id)]}
-                                                                </Text>
+                                                                <Row >
+                                                                    <Col>
+                                                                        <Text>
+                                                                            {comment.publicComments[parseInt(cat.id)]}
+                                                                        </Text>
+                                                                    </Col>
+
+                                                                    {comment.username === currentUser.username ? <Col >
+                                                                        <Button
+                                                                            style={{float: "right"}}
+                                                                            flat
+                                                                            onPress={handleCommentDelete}
+                                                                            color="error"
+                                                                            type="submit"
+                                                                            auto>
+                                                                            {
+                                                                                commentLoadingDelete
+                                                                                    ? <Loading type="points" color="currentColor" size="md" />
+                                                                                    : "Remove Comment"
+                                                                            }
+                                                                        </Button>
+                                                                    </Col> : ''}
+                                                                    
+                                                                </Row>
+
                                                             </Card.Body>
                                                         </Card>
                                                     </Row>
@@ -631,21 +676,56 @@ const CatDetail = () => {
                                                     >
                                                     </img>
                                                 </div>
-                                                <Text size={24} >Comments are empty for this pet. Be the first to comment below:</Text>
+                                                <Text size={24} >Comments are empty for this pet. You can be the first person to comment!</Text>
+
+
+                                                {
+                                                    currentUser
+                                                        ? <div className='cat-detail-section' aria-label="public comments">
+                                                            <Grid xs={12}>
+                                                                <Text b size={24} color="secondary">
+                                                                    My Public Comment
+                                                                </Text>
+                                                            </Grid>
+
+                                                            <Row>
+                                                                <Textarea
+                                                                    aria-label="private note input"
+                                                                    fullWidth
+                                                                    size="md"
+                                                                    name='txtInput'
+                                                                    onChange={handleCommentChange}
+                                                                    minRows={7}
+                                                                    maxRows={20}
+                                                                    initialValue={commentData ? commentData.txtInput : ''}
+                                                                    bordered
+                                                                ></Textarea>
+                                                            </Row>
+                                                            <div aria-label="success message">
+                                                                {commentSuccess ? <Text color="success" size={16}> Successfully updated comment.</Text> : ''}
+                                                            </div>
+                                                            <Row justify="flex-end" css={{ paddingTop: "1rem" }}>
+
+                                                                <Button
+                                                                    flat
+                                                                    onPress={handleCommentSubmit}
+                                                                    auto
+                                                                    type="submit" color="success">
+                                                                    {
+                                                                        commentLoadingSubmit
+                                                                            ? <Loading type="points" color="currentColor" size="md" />
+                                                                            : "Add Public Comment"
+                                                                    }
+                                                                </Button>
+
+
+                                                            </Row>
+                                                        </div>
+                                                        : ''
+                                                }
                                             </Container>
-                                        : <Container style={{
-                                            textAlign: "center",
-                                            padding: "0 0 2rem 0"
-                                        }}>
-                                            <div>
-                                                <img
-                                                    height="200"
-                                                    alt="empty list"
-                                                    src="/error_empty.png"
-                                                >
-                                                </img>
-                                            </div>
-                                            <Text size={24} >Comments are empty for this pet. Be the first to comment below:</Text>
+                                        : <Container aria-label="loading container" style={{ textAlign: "center", paddingTop: "3rem" }}>
+                                            <img src={loadingSvg} alt='loading spinner'></img>
                                         </Container>
 
                                 }

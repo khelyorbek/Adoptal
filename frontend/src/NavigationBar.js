@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Tooltip, Navbar, Link, Switch } from '@nextui-org/react';
 import { SunIcon } from './icons/SunIcon';
 import { MoonIcon } from './icons/MoonIcon';
 import LoginProfileToggle from './profile/LoginProfileToggle';
 import { NavLink } from "react-router-dom";
+import GlobalContext from './GlobalContext';
 
 
 const collapseItems = [
@@ -14,6 +15,8 @@ const collapseItems = [
 ];
 
 const Navigation = ({ handleThemeChange, isDark }) => {
+  const { currentUser, setCurrentUser } = useContext(GlobalContext);
+
   const { activePage, setActivePage } = useState(null);
 
   return <>
@@ -24,11 +27,11 @@ const Navigation = ({ handleThemeChange, isDark }) => {
       <Navbar.Toggle showIn="sm" />
       {/* Settings for the logo */}
       <Navbar.Brand hideIn={"xs"}>
-        <img src='/logo_title.png' alt='adoptal logo' height={'53px'} />
+        <NavLink to="/"><img src='/logo_title.png' alt='adoptal logo' height={'53px'} /></NavLink>
       </Navbar.Brand>
 
       <Navbar.Brand showIn={"xs"}>
-        <img src='/logo.png' alt='adoptal logo' height={'53px'} />
+      <a href="/"><img src='/logo_title.png' alt='adoptal logo' height={'53px'} /></a>
       </Navbar.Brand>
 
       {/* Basic settings for the hover and design */}
@@ -48,30 +51,37 @@ const Navigation = ({ handleThemeChange, isDark }) => {
           </NavLink>
         </Navbar.Item>
 
-        <Navbar.Item
-          style={{ height: "unset", fontWeight: "var(--nextui-fontWeights-medium)" }}>
-          <NavLink to="/adoptlist" end
-            style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
-            Adopt List
-          </NavLink>
-        </Navbar.Item>
+        {
+          currentUser
+            ? <>
+              <Navbar.Item
+                style={{ height: "unset", fontWeight: "var(--nextui-fontWeights-medium)" }}>
+                <NavLink to="/adoptlist" end
+                  style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
+                  Adopt List
+                </NavLink>
+              </Navbar.Item>
 
-        <Navbar.Item
-          style={{ height: "unset", fontWeight: "var(--nextui-fontWeights-medium)" }}>
-          <NavLink to="/mynotes" end
-            style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
-            My Notes
-          </NavLink>
-        </Navbar.Item>
+              <Navbar.Item
+                style={{ height: "unset", fontWeight: "var(--nextui-fontWeights-medium)" }}>
+                <NavLink to="/mynotes" end
+                  style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
+                  My Notes
+                </NavLink>
+              </Navbar.Item>
 
 
-        <Navbar.Item
-          style={{ height: "unset", fontWeight: "var(--nextui-fontWeights-medium)" }}>
-          <NavLink to="/mycomments" end
-            style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
-            My Comments
-          </NavLink>
-        </Navbar.Item>
+              <Navbar.Item
+                style={{ height: "unset", fontWeight: "var(--nextui-fontWeights-medium)" }}>
+                <NavLink to="/mycomments" end
+                  style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
+                  My Comments
+                </NavLink>
+              </Navbar.Item>
+            </>
+            : ''
+        }
+
 
       </Navbar.Content>
 
@@ -115,29 +125,36 @@ const Navigation = ({ handleThemeChange, isDark }) => {
           </NavLink>
         </Navbar.CollapseItem>
 
-        <Navbar.CollapseItem
-        key="adopt-list">
-          <NavLink to="/adoptlist" end
-            style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
-            Adopt List
-          </NavLink>
-        </Navbar.CollapseItem>
+        {
+          currentUser
+            ? <>
+              <Navbar.CollapseItem
+                key="adopt-list">
+                <NavLink to="/adoptlist" end
+                  style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
+                  Adopt List
+                </NavLink>
+              </Navbar.CollapseItem>
 
-        <Navbar.CollapseItem
-        key="my-notes">
-          <NavLink to="/mynotes" end
-            style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
-            My Notes
-          </NavLink>
-        </Navbar.CollapseItem>
+              <Navbar.CollapseItem
+                key="my-notes">
+                <NavLink to="/mynotes" end
+                  style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
+                  My Notes
+                </NavLink>
+              </Navbar.CollapseItem>
 
-        <Navbar.CollapseItem
-        key="my-comments">
-          <NavLink to="/mycomments" end
-            style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
-            My Comments
-          </NavLink>
-        </Navbar.CollapseItem>
+              <Navbar.CollapseItem
+                key="my-comments">
+                <NavLink to="/mycomments" end
+                  style={{ color: isDark ? '#D1B1F0' : '#4D1980' }}>
+                  My Comments
+                </NavLink>
+              </Navbar.CollapseItem>
+            </>
+            : ''
+        }
+
 
       </Navbar.Collapse>
     </Navbar>

@@ -9,25 +9,70 @@ import MyComments from "./lists/MyComments";
 import MyNotes from "./lists/MyNotes";
 import EditProfile from "./profile/EditProfile";
 import GlobalContext from './GlobalContext';
+import LoginRequiredPage from "./profile/LoginRequiredPage";
 
-const Router = () => {
+const Router = ({ getUser }) => {
     const { currentUser, setCurrentUser } = useContext(GlobalContext)
 
     return (<>
         <Routes>
-            <Route path="/" element={<CatList></CatList>}></Route>
+            <Route
+                path="/"
+                element={
+                    <CatList></CatList>
+                }>
+            </Route>
 
-            <Route path="/adoptlist" element={<AdoptList currentUser={currentUser} setCurrentUser={setCurrentUser}></AdoptList>}></Route>
+            <Route
+                path="/adoptlist"
+                element={
+                    currentUser
+                        ? <AdoptList getUser={getUser} currentUser={currentUser} setCurrentUser={setCurrentUser}> </AdoptList>
+                        : <LoginRequiredPage></LoginRequiredPage>
+                        }>
+            </Route>
 
-            <Route path="/mynotes" element={<MyNotes></MyNotes>}></Route>
+            <Route
+                path="/mynotes"
+                element={
+                    currentUser
+                    ? <MyNotes getUser={getUser}></MyNotes>
+                    : <LoginRequiredPage></LoginRequiredPage>
+                }>
+            </Route>
 
-            <Route path="/mycomments" element={<MyComments></MyComments>}></Route>
+            <Route
+                path="/mycomments"
+                element={
+                    currentUser
+                    ? <MyComments getUser={getUser}></MyComments>
+                    : <LoginRequiredPage></LoginRequiredPage>
+                }>
+            </Route>
 
-            <Route path="/profile" element={<EditProfile></EditProfile>}></Route>
+            <Route
+                path="/profile"
+                element={
+                    currentUser
+                    ? <EditProfile></EditProfile>
+                    : <LoginRequiredPage></LoginRequiredPage>
+                }>
+            </Route>
 
-            <Route path="/cat/:id" element={<CatDetail></CatDetail>}></Route>
+            <Route
+                path="/cat/:id"
+                element={
+                    <CatDetail></CatDetail>
+                }>
 
-            <Route path="*" element={<Navigate to='/'></Navigate>}></Route>
+            </Route>
+
+            <Route
+                path="*"
+                element={
+                    <Navigate to='/'></Navigate>
+                }>
+            </Route>
         </Routes>
     </>)
 }

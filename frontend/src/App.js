@@ -93,7 +93,7 @@ function App() {
 
           <Navigation handleThemeChange={handleThemeChange} isDark={isDark}></Navigation>
 
-          <Router></Router>
+          <Router getUser={getUser}></Router>
 
         </BrowserRouter>
       </GlobalContext.Provider>
