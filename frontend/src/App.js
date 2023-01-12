@@ -1,150 +1,105 @@
-// import './App.css';
+import { useState, useEffect } from "react"
 // 1. import `NextUIProvider` component
-import { NextUIProvider } from '@nextui-org/react';
-import { Navbar, Link, Text, Avatar, Dropdown, Button, Loading } from '@nextui-org/react';
+import { Row, Col, createTheme, NextUIProvider } from '@nextui-org/react';
+// import AdoptalApi from './api/adoptalBackend';
+import Navigation from "./NavigationBar";
+import GlobalContext from './GlobalContext';
+import axios from "axios";
+import { BrowserRouter } from 'react-router-dom';
+import Router from './Router';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const APP_SECRET = process.env.REACT_APP_APP_SECRET;
 
-const collapseItems = [
-  "Profile",
-  "Dashboard",
-  "Activity",
-  "Analytics",
-  "System",
-  "Deployments",
-  "My Settings",
-  "Team Settings",
-  "Help & Feedback",
-  "Log Out",
-];
+
+// Creating a dark theme (default)
+const darkTheme = createTheme({
+  type: "dark",
+  theme: {
+    // bc2ffb
+    colors: {
+      gradient: 'linear-gradient(135deg, hsla(269, 100%, 50%, 1) 25%, hsla(281, 96%, 58%, 1) 75%);'
+
+    }
+  }
+});
+
+// Creating a light theme 
+const lightTheme = createTheme({
+  type: "light",
+  theme: {
+    colors: {
+      gradient: 'linear-gradient(135deg, hsla(269, 100%, 50%, 1) 25%, hsla(281, 96%, 58%, 1) 75%);'
+    }
+  }
+});
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  // using state for keeping track of the theme color
+  const [isDark, setIsDark] = useState(() => {
+    // checking to see if we have a value in localstorage
+    const d = localStorage.getItem("isDarkThemeOn");
+    // if no value in localstorage, set it to true which means dark mode is enabled which is our default theme
+    if (d === undefined || d === null) {
+      return true;
+    } else {
+      // if value is found in localstorage, set the state to that value
+      return JSON.parse(d);
+    }
+  });
+
+  // handle function to switch the theme from one to another
+  const handleThemeChange = () => {
+    setIsDark(!isDark);
+  }
+
+  async function getUser() {
+    // logging a user in automatically if cookie exists
+    // client sends the cookie in the header to the server
+    // server matches session cookie to user
+    // server sends the user data back in response
+    const res = await axios.get(`${BACKEND_URL}/user/getUser`, {
+      withCredentials: true
+    })
+    if (res.data.message === "Error while processing your request") {
+      setCurrentUser(null);
+    } else {
+      console.log("res user >>>", res.data)
+      setCurrentUser(res.data);
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [])
+
+  // whenever dark theme state is changed, update localstorage
+  useEffect(() => {
+    localStorage.setItem('isDarkThemeOn', isDark);
+  }, [isDark]);
+
+  // USER STATE AND METHODS
+
+
   // 2. Use at the root of your app
-  return (
-    <NextUIProvider theme={'darkTheme'}>
-      
-        <Navbar isBordered variant="sticky">
-          <Navbar.Toggle showIn="sm"/>
-          <Navbar.Brand
-            // css={{
-            //   "@sm": {
-            //     w: "30%",
-            //   },
-            // }}
-          >
-            <img src='/logo_title.png' alt='adoptal logo' height={'53px'} />
-            
-            {/* <Text size="$2xl" color="inherit" hideIn="sm">           Adoptal
-            </Text> */}
+  return (<>
+    <NextUIProvider theme={isDark === true ? darkTheme : lightTheme} >
 
-          </Navbar.Brand>
-          <Navbar.Content
-            enableCursorHighlight
-            activeColor="secondary"
-            hideIn="sm"
-            variant="highlight-rounded"
-          >
-            <Navbar.Link isActive href="#">Cats</Navbar.Link>
-            <Navbar.Link href="#">Adopt List</Navbar.Link>
-            <Navbar.Link href="#">My notes</Navbar.Link>
-            <Navbar.Link href="#">My comments</Navbar.Link>
-          </Navbar.Content>
-          <Navbar.Content
-            css={{
-              "@xs": {
-                w: "12%",
-                jc: "flex-end",
-              },
-            }}
-          >
-            <Dropdown placement="bottom-right">
-              <Navbar.Item>
-                <Dropdown.Trigger>
-                  <Avatar
-                    bordered
-                    zoomed
-                    as="button"
-                    color="gradient"
-                    size="md"
-                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                  />
-                </Dropdown.Trigger>
-              </Navbar.Item>
-              <Dropdown.Menu
-                aria-label="User menu actions"
-                color="secondary"
-                onAction={(actionKey) => console.log({ actionKey })}
-              >
-                <Dropdown.Item key="profile" css={{ height: "$18" }}>
-                  <Text b color="inherit" css={{ d: "flex" }}>
-                    Signed in as
-                  </Text>
-                  <Text b color="inherit" css={{ d: "flex" }}>
-                    zoey@example.com
-                  </Text>
-                </Dropdown.Item>
-                <Dropdown.Item key="settings" withDivider>
-                  My Settings
-                </Dropdown.Item>
-                <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
-                <Dropdown.Item key="analytics" withDivider>
-                  Analytics
-                </Dropdown.Item>
-                <Dropdown.Item key="system">System</Dropdown.Item>
-                <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
-                <Dropdown.Item key="help_and_feedback" withDivider>
-                  Help & Feedback
-                </Dropdown.Item>
-                <Dropdown.Item key="logout" withDivider color="error">
-                  Log Out
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Navbar.Content>
-          <Navbar.Collapse>
-            {collapseItems.map((item, index) => (
-              <Navbar.CollapseItem
-                key={item}
-                activeColor="secondary"
-                css={{
-                  color: index === collapseItems.length - 1 ? "$error" : "",
-                }}
-                isActive={index === 0}
-              >
-                <Link
-                  color="inherit"
-                  css={{
-                    minWidth: "100%",
-                  }}
-                  href="#"
-                >
-                  {item}
-                </Link>
-              </Navbar.CollapseItem>
-            ))}
-          </Navbar.Collapse>
-        </Navbar>
+      {/* Passing current user state and setCurrentUser function as global context to all child componenets */}
+      <GlobalContext.Provider value={{ currentUser, setCurrentUser }}>
+        <BrowserRouter>
+          {/* Rendering navigation and passing theme color and
+       change function */}
 
-      <div className="App">
-        <header className="App-header">
-          <img src='/logo.png' className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Button shadow color="gradient" auto rounded>
-            <Loading color="currentColor" size="sm" />
-            Click me
-          </Button>
-        </header>
-      </div>
-    </NextUIProvider>
-  );
+          <Navigation handleThemeChange={handleThemeChange} isDark={isDark}></Navigation>
+
+          <Router></Router>
+
+        </BrowserRouter>
+      </GlobalContext.Provider>
+
+    </NextUIProvider >
+  </>)
 }
 
 export default App;

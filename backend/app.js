@@ -6,6 +6,7 @@
 // main express application
 const express = require("express");
 const app = express();
+const cors = require('cors');
 // used for sending requests
 const axios = require("axios");
 // importing passport authentication library
@@ -31,17 +32,26 @@ mongoose.set('strictQuery', false);
 // telling express to return the responses in JSON format so we can use it in React
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+// telling express to use cors to avoid error "blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource"
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
+app.use(cors(corsConfig));
+app.options('*', cors(corsConfig))
+
 // ------------------------- MIDDLEWARE - END -------------------------
 
 // ------------------------- EXPRESS SESSION CONFIG - START -------------------------
 // requiring main packages for session management
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 // requiring the connect-mongo package which will help us with storing session info in the DB
 const MongoStore = require('connect-mongo');
 // connecting to the mongo db for session collection
 app.use(session({
     secret: process.env.session_secret,
-    resave: false,
+    resave: true,
     saveUninitialized: true, // EK - < - should be set to false in PROD. Do some research
     // EK - v - should be set to false in PROD
     proxy: false, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
@@ -71,9 +81,8 @@ global.pf_token_expiration = '';
 // ------------------------- VARIABLES - END -------------------------
 
 // ------------------------- PASSPORT AUTHENTICATION - START -------------------------
-require('./auth/passport');
-const { isAuth } = require('./models/password')
 
+app.use(cookieParser(process.env.session_secret));
 // initializing the passport middleware
 app.use(passport.initialize());
 // mapping the passport middleware into express-session
@@ -83,6 +92,10 @@ app.use(passport.initialize());
 // anything that we store on the req.session, inside any routes
 // will be persisted to the db using the sessions collection
 app.use(passport.session());
+require('./auth/passport')(passport);
+
+const { isAuth } = require('./models/password')
+
 // ------------------------- PASSPORT AUTHENTICATION - END -------------------------
 
 // ------------------------- ROUTER - START -------------------------

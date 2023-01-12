@@ -13,9 +13,10 @@ const { keepTokenAlive } = require("../auth/petfinder_api");
 // For routes below where we are passing keepTokenAlive function, it makes sure that our
 // Petfinder OAth Authentication Token does not expire causing all of our API calls to fail.
 router.get('/', keepTokenAlive, async (req, res) => {
+
     // call the custom method that we created and pass cat as the type since the route is for /cats
     // and pass a zip code if its send in the queries. otherwise method defaults to zip code 15219
-    const cats = await getAllPets("cat", req.query.zip, req.query.page);
+    const cats = await getAllPets(req.query);
     // console.log("zip is: ", req.query.zip)
     res.send(cats.data);
 })
@@ -25,8 +26,13 @@ router.get('/:id', keepTokenAlive, async (req, res) => {
     // EK - implement a check to make sure ID is a number here
     const catId = parseInt(req.params.id);
 
-    const cat = await getSinglePet(catId);
-    res.send(cat.data);
+    try {
+        const cat = await getSinglePet(catId);
+        res.send(cat.data);
+    } catch(e) {
+        console.log("Backend >>> cats >>> id >>> error: ", e);
+        res.send("Not found");
+    }
 })
 
 

@@ -10,7 +10,7 @@ BCRYPT_WORK_FACTOR = parseInt(process.env.BCRYPT_WORK_FACTOR)
 // TO DO 
 async function validatePw(username, password) {
     // looking for the user by the username that is passed ar argument
-    const usr = await User.findOne({ userName: username });
+    const usr = await User.findOne({ username: username });
 
     // console.log(username, password);
     // console.log(usr);
@@ -22,8 +22,10 @@ async function validatePw(username, password) {
 }
 
 async function generatePw(password) {
-    // console.log('process.env.BCRYPT_WORK_FACTOR >>>', BCRYPT_WORK_FACTOR);
+    console.log('process.env.BCRYPT_WORK_FACTOR >>>', BCRYPT_WORK_FACTOR);
+
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
+    
     return hashedPassword;
 }
 

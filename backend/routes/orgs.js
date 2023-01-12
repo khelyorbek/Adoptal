@@ -6,6 +6,8 @@ const { getAllPets, getSinglePet, getSingleOrg } = require("../models/petfinder"
 const router = express.Router();
 // importing the Petfinder middleware to keep the OAuth token alive
 const { keepTokenAlive } = require("../auth/petfinder_api");
+// for authentication purposes
+const passport = require('passport');
 
 // ------------------------- ROUTES - START - /org -------------------------
 router.get('/:id', keepTokenAlive, async (req, res) => {

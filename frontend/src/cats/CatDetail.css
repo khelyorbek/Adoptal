@@ -1,0 +1,57 @@
+/* Importing the CSS for the React Image Gallry Carousel */
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus {
+    border: 4px solid #7a00fd;
+    border-radius: 0.9rem;
+}
+
+.image-gallery-thumbnail:hover {
+    border: 4px solid #bc2ffb;
+    border-radius: 0.9rem;
+}
+
+.image-gallery-thumbnail {
+    border-radius: 0.9rem;
+}
+
+.image-gallery-svg:hover  {
+    color: #7a00fd;
+}
+
+.image-gallery-icon:hover {
+    color: #7a00fd;
+}
+
+.image-gallery-image {
+    border-radius: 1rem;
+}
+
+/* .image-gallery.fullscreen-modal {
+    background: var(--nextui--navbarBackgroundColor);
+} */
+
+/* .image-gallery-content.fullscreen {
+    background: var(--nextui--navbarBackgroundColor);
+} */
+
+.image-gallery, .image-gallery-using-mouse {
+    margin-top: 0rem;
+    /* box-shadow: 0px 0px 15px -14px var(--nextui-colors-text); */
+    box-shadow: var(--nextui-colors-text) 0px 5px 15px -13px;
+    border-radius: 1rem;
+}
+
+img {
+    /* border: 1px solid red; */
+    border-radius: 0.6rem;
+}
+
+.cat-detail-section {
+    box-shadow: var(--nextui-colors-text) 0px 5px 15px -13px;
+    border-radius: 1rem;
+    width: 100%;
+    height: fit-content;
+    padding: 1rem;
+    margin-bottom: 0.7rem;
+}
