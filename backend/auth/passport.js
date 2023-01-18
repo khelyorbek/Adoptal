@@ -1,6 +1,10 @@
+// importing the local strategy for passport
 const LocalStrategy = require('passport-local').Strategy;
+// importing the MongoDB data schema
 const { db_users_connection } = require('../schemas/User');
+// importing the User model from the MongoDB data schema
 const User = db_users_connection.models.User;
+// importing the custom password validation methods
 const { validatePw } = require('../models/password')
 
 // NOTE: Useful passport methods
@@ -20,7 +24,9 @@ module.exports = function (passport) {
         User.findOne({ username: username })
             // returning result as user once findOne ends
             .then(async (user) => {
+                // for debugging purposes
                 // console.log("user >>>", user);
+
                 // if there is no user found, telling password > no error occured, user NOT found
                 // Will be rejected with Unauth 401 status
                 if (!user) { return done(null, false) }
@@ -40,27 +46,34 @@ module.exports = function (passport) {
                     return done(null, false);
                 }
             })
-            // catching any errors, calling the done function and passing the error to the next middleware
+            // catching any errors, calling the done function
             .catch((err) => {
+                // passing the error to the next middleware
                 done(err);
             });
     }
 
+    // creating a new Local Passport strategy with the callback that we just created and the custom fields defined at the top
     const strategy = new LocalStrategy(customFields, verifyCallback);
 
+    // telling passport to use this strategy
     passport.use(strategy);
 
-    // puts user id into the session for storage as string
+    // method for putting user id into the session for storage as string
     passport.serializeUser((user, done) => {
         done(null, user.id);
     });
 
-    // gets id from session storage and converts it into the User (object)
+    // method for getting id from session storage and converts it into the User (object)
     passport.deserializeUser((userId, done) => {
+        // sending MongoDB query to find the user id and getting session information
         User.findById(userId)
+            // if successful
             .then((user) => {
+                // don't display an error & pass the user to the next middleware
                 done(null, user);
             })
+            // otherwise, catch the error and pass it to the next middleware
             .catch(err => done(err))
     });
 }

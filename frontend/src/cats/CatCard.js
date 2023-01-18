@@ -1,24 +1,27 @@
+// importing the necessary files
 import React, { useState, useEffect } from 'react';
-import { Card, Col, Row, Button, Text, Grid } from "@nextui-org/react";
+import { Card, Col, Row, Text } from "@nextui-org/react";
 import './CatCard.css'
 import { useNavigate } from "react-router-dom";
 
-// Custom components and functions
-import AdoptalApi from '../api/adoptalBackend';
-
-
-
+// creating a function which accepts a cat as a prop
 const CatCard = ({ cat }) => {
+    // using navigate for dynamic navigation
     const navigate = useNavigate();
+    // using state to store variables
     const [id, setId] = useState();
 
+    // when an id is changed, this effect runs
     useEffect(() => {
         if(id) {
+            // soft redirects to the Cat Details page
             navigate(`/cat/${id}`);
         }
     }, [id, navigate])
 
 
+    // returns a card with Cat's photo and information
+    // sets the id on press which triggers the redirect using useEffect
     return (<>
         <Card 
         onPress={() => setId(cat.id)}

@@ -57,16 +57,18 @@ const LoginProfileToggle = () => {
     }
 
     // / creating a custom method to handle the submission of the form
-    async function handleLogin(e, type) {
+    async function handleLogin(e) {
+        setIsRegistration(false);
+        setIsEditProfile(false);
         // preventing default behavior
         e.preventDefault();
         // showing the loading button while our API call runs 
         setLoading(true);
-        setIsRegistration(false);
-        setIsEditProfile(false);
         // calling the login function that is passed to us all the way from App
         // and sending the data from the form
         let res = await AdoptalApi.userLogin(formData);
+        
+        console.log("LoginProfileToggle >>> handleLogin >>> res", res);
 
         // Once the login process is done
         if (res === "Login or password is incorrect. Please try again.") {
@@ -75,6 +77,7 @@ const LoginProfileToggle = () => {
             // and setting the formErrors state so our alert can display
             setFormErrors(res);
         } else {
+            setFormErrors(null);
             setSuccess(true);
             // turning off the loading button
             setLoading(false);
@@ -280,7 +283,8 @@ const LoginProfileToggle = () => {
                 <form onSubmit={handleEditProfile}>
                     <Modal.Header>
                         {
-                            success
+                            isEditProfile 
+                            ? success
                                 ? <Text id="modal-title" size={24} b color="success">
                                     Profile edit successful!
                                 </Text>
@@ -289,7 +293,7 @@ const LoginProfileToggle = () => {
                                     
                                     Profile
                                 </Text>
-
+                            : ''
                         }
 
                     </Modal.Header>
@@ -482,6 +486,8 @@ const LoginProfileToggle = () => {
                             css={{ display: success ? 'none' : '' }}
                         />
 
+
+                        { formErrors ? <Text b size={16} color="error">{formErrors}</Text> : ""}
 
                         <Text size={16} css={{ display: success ? 'none' : '' }}>
                             Don't want to register? Use

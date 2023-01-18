@@ -8,7 +8,7 @@ import GlobalContext from '../GlobalContext';
 import AdoptalApi from '../api/adoptalBackend';
 
 const ListItem = ({ cat }) => {
-    const { currentUser } = useContext(GlobalContext);
+    const { currentUser, setCurrentUser } = useContext(GlobalContext);
     const [visible, setVisible] = useState(true);
 
     async function removeFromList() {
@@ -18,6 +18,11 @@ const ListItem = ({ cat }) => {
 
         if (res.msg === "Successfully removed animal from Want to Adopt list") {
             setVisible(false);
+
+            const usr = currentUser;
+            usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== cat.id)
+            console.log("usr >>>>>>>>>>>", usr);
+            setCurrentUser(usr)
         }
     }
 

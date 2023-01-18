@@ -1,3 +1,4 @@
+// importing the necessary libraries, custom methods, icons and stylesheets
 import React, { useState, useEffect, useMemo, useContext } from 'react';
 import { Card, Col, Row, Button, Text, Container, Grid, Textarea, Loading, Avatar } from "@nextui-org/react";
 import { useParams } from "react-router-dom";
@@ -10,11 +11,20 @@ import GlobalContext from '../GlobalContext';
 
 
 const CatDetail = () => {
+    // grabbing the id of a cat that is passed to us as a paramenter
     const { id } = useParams();
-    const [cat, setCat] = useState();
-    const carouselItems = useMemo(() => [], []);
-    const [addr, setAddr] = useState();
+
+    // using a memo to set the items for the photo carousel
+    // memos only update once
+    let carouselItems = useMemo(() => [], []);
+
+    // getting the current user from the Global Context passed to us from App.js
     const { currentUser, setCurrentUser } = useContext(GlobalContext);
+
+
+    // using state to store variables
+    const [cat, setCat] = useState();
+    const [addr, setAddr] = useState();
     const [adopted, setAdopted] = useState();
     const [adoptedLoading, setAdoptedLoading] = useState(false);
 
@@ -30,80 +40,150 @@ const CatDetail = () => {
     const [commentSuccess, setCommentSuccess] = useState(false);
 
 
-
+    // when an id is passed or changes
     useEffect(() => {
+        // gets the cat by id and then sets it into state for usage
         getCat(id).then(setCat);
     }, [id])
 
+    // when photos in carousel or a cat or a current user is changed
+    // runs this effect
     useEffect(() => {
+        // custom method for getting the photos of the pet
         function getPhotos() {
+            // for every photo in the photo object
             for (let pic of cat.photos) {
+                // pushing the photo object into an array
                 carouselItems.push({
                     thumbnail: pic.small,
                     original: pic.large,
                     fullscreen: pic.full,
                     originalHeight: "480",
                     thumbnailHeight: "100",
+                    // setting the photo loading as our animated SVG
                     loading: loadingSvg
                 })
             }
         }
 
+        // custom method for getting the status of the pet's adoption
         async function getAdoptListStatus(user) {
+            // if user's want to adopt array includes the id of an animal
             if (user.wantToAdopt.includes(cat.id)) {
+                // set the want to adopt status to true
                 setAdopted(true);
             } else {
+                // otherwise false
                 setAdopted(false);
             }
         }
 
+        // custom function for getting the private notes for the pet
         async function getPrivateNote(user) {
+            // setting the state
             setNoteData({
+                // to the value of the key of cat's id in the private notes object
+                // example: private notes: { 123456: "Some random note "}
                 txtInput: currentUser.privateNotes[cat.id]
             })
+            // for debugging only
             // console.log("NOTEDATA >>>>>" , noteData.txtInput);
         }
 
+        // custom function for getting all the comments from users for a specific cat
         async function getAllComments(id) {
+            // running an async request
             const res = await AdoptalApi.getAllCommentsPerCat(id);
-            console.log("RECEIVED COMMENTS >>>", res);
+            // for debugging
+            // console.log("RECEIVED COMMENTS >>>", res);
+
+            // settings the state as the data received
             setComments(res);
         }
 
+        // when the cat loads fully
         if (cat) {
+            // and if the cat is actually found
             if (cat !== "404") {
+                // get the photos and load them into the photo carousek
                 getPhotos();
+
+                // format the google maps iframe address to drop a pin to the correct location
                 setAddr(`https://maps.google.com/maps?width=300&height=300&hl=en&q=${cat.contact.address.address1 ? cat.contact.address.address1 : ''}, ${cat.contact.address.city}, ${cat.contact.address.state} ${cat.contact.address.postcode}+()&t=&z=14&ie=UTF8&iwloc=B&output=embed`.replace(/ /g, '%20'));
+
+                // get the want to adopt status
                 getAdoptListStatus(currentUser);
+
+                // get the private notes
                 getPrivateNote(currentUser);
+
+                // get the public comments
                 getAllComments(cat.id);
             }
         };
     }, [carouselItems, cat, currentUser])
 
+    // custom function to get the cat by  id
     async function getCat(id) {
+        // seding a request to the backend
         const res = await AdoptalApi.getSingleCat(id);
 
+        // for debugging
         // console.log("RES >>>", res);
+
+        // if the cat is found, then returning the data that we received
         if (res !== "Not found") { return res }
         else {
+            // if the cat is not found, displaying error and returning 404
             console.log("Error while getting cat information from API!");
             return "404"
         }
     }
 
+    // custom function to handle toggling the Want to Adopt / Remove from Adopt List logic
     async function handleAdoptToggle() {
+        // set the loading to true before the async request
         setAdoptedLoading(true);
 
+        // send an async request to Back-end
         const res = await AdoptalApi.toggleAdoptItem(currentUser.username, cat.id);
 
+        // if successful
         if (res.msg === "Successfully removed animal from Want to Adopt list") {
+            // turn off loading
             setAdoptedLoading(false);
+            // set the want to adopt status to false
             setAdopted(false);
 
+            // creating a new variablle and storing the current user
+            const usr = currentUser;
+
+            // changing the want to adopt array to remove the cat's id
+            usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== cat.id)
+
+            // for debugging
+            // console.log("usr >>>>>>>>>>>", usr);
+
+            // setting the current user to the new user object
+            setCurrentUser(usr)
+
         } else {
+            // turn off loading
             setAdoptedLoading(false);
+            // set the want to adopt status to true
             setAdopted(true);
+
+            // creating a new variablle and storing the current user
+            const usr = currentUser;
+
+            // changing the want to adopt array to have the cat's id
+            usr.wantToAdopt.push(parseInt(cat.id))
+
+            // for debugging
+            // console.log("usr >>>>>>>>>>>", usr);
+
+            // setting the current user to the new user object
+            setCurrentUser(usr)
         }
     }
 
@@ -121,17 +201,41 @@ const CatDetail = () => {
         }))
     }
 
-    // / creating a custom method to handle the submission of the form
+    // creating a custom method to handle the submission of the form
     async function handleNoteSubmit(e) {
         // preventing default behavior
         // e.preventDefault();
+
+        // set the loading to true before the async request
         setNoteLoadingSubmit(true);
+
+        // sending an async request to the API
         const res = await AdoptalApi.addNote(currentUser.username, cat.id, noteData.txtInput)
+
+        // for debugging
         // console.log(res);
+
+        // if successfull
         if (res.msg === "Successfully added private note") {
+            // turn off loading
             setNoteLoadingSubmit(false);
+
+            // display the success message
             setNoteSuccess(true)
+
+            // setting the current user
+            setCurrentUser({
+                // to all the data that currently exists in the user
+                ...currentUser,
+                // but 
+                privateNotes: {
+                    ...currentUser.privateNotes,
+                    // with a new line with k/v in the private Notes object
+                    [parseInt(cat.id)]: noteData.txtInput
+                }
+            })
         } else {
+            // display an error if not successful
             console.log("Error while saving private note")
         }
 
@@ -140,14 +244,33 @@ const CatDetail = () => {
     async function handleNoteDelete(e) {
         // preventing default behavior
         // e.preventDefault();
+
+        // set the loading to true before the async request
         setNoteLoadingDelete(true);
         const res = await AdoptalApi.removeNote(currentUser.username, cat.id)
         // console.log(res);
         if (res.msg === "Successfully deleted private note") {
+            // turn off loading
             setNoteLoadingDelete(false);
+            // setting the text input value to none
             setNoteData(null);
+            // display the success message
             setNoteSuccess(true);
+
+            // creating a new variable and copying the current data
+            const newNotes = currentUser.privateNotes;
+            // deleting the data for the current pet
+            delete newNotes[parseInt(cat.id)];
+
+            // setting the current user
+            setCurrentUser({
+                // to all the data that is currently there
+                ...currentUser,
+                // with a new notes variable that doesn't have the current pet data
+                privateNotes: newNotes
+            })
         } else {
+            // display an error if not successful
             console.log("Error while deleting private note")
         }
     }
@@ -170,21 +293,30 @@ const CatDetail = () => {
     async function handleCommentSubmit(e) {
         // preventing default behavior
         // e.preventDefault();
+
+        // set the loading to true before the async request
         setCommentLoadingSubmit(true);
         const res = await AdoptalApi.addComment(currentUser.username, cat.id, commentData.txtInput)
         // console.log(res);
         if (res.msg === "Successfully added public note") {
+            // turn off loading
             setCommentLoadingSubmit(false);
+            // display the success message
             setCommentSuccess(true)
-            setCommentSuccess(true);
 
+            // setting the current user
             setCurrentUser({
+                // to all the data that currently exists in the user
                 ...currentUser,
+                // but 
                 publicComments: {
+                    ...currentUser.publicComments,
+                    // with a new line with k/v in the publicComments object
                     [parseInt(cat.id)]: commentData.txtInput
                 }
             })
         } else {
+            // display an error if not successful
             console.log("Error while saving public note")
         }
 
@@ -193,21 +325,33 @@ const CatDetail = () => {
     async function handleCommentDelete(e) {
         // preventing default behavior
         // e.preventDefault();
+
+        // set the loading to true before the async request
         setCommentLoadingDelete(true);
         const res = await AdoptalApi.removeComment(currentUser.username, cat.id)
         // console.log(res);
         if (res.msg === "Successfully deleted public comment") {
+            // turn off loading
             setCommentLoadingDelete(false);
+            // setting the text input value to none
             setCommentData(null);
+            // display the success message
             setCommentSuccess(true);
 
+            // creating a new variable and copying the current data
+            const newComments = currentUser.publicComments;
+            // deleting the data for the current pet
+            delete newComments[parseInt(cat.id)];
+
+            // setting the current user
             setCurrentUser({
+                // to be the current value of the state
                 ...currentUser,
-                publicComments: {
-                    [parseInt(cat.id)]: null
-                }
+                // with a new notes variable that doesn't have the current pet data
+                publicComments: newComments
             })
         } else {
+            // display an error if not successful
             console.log("Error while deleting public comment")
         }
     }
@@ -215,7 +359,9 @@ const CatDetail = () => {
     return (<>
 
         {
+            // if the pet has completed loading
             cat
+                // if the response from back-end if 404, displaying a message saying that its not found
                 ? cat === "404"
                     ? <Container aria-label="error note found image" style={{
                         textAlign: "center"
@@ -230,9 +376,12 @@ const CatDetail = () => {
                         <Text size={35} b color="secondary">404 - Not found</Text>
                         <Text size={24} >The resource you are trying to access was not found or is no longer available.</Text>
                     </Container>
+
+                    // if the response from back-end is normal (not 404), displaying cat details
                     : <Container aria-label="main container">
                         <Row>
                             <Col>
+                                {/* image carousel */}
                                 <ImageGallery
                                     showBullets
                                     slideInterval="5000"
@@ -256,6 +405,7 @@ const CatDetail = () => {
                             </Col>
                         </Row>
 
+                        {/* Multiple areas below are checking if a value exists and if not, setting to Unknown for UX */}
                         <Grid.Container gap={0} justify="space-evenly" aria-label="first column">
                             <Grid xs={3}>
                                 <Grid.Container aria-label="basic info" alignContent="flex-start">
@@ -495,6 +645,7 @@ const CatDetail = () => {
                                         </Grid>
                                         <Grid xs={12}>
                                             {
+                                                // logic for Google maps pin dropping. If there is an error, shows Unavalable
                                                 addr
                                                     ? <div aria-label="map" style={{ overflow: "hidden" }}><iframe title="map" width="100%" height="300" frameBorder="0" style={{ overflow: "hidden" }} marginHeight="0" marginWidth="0" src={addr}></iframe></div>
                                                     : "Unavailable"
@@ -505,7 +656,9 @@ const CatDetail = () => {
                                 </Grid.Container>
                             </Grid>
 
+                            
                             {
+                                // if the user has finished loading / exists / logged in
                                 currentUser
                                     ? <Grid xs={3} alignItems="flex-start">
                                         <Grid.Container aria-label="third column">
@@ -519,6 +672,7 @@ const CatDetail = () => {
                                                 <Grid xs={12}>
                                                     <Text
                                                         size={18}>
+                                                        {/* Displays if an animal is in the adopt list or not */}
                                                         {cat.name} is {adopted ? '' : 'not'} in your Adopt List
                                                     </Text>
 
@@ -560,6 +714,7 @@ const CatDetail = () => {
                                                     ></Textarea>
                                                 </Row>
                                                 <div aria-label="success message">
+                                                    {/* success message only shows when the state is set to true */}
                                                     {noteSuccess ? <Text color="success" size={16}> Successfully updated note.</Text> : ''}
                                                 </div>
                                                 <Row justify="space-between" css={{ paddingTop: "1rem" }}>
@@ -599,13 +754,14 @@ const CatDetail = () => {
 
                         </Grid.Container>
 
-                        <Row style={{marginBottom: "2rem"}}>
+                        <Row style={{ marginBottom: "2rem" }}>
                             <Col xs={12} className='cat-detail-section'>
                                 <Text h2 color="secondary" style={{ textAlign: "center" }}>Comments from users</Text>
 
-                                {
+                                {   // if coments have loaded, display them
                                     comments ?
                                         comments.length > 0
+                                            // if there are more than 0 comments, map through the comments and display a list
                                             ? comments.map(comment => {
                                                 console.log("Comments map >>> ", comments)
                                                 return (<>
@@ -641,9 +797,10 @@ const CatDetail = () => {
                                                                         </Text>
                                                                     </Col>
 
+                                                                    {/* if its user's own comment, displaying a button to remove */}
                                                                     {comment.username === currentUser.username ? <Col >
                                                                         <Button
-                                                                            style={{float: "right"}}
+                                                                            style={{ float: "right" }}
                                                                             flat
                                                                             onPress={handleCommentDelete}
                                                                             color="error"
@@ -656,7 +813,7 @@ const CatDetail = () => {
                                                                             }
                                                                         </Button>
                                                                     </Col> : ''}
-                                                                    
+
                                                                 </Row>
 
                                                             </Card.Body>
@@ -664,6 +821,7 @@ const CatDetail = () => {
                                                     </Row>
                                                 </>)
                                             })
+                                            // if comments are 0, display a message saying list is empty
                                             : <Container style={{
                                                 textAlign: "center",
                                                 padding: "0 0 2rem 0"
@@ -678,61 +836,71 @@ const CatDetail = () => {
                                                 </div>
                                                 <Text size={24} >Comments are empty for this pet. You can be the first person to comment!</Text>
 
-
-                                                {
-                                                    currentUser
-                                                        ? <div className='cat-detail-section' aria-label="public comments">
-                                                            <Grid xs={12}>
-                                                                <Text b size={24} color="secondary">
-                                                                    My Public Comment
-                                                                </Text>
-                                                            </Grid>
-
-                                                            <Row>
-                                                                <Textarea
-                                                                    aria-label="private note input"
-                                                                    fullWidth
-                                                                    size="md"
-                                                                    name='txtInput'
-                                                                    onChange={handleCommentChange}
-                                                                    minRows={7}
-                                                                    maxRows={20}
-                                                                    initialValue={commentData ? commentData.txtInput : ''}
-                                                                    bordered
-                                                                ></Textarea>
-                                                            </Row>
-                                                            <div aria-label="success message">
-                                                                {commentSuccess ? <Text color="success" size={16}> Successfully updated comment.</Text> : ''}
-                                                            </div>
-                                                            <Row justify="flex-end" css={{ paddingTop: "1rem" }}>
-
-                                                                <Button
-                                                                    flat
-                                                                    onPress={handleCommentSubmit}
-                                                                    auto
-                                                                    type="submit" color="success">
-                                                                    {
-                                                                        commentLoadingSubmit
-                                                                            ? <Loading type="points" color="currentColor" size="md" />
-                                                                            : "Add Public Comment"
-                                                                    }
-                                                                </Button>
-
-
-                                                            </Row>
-                                                        </div>
-                                                        : ''
-                                                }
                                             </Container>
+                                        // if comments are still loading, display spinner
                                         : <Container aria-label="loading container" style={{ textAlign: "center", paddingTop: "3rem" }}>
                                             <img src={loadingSvg} alt='loading spinner'></img>
                                         </Container>
 
                                 }
+
+                                
+                                {
+                                    // if the user is loaded / logged in / exists
+                                    currentUser ?
+                                        // if the user already has a public comment, display nothing
+                                        currentUser.publicComments[cat.id]
+                                            ? ''
+                                            // if the user hasn't commented yet, show an area where that can be done
+                                            : <div className='cat-detail-section' aria-label="public comments" style={{ marginTop: "0" }}>
+                                                <Grid xs={12}>
+                                                    <Text b size={24} color="secondary">
+                                                        Add a Public Comment
+                                                    </Text>
+                                                </Grid>
+
+                                                <Row>
+                                                    <Textarea
+                                                        aria-label="private note input"
+                                                        fullWidth
+                                                        size="md"
+                                                        name='txtInput'
+                                                        onChange={handleCommentChange}
+                                                        minRows={7}
+                                                        maxRows={20}
+                                                        initialValue={commentData ? commentData.txtInput : ''}
+                                                        bordered
+                                                    ></Textarea>
+                                                </Row>
+                                                <div aria-label="success message">
+                                                     {/* success message only shows when the state is set to true */}
+                                                    {commentSuccess ? <Text color="success" size={16}> Successfully updated comment.</Text> : ''}
+                                                </div>
+                                                <Row justify="flex-end" css={{ paddingTop: "1rem" }}>
+
+                                                    <Button
+                                                        flat
+                                                        onPress={handleCommentSubmit}
+                                                        auto
+                                                        type="submit" color="success">
+                                                        {
+                                                            commentLoadingSubmit
+                                                                ? <Loading type="points" color="currentColor" size="md" />
+                                                                : "Add Public Comment"
+                                                        }
+                                                    </Button>
+
+
+                                                </Row>
+                                            </div>
+                                        // if the user is not loaded, display nothing
+                                        : ''
+                                }
                             </Col>
                         </Row>
                     </Container>
 
+                // if the pet is loading
                 : <Container aria-label="loading container" style={{ textAlign: "center", paddingTop: "3rem" }}>
                     <img src={loadingSvg} alt='loading spinner'></img>
                 </Container>

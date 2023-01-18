@@ -7,7 +7,6 @@ import CatDetail from "./cats/CatDetail";
 import AdoptList from "./lists/AdoptList";
 import MyComments from "./lists/MyComments";
 import MyNotes from "./lists/MyNotes";
-import EditProfile from "./profile/EditProfile";
 import GlobalContext from './GlobalContext';
 import LoginRequiredPage from "./profile/LoginRequiredPage";
 
@@ -46,15 +45,6 @@ const Router = () => {
                 element={
                     currentUser
                     ? <MyComments></MyComments>
-                    : <LoginRequiredPage></LoginRequiredPage>
-                }>
-            </Route>
-
-            <Route
-                path="/profile"
-                element={
-                    currentUser
-                    ? <EditProfile></EditProfile>
                     : <LoginRequiredPage></LoginRequiredPage>
                 }>
             </Route>

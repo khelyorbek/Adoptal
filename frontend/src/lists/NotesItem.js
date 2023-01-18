@@ -7,7 +7,7 @@ import GlobalContext from '../GlobalContext';
 import AdoptalApi from '../api/adoptalBackend';
 
 const NotesItem = ({ cat, type }) => {
-    const { currentUser } = useContext(GlobalContext);
+    const { currentUser, setCurrentUser } = useContext(GlobalContext);
     const [visible, setVisible] = useState(true);
     const [formData, setFormData] = useState();
     const [loading, setLoading] = useState(false);
@@ -42,7 +42,15 @@ const NotesItem = ({ cat, type }) => {
             console.log(res);
             if (res.msg === "Successfully added private note") {
                 setLoading(false);
-                setSuccess(true)
+                setSuccess(true);
+
+                setCurrentUser({
+                    ...currentUser,
+                    privateNotes: {
+                        ...currentUser.privateNotes,
+                        [parseInt(cat.id)]: formData.txtInput
+                    }
+                })
             } else {
                 console.log("Error while saving private note")
             }
@@ -53,7 +61,15 @@ const NotesItem = ({ cat, type }) => {
             console.log(res);
             if (res.msg === "Successfully added public note") {
                 setLoading(false);
-                setSuccess(true)
+                setSuccess(true);
+
+                setCurrentUser({
+                    ...currentUser,
+                    publicComments: {
+                        ...currentUser.publicComments,
+                        [parseInt(cat.id)]: formData.txtInput
+                    }
+                })
             } else {
                 console.log("Error while saving public comment")
             }
@@ -71,6 +87,14 @@ const NotesItem = ({ cat, type }) => {
             if (res.msg === "Successfully deleted private note") {
                 setLoading(false);
                 setVisible(false)
+
+                const newNotes = currentUser.privateNotes;
+                delete newNotes[parseInt(cat.id)];
+
+                setCurrentUser({
+                    ...currentUser,
+                    privateNotes: newNotes
+                })
             } else {
                 console.log("Error while deleting private note")
             }
@@ -82,6 +106,14 @@ const NotesItem = ({ cat, type }) => {
             if (res.msg === "Successfully deleted public comment") {
                 setLoading(false);
                 setVisible(false)
+
+                const newComments = currentUser.publicComments;
+                delete newComments[parseInt(cat.id)];
+
+                setCurrentUser({
+                    ...currentUser,
+                    publicComments: newComments
+                })
             } else {
                 console.log("Error while saving public comment")
             }
@@ -210,52 +242,52 @@ const NotesItem = ({ cat, type }) => {
                                                 <Col css={{ p: "0rem 1rem", borderLeft: "1px solid $neutralBorder" }}>
                                                     <Row>
                                                         <Col>
-                                                                <Row justify='center'>
+                                                            <Row justify='center'>
+                                                                {
+                                                                    success
+                                                                        ? <Text b color="success" size={16}>{type === "notes" ? "Note" : "Comment"} successfully updated!</Text>
+                                                                        : <Text b size={16}>My {type === "notes" ? "Note" : "Comment"}</Text>
+                                                                }
+
+                                                            </Row>
+                                                            <Row>
+                                                                <Textarea
+                                                                    fullWidth
+                                                                    size="md"
+                                                                    name='txtInput'
+                                                                    onChange={handleChange}
+                                                                    minRows={7}
+                                                                    maxRows={20}
+                                                                    initialValue={type === "notes" ? cat.privateNotes : cat.publicComments}
+                                                                    bordered
+                                                                ></Textarea>
+                                                            </Row>
+                                                            <Row justify="space-between" css={{ paddingTop: "1rem" }}>
+                                                                <Button
+                                                                    flat
+                                                                    onPress={handleDelete}
+                                                                    color="error"
+                                                                    type="submit"
+                                                                    auto>
                                                                     {
-                                                                        success
-                                                                            ? <Text b color="success" size={16}>{type === "notes" ? "Note" : "Comment"} successfully updated!</Text>
-                                                                            : <Text b size={16}>My {type === "notes" ? "Note" : "Comment"}</Text>
+                                                                        loadingDelete
+                                                                            ? <Loading type="points" color="currentColor" size="md" />
+                                                                            : "Delete"
                                                                     }
+                                                                </Button>
 
-                                                                </Row>
-                                                                <Row>
-                                                                    <Textarea
-                                                                        fullWidth
-                                                                        size="md"
-                                                                        name='txtInput'
-                                                                        onChange={handleChange}
-                                                                        minRows={7}
-                                                                        maxRows={20}
-                                                                        initialValue={type === "notes" ? cat.privateNotes : cat.publicComments}
-                                                                        bordered
-                                                                    ></Textarea>
-                                                                </Row>
-                                                                <Row justify="space-between" css={{ paddingTop: "1rem" }}>
-                                                                    <Button
-                                                                        flat
-                                                                        onPress={handleDelete}
-                                                                        color="error"
-                                                                        type="submit"
-                                                                        auto>
-                                                                        {
-                                                                            loadingDelete
-                                                                                ? <Loading type="points" color="currentColor" size="md" />
-                                                                                : "Delete"
-                                                                        }
-                                                                    </Button>
-
-                                                                    <Button
-                                                                        flat
-                                                                        onPress={handleSubmit}
-                                                                        auto
-                                                                        type="submit" color="success">
-                                                                        {
-                                                                            loading
-                                                                                ? <Loading type="points" color="currentColor" size="md" />
-                                                                                : "Save"
-                                                                        }
-                                                                    </Button>
-                                                                </Row>
+                                                                <Button
+                                                                    flat
+                                                                    onPress={handleSubmit}
+                                                                    auto
+                                                                    type="submit" color="success">
+                                                                    {
+                                                                        loading
+                                                                            ? <Loading type="points" color="currentColor" size="md" />
+                                                                            : "Save"
+                                                                    }
+                                                                </Button>
+                                                            </Row>
                                                         </Col>
 
 

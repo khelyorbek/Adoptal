@@ -2,10 +2,10 @@
 
 /** Express app for Adoptal's back-end. */
 
-// ------------------------- IMPORTS - START -------------------------
 // main express application
 const express = require("express");
 const app = express();
+// used for configuring Cross-origin resource sharing
 const cors = require('cors');
 // used for sending requests
 const axios = require("axios");
@@ -19,7 +19,6 @@ const userRoutes = require("./routes/users");
 
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
 require('dotenv').config();
-// ------------------------- IMPORTS - END -------------------------
 
 // ------------------------- DATABASE CONFIG - START -------------------------
 // library for interacting with MongoDB
@@ -32,11 +31,12 @@ mongoose.set('strictQuery', false);
 // telling express to return the responses in JSON format so we can use it in React
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-// telling express to use cors to avoid error "blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource"
+// creating CORS config to avoid error "blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource"
 const corsConfig = {
   origin: true,
   credentials: true,
 };
+// telling express to use cors we just created
 app.use(cors(corsConfig));
 app.options('*', cors(corsConfig))
 
@@ -45,17 +45,18 @@ app.options('*', cors(corsConfig))
 // ------------------------- EXPRESS SESSION CONFIG - START -------------------------
 // requiring main packages for session management
 const session = require('express-session');
+// library for parsing the data from the cookies
 const cookieParser = require('cookie-parser');
-// requiring the connect-mongo package which will help us with storing session info in the DB
+// requiring the connect-mongo package which will help us with storing session info in the DB for scalability
 const MongoStore = require('connect-mongo');
 // connecting to the mongo db for session collection
 app.use(session({
     secret: process.env.session_secret,
     resave: true,
-    saveUninitialized: true, // EK - < - should be set to false in PROD. Do some research
-    // EK - v - should be set to false in PROD
+    saveUninitialized: true, // EK - < - should be set to false in PROD. The reasoning behind this is that this will prevent a lot of empty session objects being stored in the session store. Since there's nothing useful to store, the session is "forgotten" at the end of the request.
     proxy: false, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-    // name: 'Adoptal-session', // This needs to be unique per-host.
+    
+    // Creating a store in the MongoDB to store the session data
     store: MongoStore.create({
       mongoUrl: process.env.mongodb_connect_string,
       mongoOptions: {
@@ -67,6 +68,8 @@ app.use(session({
         // secure: true,
         // sameSite: 'none',
         // httpOnly: false,
+
+        // setting the cookie expiration time
         maxAge: 1000 * 60 * 60 * 24 * 7 // Equals 7 days (7 days * 24 hr/1 day * 60 min/1 hr * 60 sec/1 min * 1000 ms / 1 sec)
     }
   }));
@@ -81,7 +84,7 @@ global.pf_token_expiration = '';
 // ------------------------- VARIABLES - END -------------------------
 
 // ------------------------- PASSPORT AUTHENTICATION - START -------------------------
-
+// parsing the cookie using the secret that we have stored in ENV variables
 app.use(cookieParser(process.env.session_secret));
 // initializing the passport middleware
 app.use(passport.initialize());
@@ -104,14 +107,9 @@ app.use("/cat", catRoutes);
 app.use("/org", orgRoutes);
 app.use("/pet", petRoutes);
 app.use("/user", userRoutes);
-app.get("/", isAuth, (req, res, next) => {
-    console.log("req.session >>>", req.session);
-    console.log("req.user >>>", req.user);
-    res.send("<h1>Testing of the express session cooke</h1>")
-})
 app.use((req, res, next) => {
-  console.log("req.session >>>", req.session)
-  console.log("req.user >>>", req.user)
+  // console.log("req.session >>>", req.session)
+  // console.log("req.user >>>", req.user)
   next();
 })
 // ------------------------- ROUTER - END -------------------------
