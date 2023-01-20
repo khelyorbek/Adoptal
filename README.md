@@ -3,8 +3,8 @@
 
 ---
 - [How to run the application?](#how-to-run-the-application-)
-  * [Method 1: Running the application online](#method-1--running-the-application-online)
-  * [Method 2: Running the application locally](#method-2--running-the-application-locally)
+  * [Method 1: Running the application online](#method-1-running-the-application-online)
+  * [Method 2: Running the application locally](#method-2-running-the-application-locally)
 - [Screenshots of the application](#screenshots-of-the-application)
 ---
 
