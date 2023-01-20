@@ -1,15 +1,25 @@
-import React, { useContext, useState, useEffect } from 'react';
+// Importing all the necessary libraries and components and assets
+import React, { useContext, useState } from 'react';
 import { Modal, Button, Input, Row, Loading, Image, Tooltip, Avatar, Text, Dropdown, Navbar } from '@nextui-org/react';
+import { useNavigate } from "react-router-dom";
+
+// importing icons
 import UserIcon from '../icons/user.svg'
 import { UsernameIcon } from '../icons/UsernameIcon';
 import { PasswordIcon } from '../icons/PasswordIcon';
 import { UserDetailIcon } from '../icons/UserDetailIcon';
+
+// importing a global context (current user enabler)
 import GlobalContext from '../GlobalContext';
+
+// Custom components and functions
 import AdoptalApi from '../api/adoptalBackend';
-import { useNavigate } from "react-router-dom";
+
 
 const LoginProfileToggle = () => {
+    // receiving the global context for current user
     const { currentUser, setCurrentUser } = useContext(GlobalContext);
+    // receiving the soft/dynamic navigation from React-router
     const navigate = useNavigate();
 
     // For showing and hiding the login modal
@@ -48,6 +58,7 @@ const LoginProfileToggle = () => {
         }))
     }
 
+    // custom method for waiting X seconds
     function resolveAfterXSeconds(X) {
         return new Promise(resolve => {
             setTimeout(() => {
@@ -56,146 +67,208 @@ const LoginProfileToggle = () => {
         });
     }
 
-    // / creating a custom method to handle the submission of the form
+    // creating a custom method to handle the submission of the login form
     async function handleLogin(e) {
-        setIsRegistration(false);
-        setIsEditProfile(false);
-        // preventing default behavior
-        e.preventDefault();
-        // showing the loading button while our API call runs 
-        setLoading(true);
-        // calling the login function that is passed to us all the way from App
-        // and sending the data from the form
-        let res = await AdoptalApi.userLogin(formData);
-        
-        console.log("LoginProfileToggle >>> handleLogin >>> res", res);
+        try {
+            // setting the reigstration page to none
+            setIsRegistration(false);
+            // setting the profile editing page to none
+            setIsEditProfile(false);
 
-        // Once the login process is done
-        if (res === "Login or password is incorrect. Please try again.") {
-            // turning off the loading button
-            setLoading(false);
-            // and setting the formErrors state so our alert can display
-            setFormErrors(res);
-        } else {
-            setFormErrors(null);
-            setSuccess(true);
-            // turning off the loading button
-            setLoading(false);
-            await resolveAfterXSeconds(1.5);
-            // turning off the login modal
-            setVisible(false)
-            // setting the global user to the user that we received
-            setCurrentUser(res);
-            // logging the current user
-            console.log("LoginProfileToggle >>> handleLogin >>> currentUser", currentUser);
+            // preventing default behavior
+            e.preventDefault();
 
+            // showing the loading button while our API call runs 
+            setLoading(true);
+
+            // calling the login function that is passed to us all the way from App
+            // and sending the data from the form
+            let res = await AdoptalApi.userLogin(formData);
+
+            // for debugging
+            // console.log("LoginProfileToggle >>> handleLogin >>> res", res);
+
+            // Once the login process is done
+            if (res === "Login or password is incorrect. Please try again.") {
+                // turning off the loading button
+                setLoading(false);
+                // and setting the formErrors state so our alert can display
+                setFormErrors(res);
+            } else {
+                // setting the form errors to null
+                setFormErrors(null);
+                // settings the success to true
+                setSuccess(true);
+                // turning off the loading button
+                setLoading(false);
+                // 1.5 seconds wait
+                await resolveAfterXSeconds(1.5);
+                // turning off the login modal
+                setVisible(false)
+                // setting the global user to the user that we received
+                setCurrentUser(res);
+
+                // for debugging
+                // console.log("LoginProfileToggle >>> handleLogin >>> currentUser", currentUser);
+
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > LoginProfileToggle.js > handleLogin > ", err);
         }
     }
 
-    // / creating a custom method to handle the submission of the form
+    // / creating a custom method to handle the submission of the registration form
     async function handleRegister(e, type) {
-        // preventing default behavior
-        e.preventDefault();
-        // showing the loading button while our API call runs 
-        setLoading(true);
-        // calling the login function that is passed to us all the way from App
-        // and sending the data from the form
-        let res = await AdoptalApi.userRegister(formData);
+        try {
+            // preventing default behavior
+            e.preventDefault();
 
-        // Once the login process is done
-        if (res === "Registration unsuccessful. Please try again with different values.") {
-            // turning off the loading button
-            setLoading(false);
-            // and setting the formErrors state so our alert can display
-            setFormErrors(res);
-        } else {
-            setSuccess(true);
-            // turning off the loading button
-            setLoading(false);
-            await resolveAfterXSeconds(1.5);
-            // turning off the login modal
-            setVisible(false)
-            // setting the global user to the user that we received
-            setCurrentUser(res);
-            // logging the current user
-            console.log("LoginProfileToggle >>> handleRegister >>> currentUser", currentUser);
+            // showing the loading button while our API call runs 
+            setLoading(true);
 
+            // calling the login function that is passed to us all the way from App
+            // and sending the data from the form
+            let res = await AdoptalApi.userRegister(formData);
+
+            // Once the login process is done
+            if (res === "Registration unsuccessful. Please try again with different values.") {
+                // turning off the loading button
+                setLoading(false);
+                // and setting the formErrors state so our alert can display
+                setFormErrors(res);
+            } else {
+                // setting the success message to true
+                setSuccess(true);
+                // turning off the loading button
+                setLoading(false);
+                // waiting 1.5 secs
+                await resolveAfterXSeconds(1.5);
+                // turning off the login modal
+                setVisible(false)
+                // setting the global user to the user that we received
+                setCurrentUser(res);
+
+                // for debugging
+                // console.log("LoginProfileToggle >>> handleRegister >>> currentUser", currentUser);
+
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > LoginProfileToggle.js > handleRegister > ", err);
         }
+
     }
 
-    // / creating a custom method to handle the submission of the form
+    // / creating a custom method to handle the submission of the edit profile form
     async function handleEditProfile(e, type) {
-        // preventing default behavior
-        e.preventDefault();
-        // showing the loading button while our API call runs 
-        setLoading(true);
-        // calling the login function that is passed to us all the way from App
-        // and sending the data from the form
-        let res = await AdoptalApi.userEdit(formData);
+        try {
+            // preventing default behavior
+            e.preventDefault();
+            // showing the loading button while our API call runs 
+            setLoading(true);
+            // calling the login function that is passed to us all the way from App
+            // and sending the data from the form
+            let res = await AdoptalApi.userEdit(formData);
 
-        // Once the login process is done
-        if (res.message === "Successfully update profile for user") {
-            setSuccess(true);
-            // turning off the loading button
-            setLoading(false);
+            // Once the login process is done
+            if (res.message === "Successfully update profile for user") {
+                setSuccess(true);
+                // turning off the loading button
+                setLoading(false);
 
-            await resolveAfterXSeconds(1.5);
+                await resolveAfterXSeconds(1.5);
 
-            // turning off the login modal
-            setIsEditProfile(false)
-            // setting the global user to the user that we received
-            setCurrentUser(res.user);
-            // logging the current user
-            console.log("LoginProfileToggle >>> handleEditProfile >>> currentUser", currentUser);
-        } else {
-            // turning off the loading button
-            setLoading(false);
-            // and setting the formErrors state so our alert can display
-            setFormErrors(res);
+                // turning off the login modal
+                setIsEditProfile(false)
+                // setting the global user to the user that we received
+                setCurrentUser(res.user);
+                
+                // logging the current user
+                // console.log("LoginProfileToggle >>> handleEditProfile >>> currentUser", currentUser);
+            } else {
+                // turning off the loading button
+                setLoading(false);
+                // and setting the formErrors state so our alert can display
+                setFormErrors(res);
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > LoginProfileToggle.js > handleEditProfile > ", err);
         }
     }
 
+    // custom function for handling the navigation and routing from the profile dropdown
     async function handleProfileDropdown(key) {
+
+        // using a switch statement whch is O(1)
         switch (key) {
             case 'adopt_list':
-                console.log("You pressed adopt_list");
+                // for debugging
+                // console.log("You pressed adopt_list");
+
+                // soft redirecting and stopping the other cases from executing
                 navigate("/adoptlist")
                 break;
+
             case 'my_notes':
-                console.log("You pressed my_notes");
+                // for debugging
+                // console.log("You pressed my_notes");
+
+                // soft redirecting and stopping the other cases from executing
                 navigate("/mynotes")
                 break;
+
             case 'my_comments':
-                console.log("You pressed my_comments");
+                // for debugging
+                // console.log("You pressed my_comments");
+
+                // soft redirecting and stopping the other cases from executing
                 navigate("/mycomments")
                 break;
+
             case 'edit_profile':
-                console.log("You pressed edit_profile");
+                // for debugging
+                // console.log("You pressed edit_profile");
+
+                // getting the current value of the user profile and settings input values to that data
                 formData.firstName = currentUser.firstName;
                 formData.lastName = currentUser.lastName;
                 formData.username = currentUser.username;
+
+                // displaying the edit profile modal
                 setIsEditProfile(true);
                 break;
+
             case 'logout':
-                console.log("You pressed logout");
+                // for debugging
+                // console.log("You pressed logout");
+
+                // seding a back-end request to log the user out
                 let res = await AdoptalApi.userLogout();
 
+                // if there is an error
                 if (res === "Error while processing your request") {
+                    // logging it into a console
                     console.log("Error in logout logic")
                 }
-                console.log("Logout successful");
+                // for debugging
+                // console.log("Logout successful");
+
+                // otherwise removing the user from the state
                 setCurrentUser(null);
                 break;
+
             default:
+                 // ^ nothing happens by default. but we must have it
         }
+        // for debugging
         // console.log("Selected key from dropdown >>> ", key);
-
     }
-
+    
+    // for debugging
     // console.log("LoginProfileToggle >>> currentUser >>>", currentUser);
 
+    // if the user is logged in
     if (currentUser) {
-        // User profile circle
+        // Show a user profile circle
         return (<>
             <Tooltip content="Profile" placement="bottom" color="invert">
                 <Dropdown placement="bottom-right">
@@ -203,7 +276,6 @@ const LoginProfileToggle = () => {
                         <Dropdown.Trigger>
                             <Avatar
                                 bordered
-                                // zoomed
                                 as="button"
                                 color="gradient"
                                 size="md"
@@ -217,10 +289,9 @@ const LoginProfileToggle = () => {
                         aria-label="User menu actions"
                         color="secondary"
                         disabledKeys={["user_info"]}
-                        onAction={handleProfileDropdown}
-                    // variant="shadow"
-                    // onAction={(actionKey) => console.log({ actionKey })}
-                    >
+                        onAction={handleProfileDropdown}>
+            
+                        {/* Displays information about the user like name and username */}
                         <Dropdown.Item
                             key="user_info"
                             textValue="Full name of the user and username"
@@ -240,6 +311,7 @@ const LoginProfileToggle = () => {
 
                         </Dropdown.Item>
 
+                        {/* Menu options */}
                         <Dropdown.Item key="adopt_list" withDivider>
                             Adopt List
                         </Dropdown.Item>
@@ -256,7 +328,7 @@ const LoginProfileToggle = () => {
                             Edit Profile
                         </Dropdown.Item>
 
-
+                        {/* Log out is colored red */}
                         <Dropdown.Item
                             key="logout"
                             withDivider
@@ -268,35 +340,46 @@ const LoginProfileToggle = () => {
                 </Dropdown>
             </Tooltip>
 
+            {/* Modal for eidting the profile of the user */}
             <Modal
                 closeButton
                 blur
                 aria-labelledby="modal-title"
                 open={isEditProfile}
                 onOpen={() => {
+                    // when opened, setting the success message to false
+                    // then making the login page hidden
+                    // then making the registration page hidden
                     setSuccess(false);
                     setVisible(false);
                     setIsRegistration(false);
                 }}
+                // whe closed, settings the visibility of the modal to false
                 onClose={() => { setIsEditProfile(false); }}
             >
+                {/* if the form is submitted using Enter */}
                 <form onSubmit={handleEditProfile}>
                     <Modal.Header>
                         {
-                            isEditProfile 
-                            ? success
-                                ? <Text id="modal-title" size={24} b color="success">
-                                    Profile edit successful!
-                                </Text>
-                                : <Text b id="modal-title" size={20}>
-                                    Edit {' '}
-                                    
-                                    Profile
-                                </Text>
-                            : ''
+                            // if the user is on the edit profile modal
+                            isEditProfile
+                            // and the edit is successful
+                                ? success
+                                    ? <Text id="modal-title" size={24} b color="success">
+                                        Profile edit successful!
+                                        {/* then show the message ^ */}
+                                    </Text>
+                                    : <Text b id="modal-title" size={20}>
+                                        Edit {' '}
+
+                                        Profile
+                                        {/* otherwise just show message saing Edit Profile */}
+                                    </Text>
+                                : ''
                         }
 
                     </Modal.Header>
+                    {/* show either logo or the success image based on success state */}
                     <Image
                         showSkeleton
                         width={200}
@@ -306,7 +389,8 @@ const LoginProfileToggle = () => {
                         alt="Adoptal logo"
                     />
                     <Modal.Body>
-                    <Input
+                        {/* this will show the username but it will be disabled */}
+                        <Input
                             disabled
                             underlined
                             name="username"
@@ -320,6 +404,7 @@ const LoginProfileToggle = () => {
                             contentLeft={<UsernameIcon fill="currentColor" />}
                             css={{ display: success ? 'none' : '' }}
                         />
+                        {/* first name */}
                         <Input
                             onChange={handleChange}
                             name="firstName"
@@ -334,6 +419,7 @@ const LoginProfileToggle = () => {
                             contentLeft={<UserDetailIcon fill="currentColor" />}
                             css={{ display: success ? 'none' : '' }}
                         />
+                        {/* last name */}
                         <Input
                             onChange={handleChange}
                             name="lastName"
@@ -354,8 +440,11 @@ const LoginProfileToggle = () => {
 
                         <Row justify="center">
                             {
+                                // if the operation is successful
                                 success
+                                // then the button is hidden
                                     ? ''
+                                    // otherwise the button is shown
                                     : <Button
                                         type="submit"
                                         auto
@@ -377,33 +466,49 @@ const LoginProfileToggle = () => {
             </Modal>
         </>)
     } else {
-        // Login circle
+        // Login circle ( if the user is NOT logged in )
         return (<>
             <Tooltip content="Login" placement="bottom" color="invert">
+                {/* showing a standard user icon */}
                 <Avatar
                     bordered
                     as="button"
                     color="gradient"
                     size="md"
                     src={UserIcon}
+                    // when clicked, settings the registartion modal to false
+                    // then setting the success state to false
+                    // then setting the login modal's visibility to true
                     onClick={() => { setIsRegistration(false); setSuccess(false); setVisible(true); }}
                 />
             </Tooltip>
 
+            {/* Login / Registration Modal */}
             <Modal
                 closeButton
                 blur
                 aria-labelledby="modal-title"
+                // displays when visible state = true
                 open={visible}
+                // when clicked, settings the registartion modal to false
+                // then setting the success state to false
+                // then setting the login modal's visibility to false
                 onClose={() => { setIsRegistration(false); setSuccess(false); setVisible(false); }}
             >
+                {/* in case the form is submitted using enter */}
+                {/* depends on the isRegistration state */}
+                {/* if true, we show the registration modal */}
+                {/* otherwise we initiate a login custom method */}
                 <form onSubmit={isRegistration ? handleRegister : handleLogin}>
                     <Modal.Header>
                         {
+                            // if successful operation
                             success
                                 ? <Text id="modal-title" size={24} b color="success">
                                     Login successful!
+                                    {/* displaying a success message */}
                                 </Text>
+                                // otherwise show welcome message
                                 : <Text id="modal-title" size={20}>
                                     Welcome to {' '}
                                     <Text b size={20}>
@@ -414,6 +519,7 @@ const LoginProfileToggle = () => {
                         }
 
                     </Modal.Header>
+                    {/* showing a success image or the adoptal logo */}
                     <Image
                         showSkeleton
                         width={200}
@@ -423,8 +529,10 @@ const LoginProfileToggle = () => {
                         alt="Adoptal logo"
                     />
                     <Modal.Body>
-                        { //JS CODE
+                        { 
+                        // if the modal is registartion
                             isRegistration
+                            // then show additional input (first name)
                                 ? <Input
                                     onChange={handleChange}
                                     name="firstName"
@@ -443,6 +551,7 @@ const LoginProfileToggle = () => {
                         }
                         {
                             isRegistration
+                            // and show additional input (last name)
                                 ? <Input
                                     onChange={handleChange}
                                     name="lastName"
@@ -459,6 +568,8 @@ const LoginProfileToggle = () => {
                                 : ''
                         }
 
+                    {/* if its NOT registration ,then its login */}
+                    {/* only show 2 inputs (username and password) */}
                         <Input
                             onChange={handleChange}
                             name="username"
@@ -486,9 +597,10 @@ const LoginProfileToggle = () => {
                             css={{ display: success ? 'none' : '' }}
                         />
 
+                        {/* if there are any error generated, show the Text component and pass the error message as the value */}
+                        {formErrors ? <Text b size={16} color="error">{formErrors}</Text> : ""}
 
-                        { formErrors ? <Text b size={16} color="error">{formErrors}</Text> : ""}
-
+                        {/* show a friendly message to peopel who don't want to register */}
                         <Text size={16} css={{ display: success ? 'none' : '' }}>
                             Don't want to register? Use
                             <Text b size={16}>
@@ -500,19 +612,26 @@ const LoginProfileToggle = () => {
 
                     <Modal.Footer>
                         {
+                            // if successful
                             success
+                            // show nothing
                                 ? ''
+                                // otherwise show a row of buttons
                                 :
 
                                 <Row justify="space-between">
 
                                     {
+                                        // if its a registration modal
                                         isRegistration
+                                        // don't show this button
                                             ? ''
+                                            // otherwise - show
                                             : <Button
                                                 auto
                                                 flat={isRegistration ? false : true}
                                                 color="secondary"
+                                                // when the button is pressed, shows the registration modal
                                                 onPress={() => {
                                                     setIsRegistration(true);
                                                 }
@@ -522,10 +641,12 @@ const LoginProfileToggle = () => {
                                     }
 
                                     {
+                                        // if its a registration modal already
                                         isRegistration
                                             ? <Button
                                                 type="submit"
                                                 auto
+                                                // call the custom registration handler method
                                                 onPress={handleRegister}
                                                 color="secondary">
 
@@ -534,9 +655,11 @@ const LoginProfileToggle = () => {
                                                         ? <Loading type="points" color="currentColor" size="md" />
                                                         : "Register"}
                                             </Button>
+                                            // if its not a registration modal
                                             : <Button
                                                 type="submit"
                                                 auto
+                                                // then call the custom login handler method
                                                 onPress={handleLogin}
                                                 color="secondary">
 

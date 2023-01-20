@@ -1,6 +1,8 @@
+// Importing all the necessary libraries and components and assets
 import React from 'react';
 import { Container, Text } from "@nextui-org/react";
 
+// displaying a text with image saying that the page was not found. This is used as a 404 page
 const NotFoundPage = () => {
     return (
         <Container aria-label="error note found image" style={{

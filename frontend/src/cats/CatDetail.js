@@ -51,139 +51,176 @@ const CatDetail = () => {
     useEffect(() => {
         // custom method for getting the photos of the pet
         function getPhotos() {
-            // for every photo in the photo object
-            for (let pic of cat.photos) {
-                // pushing the photo object into an array
-                carouselItems.push({
-                    thumbnail: pic.small,
-                    original: pic.large,
-                    fullscreen: pic.full,
-                    originalHeight: "480",
-                    thumbnailHeight: "100",
-                    // setting the photo loading as our animated SVG
-                    loading: loadingSvg
-                })
+            try {
+                // for every photo in the photo object
+                for (let pic of cat.photos) {
+                    // pushing the photo object into an array
+                    carouselItems.push({
+                        thumbnail: pic.small,
+                        original: pic.large,
+                        fullscreen: pic.full,
+                        originalHeight: "480",
+                        thumbnailHeight: "100",
+                        // setting the photo loading as our animated SVG
+                        loading: loadingSvg
+                    })
+                }
+            } catch (err) {
+                console.log("Adoptal > Front-end > cats > CatDetail.js > getPhotos > ", err);
             }
+
         }
 
         // custom method for getting the status of the pet's adoption
         async function getAdoptListStatus(user) {
-            // if user's want to adopt array includes the id of an animal
-            if (user.wantToAdopt.includes(cat.id)) {
-                // set the want to adopt status to true
-                setAdopted(true);
-            } else {
-                // otherwise false
-                setAdopted(false);
+            try {
+                if (user) {
+                    // if user's want to adopt array includes the id of an animal
+                    if (user.wantToAdopt.includes(cat.id)) {
+                        // set the want to adopt status to true
+                        setAdopted(true);
+                    } else {
+                        // otherwise false
+                        setAdopted(false);
+                    }
+                }
+            } catch (err) {
+                console.log("Adoptal > Front-end > cats > CatDetail.js > getAdoptListStatus > ", err);
             }
         }
 
         // custom function for getting the private notes for the pet
         async function getPrivateNote(user) {
-            // setting the state
-            setNoteData({
-                // to the value of the key of cat's id in the private notes object
-                // example: private notes: { 123456: "Some random note "}
-                txtInput: currentUser.privateNotes[cat.id]
-            })
-            // for debugging only
-            // console.log("NOTEDATA >>>>>" , noteData.txtInput);
+            try {
+                if (user) {
+                    // setting the state
+                    setNoteData({
+                        // to the value of the key of cat's id in the private notes object
+                        // example: private notes: { 123456: "Some random note "}
+                        txtInput: currentUser.privateNotes[cat.id]
+                    })
+                    // for debugging only
+                    // console.log("NOTEDATA >>>>>" , noteData.txtInput);
+                }
+
+            } catch (err) {
+                console.log("Adoptal > Front-end > cats > CatDetail.js > getPrivateNote > ", err);
+            }
         }
 
         // custom function for getting all the comments from users for a specific cat
         async function getAllComments(id) {
-            // running an async request
-            const res = await AdoptalApi.getAllCommentsPerCat(id);
-            // for debugging
-            // console.log("RECEIVED COMMENTS >>>", res);
+            try {
+                // running an async request
+                const res = await AdoptalApi.getAllCommentsPerCat(id);
+                // for debugging
+                // console.log("RECEIVED COMMENTS >>>", res);
 
-            // settings the state as the data received
-            setComments(res);
+                // settings the state as the data received
+                setComments(res);
+            } catch (err) {
+                console.log("Adoptal > Front-end > cats > CatDetail.js > getAllComments > ", err);
+            }
         }
 
-        // when the cat loads fully
-        if (cat) {
-            // and if the cat is actually found
-            if (cat !== "404") {
-                // get the photos and load them into the photo carousek
-                getPhotos();
+        try {
+            // when the cat loads fully
+            if (cat) {
+                // and if the cat is actually found
+                if (cat !== "404") {
+                    // get the photos and load them into the photo carousek
+                    getPhotos();
 
-                // format the google maps iframe address to drop a pin to the correct location
-                setAddr(`https://maps.google.com/maps?width=300&height=300&hl=en&q=${cat.contact.address.address1 ? cat.contact.address.address1 : ''}, ${cat.contact.address.city}, ${cat.contact.address.state} ${cat.contact.address.postcode}+()&t=&z=14&ie=UTF8&iwloc=B&output=embed`.replace(/ /g, '%20'));
+                    // format the google maps iframe address to drop a pin to the correct location
+                    setAddr(`https://maps.google.com/maps?width=300&height=300&hl=en&q=${cat.contact.address.address1 ? cat.contact.address.address1 : ''}, ${cat.contact.address.city}, ${cat.contact.address.state} ${cat.contact.address.postcode}+()&t=&z=14&ie=UTF8&iwloc=B&output=embed`.replace(/ /g, '%20'));
 
-                // get the want to adopt status
-                getAdoptListStatus(currentUser);
+                    // get the want to adopt status
+                    getAdoptListStatus(currentUser);
 
-                // get the private notes
-                getPrivateNote(currentUser);
+                    // get the private notes
+                    getPrivateNote(currentUser);
 
-                // get the public comments
-                getAllComments(cat.id);
-            }
-        };
+                    // get the public comments
+                    getAllComments(cat.id);
+                }
+            };
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > CatDetail.js > useEffect > ", err);
+        }
+
     }, [carouselItems, cat, currentUser])
 
     // custom function to get the cat by  id
     async function getCat(id) {
-        // seding a request to the backend
-        const res = await AdoptalApi.getSingleCat(id);
+        try {
+            // seding a request to the backend
+            const res = await AdoptalApi.getSingleCat(id);
 
-        // for debugging
-        // console.log("RES >>>", res);
+            // for debugging
+            // console.log("RES >>>", res);
 
-        // if the cat is found, then returning the data that we received
-        if (res !== "Not found") { return res }
-        else {
-            // if the cat is not found, displaying error and returning 404
-            console.log("Error while getting cat information from API!");
-            return "404"
+            // if the cat is found, then returning the data that we received
+            if (res !== "Not found") { return res }
+            else {
+                // if the cat is not found, displaying error and returning 404
+                console.log("Error while getting cat information from API!");
+                return "404"
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > CatDetail.js > getCat > ", err);
         }
+
+
     }
 
     // custom function to handle toggling the Want to Adopt / Remove from Adopt List logic
     async function handleAdoptToggle() {
-        // set the loading to true before the async request
-        setAdoptedLoading(true);
+        try {
+            // set the loading to true before the async request
+            setAdoptedLoading(true);
 
-        // send an async request to Back-end
-        const res = await AdoptalApi.toggleAdoptItem(currentUser.username, cat.id);
+            // send an async request to Back-end
+            const res = await AdoptalApi.toggleAdoptItem(currentUser.username, cat.id);
 
-        // if successful
-        if (res.msg === "Successfully removed animal from Want to Adopt list") {
-            // turn off loading
-            setAdoptedLoading(false);
-            // set the want to adopt status to false
-            setAdopted(false);
+            // if successful
+            if (res.msg === "Successfully removed animal from Want to Adopt list") {
+                // turn off loading
+                setAdoptedLoading(false);
+                // set the want to adopt status to false
+                setAdopted(false);
 
-            // creating a new variablle and storing the current user
-            const usr = currentUser;
+                // creating a new variablle and storing the current user
+                const usr = currentUser;
 
-            // changing the want to adopt array to remove the cat's id
-            usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== cat.id)
+                // changing the want to adopt array to remove the cat's id
+                usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== cat.id)
 
-            // for debugging
-            // console.log("usr >>>>>>>>>>>", usr);
+                // for debugging
+                // console.log("usr >>>>>>>>>>>", usr);
 
-            // setting the current user to the new user object
-            setCurrentUser(usr)
+                // setting the current user to the new user object
+                setCurrentUser(usr)
 
-        } else {
-            // turn off loading
-            setAdoptedLoading(false);
-            // set the want to adopt status to true
-            setAdopted(true);
+            } else {
+                // turn off loading
+                setAdoptedLoading(false);
+                // set the want to adopt status to true
+                setAdopted(true);
 
-            // creating a new variablle and storing the current user
-            const usr = currentUser;
+                // creating a new variablle and storing the current user
+                const usr = currentUser;
 
-            // changing the want to adopt array to have the cat's id
-            usr.wantToAdopt.push(parseInt(cat.id))
+                // changing the want to adopt array to have the cat's id
+                usr.wantToAdopt.push(parseInt(cat.id))
 
-            // for debugging
-            // console.log("usr >>>>>>>>>>>", usr);
+                // for debugging
+                // console.log("usr >>>>>>>>>>>", usr);
 
-            // setting the current user to the new user object
-            setCurrentUser(usr)
+                // setting the current user to the new user object
+                setCurrentUser(usr)
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > CatDetail.js > handleAdoptToggle > ", err);
         }
     }
 
@@ -203,76 +240,84 @@ const CatDetail = () => {
 
     // creating a custom method to handle the submission of the form
     async function handleNoteSubmit(e) {
-        // preventing default behavior
-        // e.preventDefault();
+        try {
+            // preventing default behavior
+            // e.preventDefault();
 
-        // set the loading to true before the async request
-        setNoteLoadingSubmit(true);
+            // set the loading to true before the async request
+            setNoteLoadingSubmit(true);
 
-        // sending an async request to the API
-        const res = await AdoptalApi.addNote(currentUser.username, cat.id, noteData.txtInput)
+            // sending an async request to the API
+            const res = await AdoptalApi.addNote(currentUser.username, cat.id, noteData.txtInput)
 
-        // for debugging
-        // console.log(res);
+            // for debugging
+            // console.log(res);
 
-        // if successfull
-        if (res.msg === "Successfully added private note") {
-            // turn off loading
-            setNoteLoadingSubmit(false);
+            // if successfull
+            if (res.msg === "Successfully added private note") {
+                // turn off loading
+                setNoteLoadingSubmit(false);
 
-            // display the success message
-            setNoteSuccess(true)
+                // display the success message
+                setNoteSuccess(true)
 
-            // setting the current user
-            setCurrentUser({
-                // to all the data that currently exists in the user
-                ...currentUser,
-                // but 
-                privateNotes: {
-                    ...currentUser.privateNotes,
-                    // with a new line with k/v in the private Notes object
-                    [parseInt(cat.id)]: noteData.txtInput
-                }
-            })
-        } else {
-            // display an error if not successful
-            console.log("Error while saving private note")
+                // setting the current user
+                setCurrentUser({
+                    // to all the data that currently exists in the user
+                    ...currentUser,
+                    // but 
+                    privateNotes: {
+                        ...currentUser.privateNotes,
+                        // with a new line with k/v in the private Notes object
+                        [parseInt(cat.id)]: noteData.txtInput
+                    }
+                })
+            } else {
+                // display an error if not successful
+                console.log("Error while saving private note")
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > CatDetail.js > handleNoteSubmit > ", err);
         }
-
     }
 
     async function handleNoteDelete(e) {
-        // preventing default behavior
-        // e.preventDefault();
+        try {
+            // preventing default behavior
+            // e.preventDefault();
 
-        // set the loading to true before the async request
-        setNoteLoadingDelete(true);
-        const res = await AdoptalApi.removeNote(currentUser.username, cat.id)
-        // console.log(res);
-        if (res.msg === "Successfully deleted private note") {
-            // turn off loading
-            setNoteLoadingDelete(false);
-            // setting the text input value to none
-            setNoteData(null);
-            // display the success message
-            setNoteSuccess(true);
+            // set the loading to true before the async request
+            setNoteLoadingDelete(true);
+            const res = await AdoptalApi.removeNote(currentUser.username, cat.id)
+            // console.log(res);
+            if (res.msg === "Successfully deleted private note") {
+                // turn off loading
+                setNoteLoadingDelete(false);
+                // setting the text input value to none
+                setNoteData(null);
+                // display the success message
+                setNoteSuccess(true);
 
-            // creating a new variable and copying the current data
-            const newNotes = currentUser.privateNotes;
-            // deleting the data for the current pet
-            delete newNotes[parseInt(cat.id)];
+                // creating a new variable and copying the current data
+                const newNotes = currentUser.privateNotes;
+                // deleting the data for the current pet
+                delete newNotes[parseInt(cat.id)];
 
-            // setting the current user
-            setCurrentUser({
-                // to all the data that is currently there
-                ...currentUser,
-                // with a new notes variable that doesn't have the current pet data
-                privateNotes: newNotes
-            })
-        } else {
-            // display an error if not successful
-            console.log("Error while deleting private note")
+                // setting the current user
+                setCurrentUser({
+                    // to all the data that is currently there
+                    ...currentUser,
+                    // with a new notes variable that doesn't have the current pet data
+                    privateNotes: newNotes
+                })
+            } else {
+                // display an error if not successful
+                console.log("Error while deleting private note")
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > CatDetail.js > handleNoteDelete > ", err);
         }
+
     }
 
     // creating a universal changle handler function that stored values into state
@@ -291,69 +336,77 @@ const CatDetail = () => {
 
     // / creating a custom method to handle the submission of the form
     async function handleCommentSubmit(e) {
-        // preventing default behavior
-        // e.preventDefault();
+        try {
+            // preventing default behavior
+            // e.preventDefault();
 
-        // set the loading to true before the async request
-        setCommentLoadingSubmit(true);
-        const res = await AdoptalApi.addComment(currentUser.username, cat.id, commentData.txtInput)
-        // console.log(res);
-        if (res.msg === "Successfully added public note") {
-            // turn off loading
-            setCommentLoadingSubmit(false);
-            // display the success message
-            setCommentSuccess(true)
+            // set the loading to true before the async request
+            setCommentLoadingSubmit(true);
+            const res = await AdoptalApi.addComment(currentUser.username, cat.id, commentData.txtInput)
+            // console.log(res);
+            if (res.msg === "Successfully added public note") {
+                // turn off loading
+                setCommentLoadingSubmit(false);
+                // display the success message
+                setCommentSuccess(true)
 
-            // setting the current user
-            setCurrentUser({
-                // to all the data that currently exists in the user
-                ...currentUser,
-                // but 
-                publicComments: {
-                    ...currentUser.publicComments,
-                    // with a new line with k/v in the publicComments object
-                    [parseInt(cat.id)]: commentData.txtInput
-                }
-            })
-        } else {
-            // display an error if not successful
-            console.log("Error while saving public note")
+                // setting the current user
+                setCurrentUser({
+                    // to all the data that currently exists in the user
+                    ...currentUser,
+                    // but 
+                    publicComments: {
+                        ...currentUser.publicComments,
+                        // with a new line with k/v in the publicComments object
+                        [parseInt(cat.id)]: commentData.txtInput
+                    }
+                })
+            } else {
+                // display an error if not successful
+                console.log("Error while saving public note")
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > CatDetail.js > handleCommentSubmit > ", err);
         }
-
     }
 
     async function handleCommentDelete(e) {
-        // preventing default behavior
-        // e.preventDefault();
+        try {
+            // preventing default behavior
+            // e.preventDefault();
 
-        // set the loading to true before the async request
-        setCommentLoadingDelete(true);
-        const res = await AdoptalApi.removeComment(currentUser.username, cat.id)
-        // console.log(res);
-        if (res.msg === "Successfully deleted public comment") {
-            // turn off loading
-            setCommentLoadingDelete(false);
-            // setting the text input value to none
-            setCommentData(null);
-            // display the success message
-            setCommentSuccess(true);
+            // set the loading to true before the async request
+            setCommentLoadingDelete(true);
+            const res = await AdoptalApi.removeComment(currentUser.username, cat.id)
+            // console.log(res);
+            if (res.msg === "Successfully deleted public comment") {
+                // turn off loading
+                setCommentLoadingDelete(false);
+                // setting the text input value to none
+                setCommentData(null);
+                // display the success message
+                setCommentSuccess(true);
 
-            // creating a new variable and copying the current data
-            const newComments = currentUser.publicComments;
-            // deleting the data for the current pet
-            delete newComments[parseInt(cat.id)];
+                // creating a new variable and copying the current data
+                const newComments = currentUser.publicComments;
+                // deleting the data for the current pet
+                delete newComments[parseInt(cat.id)];
 
-            // setting the current user
-            setCurrentUser({
-                // to be the current value of the state
-                ...currentUser,
-                // with a new notes variable that doesn't have the current pet data
-                publicComments: newComments
-            })
-        } else {
-            // display an error if not successful
-            console.log("Error while deleting public comment")
+                // setting the current user
+                setCurrentUser({
+                    // to be the current value of the state
+                    ...currentUser,
+                    // with a new notes variable that doesn't have the current pet data
+                    publicComments: newComments
+                })
+            } else {
+                // display an error if not successful
+                console.log("Error while deleting public comment")
+            }
+        } catch (err) {
+            console.log("Adoptal > Front-end > cats > CatDetail.js > handleCommentDelete > ", err);
         }
+
     }
 
     return (<>
@@ -656,7 +709,7 @@ const CatDetail = () => {
                                 </Grid.Container>
                             </Grid>
 
-                            
+
                             {
                                 // if the user has finished loading / exists / logged in
                                 currentUser
@@ -676,12 +729,14 @@ const CatDetail = () => {
                                                         {cat.name} is {adopted ? '' : 'not'} in your Adopt List
                                                     </Text>
 
+                                                    {/* Allows to toggle the adopt status */}
                                                     <Button
                                                         color={adopted ? "error" : "primary"}
                                                         onPress={handleAdoptToggle}
                                                         flat>
                                                         {
                                                             adoptedLoading
+                                                                // Displays a loding bar if the loading state is set to true
                                                                 ? <Loading type="points" color="currentColor" size="md" />
                                                                 : adopted
                                                                     ? `Remove ${cat.name}`
@@ -701,14 +756,18 @@ const CatDetail = () => {
                                                 </Grid>
 
                                                 <Row>
+
+                                                    {/* Displays user's private note about the animal */}
                                                     <Textarea
                                                         aria-label="private note input"
                                                         fullWidth
                                                         size="md"
                                                         name='txtInput'
+                                                        // When the value changes, state gets updated
                                                         onChange={handleNoteChange}
                                                         minRows={7}
                                                         maxRows={20}
+                                                        // Grabs the initial value from the state or sets it to empty
                                                         initialValue={noteData ? noteData.txtInput : ''}
                                                         bordered
                                                     ></Textarea>
@@ -718,7 +777,7 @@ const CatDetail = () => {
                                                     {noteSuccess ? <Text color="success" size={16}> Successfully updated note.</Text> : ''}
                                                 </div>
                                                 <Row justify="space-between" css={{ paddingTop: "1rem" }}>
-
+                                                    {/* Button for handling the private note deletion  */}
                                                     <Button
                                                         flat
                                                         onPress={handleNoteDelete}
@@ -726,12 +785,13 @@ const CatDetail = () => {
                                                         type="submit"
                                                         auto>
                                                         {
+                                                            // Shows a loading bar if the state is true
                                                             noteLoadingDelete
                                                                 ? <Loading type="points" color="currentColor" size="md" />
                                                                 : "Delete"
                                                         }
                                                     </Button>
-
+                                                    {/* Button for submitting changes to the private notes */}
                                                     <Button
                                                         flat
                                                         onPress={handleNoteSubmit}
@@ -749,11 +809,13 @@ const CatDetail = () => {
                                             </div>
                                         </Grid.Container>
                                     </Grid>
+                                    // if the user is not loaded yet, displays an empty area
                                     : ''
                             }
 
                         </Grid.Container>
 
+                        {/* For displaying the comments from the users */}
                         <Row style={{ marginBottom: "2rem" }}>
                             <Col xs={12} className='cat-detail-section'>
                                 <Text h2 color="secondary" style={{ textAlign: "center" }}>Comments from users</Text>
@@ -763,11 +825,14 @@ const CatDetail = () => {
                                         comments.length > 0
                                             // if there are more than 0 comments, map through the comments and display a list
                                             ? comments.map(comment => {
-                                                console.log("Comments map >>> ", comments)
-                                                return (<>
-                                                    <Row>
+                                                // For debugging only
+                                                // console.log("Comments map >>> ", comments)
+                                                return (
+                                                    <Row key={comment.username}>
+                                                        {/* For each commend display a row and a card */}
                                                         <Card xs={12} css={{ p: "$6", margin: "0.5rem 0" }}>
                                                             <Card.Header>
+                                                                {/* Displays an auto generated avatar using API endpoint */}
                                                                 <Avatar
                                                                     bordered
                                                                     as="button"
@@ -776,15 +841,23 @@ const CatDetail = () => {
                                                                     // this uses automatic avatar generation API based on the first and last name
                                                                     src={`https://source.boringavatars.com/beam/150/${comment.firstName}%20${comment.lastName}?colors=FFF7E6,D48EFC,DCB3FE,AB7CFF,B4C4FF`}
                                                                 />
+                                                                {/* Displays information about the user */}
                                                                 <Grid.Container css={{ pl: "$6" }}>
                                                                     <Grid xs={12}>
                                                                         <Text h4 css={{ lineHeight: "$xs" }}>
                                                                             {comment.firstName} {' '} {comment.lastName}
                                                                             {' '}
-                                                                            {comment.username === currentUser.username ? <span style={{ color: "#8d4ad1" }}>(You)</span> : ''}
+                                                                            {
+                                                                                currentUser
+                                                                                    ? comment.username === currentUser.username ? <span style={{ color: "#8d4ad1" }}>(You)</span> : ''
+                                                                                    : ''
+                                                                            }
+
+                                                                            {/* This tells the user its YOU if the current user logged in is the same as the author of the comment */}
                                                                         </Text>
                                                                     </Grid>
                                                                     <Grid xs={12}>
+                                                                        {/* Displays the username of the user in a twitter @ style */}
                                                                         <Text css={{ color: "$accents8" }}>@{comment.username}</Text>
                                                                     </Grid>
                                                                 </Grid.Container>
@@ -793,33 +866,40 @@ const CatDetail = () => {
                                                                 <Row >
                                                                     <Col>
                                                                         <Text>
+                                                                            {/* DIsplays the actual comment */}
                                                                             {comment.publicComments[parseInt(cat.id)]}
                                                                         </Text>
                                                                     </Col>
 
                                                                     {/* if its user's own comment, displaying a button to remove */}
-                                                                    {comment.username === currentUser.username ? <Col >
-                                                                        <Button
-                                                                            style={{ float: "right" }}
-                                                                            flat
-                                                                            onPress={handleCommentDelete}
-                                                                            color="error"
-                                                                            type="submit"
-                                                                            auto>
-                                                                            {
-                                                                                commentLoadingDelete
-                                                                                    ? <Loading type="points" color="currentColor" size="md" />
-                                                                                    : "Remove Comment"
-                                                                            }
-                                                                        </Button>
-                                                                    </Col> : ''}
+                                                                    {currentUser
+                                                                        ? comment.username === currentUser.username ? <Col >
+                                                                            <Button
+                                                                                style={{ float: "right" }}
+                                                                                flat
+                                                                                // When pressed calls the custom method that we wrote
+                                                                                onPress={handleCommentDelete}
+                                                                                color="error"
+                                                                                type="submit"
+                                                                                auto>
+                                                                                {
+                                                                                    // Displays a loading bar if the state of loading is set to true
+                                                                                    commentLoadingDelete
+                                                                                        ? <Loading type="points" color="currentColor" size="md" />
+                                                                                        : "Remove Comment"
+                                                                                }
+                                                                            </Button>
+                                                                        </Col> : ''
+                                                                        : ''}
+
+                                                                    {/* If the author is not the same as logged in user, does nothing */}
 
                                                                 </Row>
 
                                                             </Card.Body>
                                                         </Card>
                                                     </Row>
-                                                </>)
+                                                )
                                             })
                                             // if comments are 0, display a message saying list is empty
                                             : <Container style={{
@@ -844,7 +924,7 @@ const CatDetail = () => {
 
                                 }
 
-                                
+
                                 {
                                     // if the user is loaded / logged in / exists
                                     currentUser ?
@@ -860,30 +940,35 @@ const CatDetail = () => {
                                                 </Grid>
 
                                                 <Row>
+                                                    {/* displays the comment of the user */}
                                                     <Textarea
                                                         aria-label="private note input"
                                                         fullWidth
                                                         size="md"
                                                         name='txtInput'
+                                                        // when value is changed, changes the state
                                                         onChange={handleCommentChange}
                                                         minRows={7}
                                                         maxRows={20}
+                                                        // gets the initial value from the state or sets to nothing
                                                         initialValue={commentData ? commentData.txtInput : ''}
                                                         bordered
                                                     ></Textarea>
                                                 </Row>
                                                 <div aria-label="success message">
-                                                     {/* success message only shows when the state is set to true */}
+                                                    {/* success message only shows when the state is set to true */}
                                                     {commentSuccess ? <Text color="success" size={16}> Successfully updated comment.</Text> : ''}
                                                 </div>
                                                 <Row justify="flex-end" css={{ paddingTop: "1rem" }}>
-
+                                                    {/* Button to submit the public comment */}
                                                     <Button
                                                         flat
+                                                        // When pressed, calls the custom method we wrote
                                                         onPress={handleCommentSubmit}
                                                         auto
                                                         type="submit" color="success">
                                                         {
+                                                            // Shows a loading animations once the button is pressed and the loading state is set to true
                                                             commentLoadingSubmit
                                                                 ? <Loading type="points" color="currentColor" size="md" />
                                                                 : "Add Public Comment"

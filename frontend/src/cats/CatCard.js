@@ -35,7 +35,7 @@ const CatCard = ({ cat }) => {
                     objectFit="cover"
                     width="100%"
                     height="100%"
-                    alt="Relaxing app background"
+                    alt="cat card"
                 />
             </Card.Body>
             <Card.Footer
@@ -78,7 +78,6 @@ const CatCard = ({ cat }) => {
                                         b 
                                         color="#e5e5e5" 
                                         size={13}>{'   '}
-                                            {/* {cat.breeds.primary} */}
                                         </Text>
                                     </Col>
                                 </Row>

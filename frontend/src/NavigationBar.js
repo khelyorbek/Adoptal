@@ -1,23 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Tooltip, Navbar, Link, Switch } from '@nextui-org/react';
+// Importing all the necessary libraries and components and assets
+import React, { useContext } from 'react';
+import { Tooltip, Navbar, Switch } from '@nextui-org/react';
 import { SunIcon } from './icons/SunIcon';
 import { MoonIcon } from './icons/MoonIcon';
 import LoginProfileToggle from './profile/LoginProfileToggle';
 import { NavLink } from "react-router-dom";
 import GlobalContext from './GlobalContext';
 
-
-const collapseItems = [
-  "Cats",
-  "Adopt List",
-  "My notes",
-  "My comments"
-];
-
+// receiving the props from App.js
 const Navigation = ({ handleThemeChange, isDark }) => {
-  const { currentUser, setCurrentUser } = useContext(GlobalContext);
-
-  const { activePage, setActivePage } = useState(null);
+  // receiving the global context for current user
+  const { currentUser } = useContext(GlobalContext);
 
   return <>
     {/* General Navbar */}
@@ -25,13 +18,15 @@ const Navigation = ({ handleThemeChange, isDark }) => {
 
       {/* Settings for toggle button */}
       <Navbar.Toggle showIn="sm" />
-      {/* Settings for the logo */}
+
+      {/* Settings for the logo + text (large screens)*/}
       <Navbar.Brand hideIn={"xs"}>
         <NavLink to="/"><img src='/logo_title.png' alt='adoptal logo' height={'53px'} /></NavLink>
       </Navbar.Brand>
 
+      {/* Settings for the logo only (small screens)*/}
       <Navbar.Brand showIn={"xs"}>
-      <a href="/"><img src='/logo_title.png' alt='adoptal logo' height={'53px'} /></a>
+        <NavLink to="/"><img src='/logo.png' alt='adoptal logo' height={'53px'} /></NavLink>
       </Navbar.Brand>
 
       {/* Basic settings for the hover and design */}
@@ -42,7 +37,8 @@ const Navigation = ({ handleThemeChange, isDark }) => {
         variant="highlight-rounded"
 
       >
-        {/* Need to implement dynamic routing with isActive functionality */}
+
+        {/* First link in the Navigation bar */}
         <Navbar.Item
           style={{ height: "unset", fontWeight: "var(--nextui-fontWeights-medium)" }}>
           <NavLink to="/" end
@@ -51,6 +47,7 @@ const Navigation = ({ handleThemeChange, isDark }) => {
           </NavLink>
         </Navbar.Item>
 
+        {/* Links to the user's lists. Only shows if a user is logged in */}
         {
           currentUser
             ? <>
@@ -117,6 +114,7 @@ const Navigation = ({ handleThemeChange, isDark }) => {
 
       {/* Expand/collapse menu on the left (For XS and MD screens only) */}
       <Navbar.Collapse>
+        {/* First link in the Navigation bar */}
         <Navbar.CollapseItem
           key="cats">
           <NavLink to="/" end
@@ -124,7 +122,8 @@ const Navigation = ({ handleThemeChange, isDark }) => {
             Cats
           </NavLink>
         </Navbar.CollapseItem>
-
+        
+        {/* Links to the user's lists. Only shows if a user is logged in */}
         {
           currentUser
             ? <>

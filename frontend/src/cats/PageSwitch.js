@@ -1,6 +1,8 @@
+// importing the pagination component and the css
 import { Pagination } from "@nextui-org/react";
 import './CatCard.css'
 
+// receiving the props from the parent component
 const PageSwitch = ({ currentPage, totalPages, setFilters, setCats, filters }) => {
     return (
         <>
@@ -9,6 +11,7 @@ const PageSwitch = ({ currentPage, totalPages, setFilters, setCats, filters }) =
                 borderRadius: "50px",
                 boxShadow: "0px 0px 12px -7px var(--nextui-colors-text)"
             }}>
+                {/* rendering a pagination component and settings the current page and total page from the props received */}
                 <Pagination
                     total={totalPages}
                     page={currentPage}
@@ -17,14 +20,23 @@ const PageSwitch = ({ currentPage, totalPages, setFilters, setCats, filters }) =
                     shadow
                     boundaries={2}
                     color="secondary"
+                    // when a page is clicked, change the state of the parent
                     onChange={
                         (page) => {
-                            console.log("PAGE>>>", page);
-                            setCats(null);
-                            setFilters({
-                                ...filters,
-                                page: page
-                            });
+                            try {
+                                // for debugging
+                                // console.log("PAGE>>>", page);
+
+                                // settings the cats to none which will prompt a component re-render
+                                setCats(null);
+                                // settings the filters to what is there right now but changing the page number
+                                setFilters({
+                                    ...filters,
+                                    page: page
+                                });
+                            } catch (err) {
+                                console.log("Adoptal > Front-end > cats > PageSwitch.js > onChange > ", err);
+                            }
                         }
                     }
                     css={{
