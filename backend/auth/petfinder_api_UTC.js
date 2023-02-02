@@ -44,17 +44,6 @@ async function renewToken() {
 // function to keep the Petfinder API authentication token alive without CRON job.
 async function keepTokenAlive(req, res, next) {
     try {
-        // getting the current time
-        const currTime = new Date();
-        // getting the OAuth token expiration time
-        const expTime = global.pf_token_expiration
-
-        console.log(`*****  Petfinder OAuth Token  *****
-        Current time: ${currTime},
-        Token expiration time: ${expTime},
-        Token expired? ${currTime > expTime ? "Yes" : "No"}
-        **********`)
-
         // if the token or expiration date doesn't exist
         if (!global.pf_auth_token || !global.pf_token_expiration) {
             // renew the token
@@ -64,21 +53,25 @@ async function keepTokenAlive(req, res, next) {
 
             // if the token and expiration time exists
         } else {
-            // checking if current time is higher than the token expiration time
+            console.log("Petfinder API OAuth global token expiration: ", global.pf_token_expiration)
+            
+            // getting the current time in UTC
+            const currTimeInUTC = (new Date()).toUTCString();
+
+            // checking if current time in UTC is higher than the token expiration time in UTC
             // if true, this would mean that the token is expired
-            if (currTime > expTime) {
+            if (currTimeInUTC > global.pf_token_expiration.toUTCString()) {
                 // renew the token
                 await renewToken();
                 //  continue after renewing
                 return next();
-            } else {
-                // if false, this would mean that the token is still valid
-                console.log("PetFinder API OAuth Token is still valid. Reusing... Expires: ", expTime)
-                //  continue after checking
-                return next();
             }
+            // if false, this would mean that the token is still valid
+            console.log("PetFinder API OAuth Token is still valid. Reusing... Expires: ", global.pf_token_expiration)
+            //  continue after checking
+            return next();
         }
-    } catch (err) {
+    } catch(err) {
         console.log("Adoptal > Back-end > auth > Petfinder_api.js > keepTokenAlive() > ", err);
     }
 }
