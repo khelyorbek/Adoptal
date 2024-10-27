@@ -61,7 +61,7 @@ app.use(session({
     mongoUrl: process.env.MONGO_DB,
     mongoOptions: {
       useNewUrlParser: true,
-      useUnifiedTopology: truesession_secret
+      useUnifiedTopology: true
     }
   }),
   cookie: {
