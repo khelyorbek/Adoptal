@@ -30,7 +30,7 @@ mongoose.set('strictQuery', false);
 // ------------------------- MIDDLEWARE - START -------------------------
 // telling express to return the responses in JSON format so we can use it in React
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 // creating CORS config to avoid error "blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource"
 const corsConfig = {
   origin: true,
@@ -51,28 +51,28 @@ const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
 // connecting to the mongo db for session collection
 app.use(session({
-    secret: process.env.session_secret,
-    resave: true,
-    saveUninitialized: true, // EK - < - should be set to false in PROD. The reasoning behind this is that this will prevent a lot of empty session objects being stored in the session store. Since there's nothing useful to store, the session is "forgotten" at the end of the request.
-    proxy: false, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-    
-    // Creating a store in the MongoDB to store the session data
-    store: MongoStore.create({
-      mongoUrl: process.env.mongodb_connect_string,
-      mongoOptions: {
-        useNewUrlParser: true, 
-        useUnifiedTopology: true
-      }
-    }),
-    cookie: {
-        // secure: true,
-        // sameSite: 'none',
-        // httpOnly: false,
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true, // EK - < - should be set to false in PROD. The reasoning behind this is that this will prevent a lot of empty session objects being stored in the session store. Since there's nothing useful to store, the session is "forgotten" at the end of the request.
+  proxy: false, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
 
-        // setting the cookie expiration time
-        maxAge: 1000 * 60 * 60 * 24 * 7 // Equals 7 days (7 days * 24 hr/1 day * 60 min/1 hr * 60 sec/1 min * 1000 ms / 1 sec)
+  // Creating a store in the MongoDB to store the session data
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_DB,
+    mongoOptions: {
+      useNewUrlParser: true,
+      useUnifiedTopology: truesession_secret
     }
-  }));
+  }),
+  cookie: {
+    // secure: true,
+    // sameSite: 'none',
+    // httpOnly: false,
+
+    // setting the cookie expiration time
+    maxAge: 1000 * 60 * 60 * 24 * 7 // Equals 7 days (7 days * 24 hr/1 day * 60 min/1 hr * 60 sec/1 min * 1000 ms / 1 sec)
+  }
+}));
 
 // ------------------------- EXPRESS SESSION CONFIG - END -------------------------
 
@@ -85,7 +85,7 @@ global.pf_token_expiration = '';
 
 // ------------------------- PASSPORT AUTHENTICATION - START -------------------------
 // parsing the cookie using the secret that we have stored in ENV variables
-app.use(cookieParser(process.env.session_secret));
+app.use(cookieParser(process.env.SESSION_SECRET));
 // initializing the passport middleware
 app.use(passport.initialize());
 // mapping the passport middleware into express-session

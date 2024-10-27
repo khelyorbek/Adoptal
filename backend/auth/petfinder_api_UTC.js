@@ -14,8 +14,8 @@ async function renewToken() {
         // storing the response in a variable
         const token = await axios.post('https://api.petfinder.com/v2/oauth2/token', querystring.stringify({
             grant_type: 'client_credentials', // must be set to this per API docs
-            client_id: process.env.client_id,  // from secrets file
-            client_secret: process.env.client_secret // from secrets file
+            client_id: process.env.PETFINDER_CLIENT_ID,  // from secrets file
+            client_secret: process.env.PETFINDER_CLIENT_SECRET // from secrets file
         }));
 
         // storing the token into a global variable
@@ -54,7 +54,7 @@ async function keepTokenAlive(req, res, next) {
             // if the token and expiration time exists
         } else {
             console.log("Petfinder API OAuth global token expiration: ", global.pf_token_expiration)
-            
+
             // getting the current time in UTC
             const currTimeInUTC = (new Date()).toUTCString();
 
@@ -71,7 +71,7 @@ async function keepTokenAlive(req, res, next) {
             //  continue after checking
             return next();
         }
-    } catch(err) {
+    } catch (err) {
         console.log("Adoptal > Back-end > auth > Petfinder_api.js > keepTokenAlive() > ", err);
     }
 }

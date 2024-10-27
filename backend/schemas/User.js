@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
 require('dotenv').config();
 // connecting to the mongo db for User collection
-const db_users_connection = mongoose.createConnection(process.env.mongodb_connect_string, { useNewUrlParser: true, retryWrites: true, w: "majority"});
+const db_users_connection = mongoose.createConnection(process.env.MONGO_DB, { useNewUrlParser: true, retryWrites: true, w: "majority" });
 
 // creating a scheuma with each field
 const userSchema = new mongoose.Schema({

@@ -1,20 +1,28 @@
 ### **Adoptal**
+
 ### Find and adopt your next fabulous feline friend!
 
 ---
+
 - [How to run the application?](#how-to-run-the-application-)
-  * [Method 1: Running the application online](#method-1-running-the-application-online)
-  * [Method 2: Running the application locally](#method-2-running-the-application-locally)
+  - [Method 1: Running the application online](#method-1-running-the-application-online)
+  - [Method 2: Running the application locally](#method-2-running-the-application-locally)
 - [Screenshots of the application](#screenshots-of-the-application)
+
 ---
 
 ## How to run the application?
+
 ### **Method 1: Running the application online**
-[**CLICK HERE TO OPEN THE APPLICATION ONLINE**](https://adoptal.elyorbek.com/) 
+
+[**CLICK HERE TO OPEN THE APPLICATION ONLINE**](https://adoptal.elyorbek.com/)
+
 - or copy-paste https://adoptal.elyorbek.com/ into your browser
 
 ---
+
 ### **Method 2: Running the application locally**
+
 1. Download this repository to your local computer
 2. Make sure you have `npm` installed or check [this page](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) on how install it
 3. Make sure you have a `MongoDB Atlas` account. Check [this page](https://www.mongodb.com/cloud/atlas/register) to register. Once you are registered, create a MongoDB database and then a collection called Adoptal. Once that's done you can go back to the main page of MongoDB Atlas and then click on Connect which will generate the Connect string for you. You will need this string during step 11.
@@ -26,23 +34,29 @@
 9. Once registered, you should get an "API Key" and "Secret"
 10. Go into the backend folder and create a .env file
 11. Open the file and add the following and replace the values after = with your own
+
 ```
-client_id=ADD-YOUR-PETFINDER-API-KEY-HERE
-client_secret=ADD-YOUR-PETFINDER-SECRET-HERE
-mongodb_connect_string=mongodb+srv://ADD-YOUR-MONGODB-ATLAST-CONNECTION-ADDRESS-HERE
-session_secret=GENERATE-A-RANDOM-LONG-STRING-AND-PUT-IT-HERE
+PETFINDER_CLIENT_ID=ADD-YOUR-PETFINDER-API-KEY-HERE
+PETFINDER_CLIENT_SECRET=ADD-YOUR-PETFINDER-SECRET-HERE
+MONGO_DB=mongodb+srv://ADD-YOUR-MONGODB-ATLAST-CONNECTION-ADDRESS-HERE
+PORT=PORT-WHICH-EXPRESS-APP-SHOULD-USE
+SESSION_SECRET=GENERATE-A-RANDOM-LONG-STRING-AND-PUT-IT-HERE
 BCRYPT_WORK_FACTOR=TYPE-IN-12-OR-ANYTHING-HIGHER-FOR-PASSWORD-ENCRYPTION
+APP_SECRET=GENERATE-A-RANDOM-LONG-STRING-AND-PUT-IT-HERE
 ```
+
 12. Go into the frontend folder and create a .env file
 13. Open the file and add the following and replace the values after = with your own
+
 ```
 WATCHPACK_POLLING=true
 REACT_APP_APP_SECRET=GENERATE-A-RANDOM-LONG-STRING-AND-PUT-IT-HERE
 REACT_APP_BACKEND_URL=PUT-THE-ADDRESS-TO-THE-ADOPTAL-BACK-END-USUALLY-ITS-LOCALHOST:3015
 ```
+
 14. Go into backend folder and run `npm run dev` to start the backend Express server
 15. Go into frontend folder and run `npm start` to start React application (Note: this might take a while)
-16. The address `https://localhost:3000` should open automatically but if it doesn't, go to that address in any browser (I recommend Chrome)
+16. The address `https://localhost:[PORT]` should open automatically but if it doesn't, go to that address in any browser (I recommend Chrome)
 17. Have fun!
 
 **NOTE: IF THERE ARE NO PETS DISPLAYING WHEN YOU OPEN THE APP, CHECK THE BACK-END CONSOLE LOG AND THE FRONTEND CONSOLE LOG FOR ANY ERRORS REGARINDG YOUR PETFINDER API KEYS**
@@ -50,6 +64,7 @@ REACT_APP_BACKEND_URL=PUT-THE-ADDRESS-TO-THE-ADOPTAL-BACK-END-USUALLY-ITS-LOCALH
 ---
 
 ## **Screenshots of the application**
+
 ![Main page in Dark Mode](/screenshots/1.jpg)
 **1. Main page in Dark Mode for guest visitor**
 
@@ -62,14 +77,11 @@ REACT_APP_BACKEND_URL=PUT-THE-ADDRESS-TO-THE-ADOPTAL-BACK-END-USUALLY-ITS-LOCALH
 ![Loading spinner animation](/screenshots/4.jpg)
 **4. Loading spinner animation**
 
-
 ![No results found in filter](/screenshots/5.jpg)
 **5. No results found in filter**
 
-
 ![Filtering](/screenshots/6.jpg)
 **6. Filtering produces the requested results**
-
 
 ![Cat Details 1](/screenshots/7.jpg)
 ![Cat Details 2](/screenshots/8.jpg)
@@ -89,32 +101,32 @@ REACT_APP_BACKEND_URL=PUT-THE-ADDRESS-TO-THE-ADOPTAL-BACK-END-USUALLY-ITS-LOCALH
 
 ![Profile toggle](/screenshots/13.jpg)
 **13. Profile toggle**
- 
+
 ![Edit profile modal for logged in user](/screenshots/14.jpg)
 **14. Edit profile modal for logged in user**
 
 ![Want to Adopt List](/screenshots/15.jpg)
 **15. Want to Adopt List**
- 
+
 ![My private notes list](/screenshots/16.jpg)
 **16. My private notes list**
- 
+
 ![My private notes list message update](/screenshots/17.jpg)
 **17. My private notes list message update**
- 
+
 ![My public comments list](/screenshots/18.jpg)
 **18. My public comments list**
- 
+
 ![Cat details 1](/screenshots/19.jpg)
 ![Cat details 2](/screenshots/20.jpg)
 **19-20. Cat details page for logged in user with own comment**
 
 ![Cat details no comments section](/screenshots/21.jpg)
 **21. Cat details no comments section**
- 
+
 ![Cat details comments section with own comment and another user comment](/screenshots/22.jpg)
 **22. Cat details comments section with own comment and another user comment**
- 
+
 ![Cat details comments section with comments for guest visitor](/screenshots/23.jpg)
 **23. Cat details comments section with comments for guest visitor**
 
