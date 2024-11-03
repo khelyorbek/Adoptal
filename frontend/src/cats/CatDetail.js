@@ -1,6 +1,7 @@
 // importing the necessary libraries, custom methods, icons and stylesheets
 import React, { useState, useEffect, useMemo, useContext } from 'react';
-import { Card, Col, Row, Button, Text, Container, Grid, Textarea, Loading, Avatar } from "@nextui-org/react";
+import { Card, Col, Row, Button, Text, Container, Grid, Textarea, Loading } from "@nextui-org/react";
+import { Avatar as BoringAvatar } from 'boring-avatars'
 import { useParams } from "react-router-dom";
 import ImageGallery from 'react-image-gallery';
 import './CatDetail.css';
@@ -832,7 +833,7 @@ const CatDetail = () => {
                                                         {/* For each commend display a row and a card */}
                                                         <Card xs={12} css={{ p: "$6", margin: "0.5rem 0" }}>
                                                             <Card.Header>
-                                                                {/* Displays an auto generated avatar using API endpoint */}
+                                                                {/* OLD NEXTUI AVATAR - Displays an auto generated avatar using API endpoint 
                                                                 <Avatar
                                                                     bordered
                                                                     as="button"
@@ -841,6 +842,11 @@ const CatDetail = () => {
                                                                     // this uses automatic avatar generation API based on the first and last name
                                                                     src={`https://source.boringavatars.com/beam/150/${comment.firstName}%20${comment.lastName}?colors=FFF7E6,D48EFC,DCB3FE,AB7CFF,B4C4FF`}
                                                                 />
+                                                                */}
+
+
+                                                                <BoringAvatar as="button" name={`${comment.firstName} ${comment.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
+
                                                                 {/* Displays information about the user */}
                                                                 <Grid.Container css={{ pl: "$6" }}>
                                                                     <Grid xs={12}>

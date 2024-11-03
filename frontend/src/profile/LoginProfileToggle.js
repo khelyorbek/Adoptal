@@ -1,7 +1,10 @@
 // Importing all the necessary libraries and components and assets
 import React, { useContext, useState } from 'react';
-import { Modal, Button, Input, Row, Loading, Image, Tooltip, Avatar, Text, Dropdown, Navbar } from '@nextui-org/react';
+import { Modal, Button, Input, Row, Loading, Image, Avatar, Tooltip, Text, Dropdown, Navbar } from '@nextui-org/react';
 import { useNavigate } from "react-router-dom";
+
+// Importing Avatar from the boring avatars library instead
+import { Avatar as BoringAvatar } from 'boring-avatars'
 
 // importing icons
 import UserIcon from '../icons/user.svg'
@@ -181,7 +184,7 @@ const LoginProfileToggle = () => {
                 setIsEditProfile(false)
                 // setting the global user to the user that we received
                 setCurrentUser(res.user);
-                
+
                 // logging the current user
                 // console.log("LoginProfileToggle >>> handleEditProfile >>> currentUser", currentUser);
             } else {
@@ -257,12 +260,12 @@ const LoginProfileToggle = () => {
                 break;
 
             default:
-                 // ^ nothing happens by default. but we must have it
+            // ^ nothing happens by default. but we must have it
         }
         // for debugging
         // console.log("Selected key from dropdown >>> ", key);
     }
-    
+
     // for debugging
     // console.log("LoginProfileToggle >>> currentUser >>>", currentUser);
 
@@ -274,6 +277,7 @@ const LoginProfileToggle = () => {
                 <Dropdown placement="bottom-right">
                     <Navbar.Item>
                         <Dropdown.Trigger>
+                            {/* Old Avatar using NextUI 
                             <Avatar
                                 bordered
                                 as="button"
@@ -282,6 +286,11 @@ const LoginProfileToggle = () => {
                                 // this uses automatic avatar generation API based on the first and last name
                                 src={`https://source.boringavatars.com/beam/150/${currentUser.firstName}%20${currentUser.lastName}?colors=FFF7E6,D48EFC,DCB3FE,AB7CFF,B4C4FF`}
                             />
+                            */}
+
+                            <BoringAvatar as="button" name={`${currentUser.firstName} ${currentUser.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
+
+
                         </Dropdown.Trigger>
                     </Navbar.Item>
 
@@ -290,7 +299,7 @@ const LoginProfileToggle = () => {
                         color="secondary"
                         disabledKeys={["user_info"]}
                         onAction={handleProfileDropdown}>
-            
+
                         {/* Displays information about the user like name and username */}
                         <Dropdown.Item
                             key="user_info"
@@ -363,7 +372,7 @@ const LoginProfileToggle = () => {
                         {
                             // if the user is on the edit profile modal
                             isEditProfile
-                            // and the edit is successful
+                                // and the edit is successful
                                 ? success
                                     ? <Text id="modal-title" size={24} b color="success">
                                         Profile edit successful!
@@ -442,7 +451,7 @@ const LoginProfileToggle = () => {
                             {
                                 // if the operation is successful
                                 success
-                                // then the button is hidden
+                                    // then the button is hidden
                                     ? ''
                                     // otherwise the button is shown
                                     : <Button
@@ -529,10 +538,10 @@ const LoginProfileToggle = () => {
                         alt="Adoptal logo"
                     />
                     <Modal.Body>
-                        { 
-                        // if the modal is registartion
+                        {
+                            // if the modal is registartion
                             isRegistration
-                            // then show additional input (first name)
+                                // then show additional input (first name)
                                 ? <Input
                                     onChange={handleChange}
                                     name="firstName"
@@ -551,7 +560,7 @@ const LoginProfileToggle = () => {
                         }
                         {
                             isRegistration
-                            // and show additional input (last name)
+                                // and show additional input (last name)
                                 ? <Input
                                     onChange={handleChange}
                                     name="lastName"
@@ -568,8 +577,8 @@ const LoginProfileToggle = () => {
                                 : ''
                         }
 
-                    {/* if its NOT registration ,then its login */}
-                    {/* only show 2 inputs (username and password) */}
+                        {/* if its NOT registration ,then its login */}
+                        {/* only show 2 inputs (username and password) */}
                         <Input
                             onChange={handleChange}
                             name="username"
@@ -614,7 +623,7 @@ const LoginProfileToggle = () => {
                         {
                             // if successful
                             success
-                            // show nothing
+                                // show nothing
                                 ? ''
                                 // otherwise show a row of buttons
                                 :
@@ -624,7 +633,7 @@ const LoginProfileToggle = () => {
                                     {
                                         // if its a registration modal
                                         isRegistration
-                                        // don't show this button
+                                            // don't show this button
                                             ? ''
                                             // otherwise - show
                                             : <Button
