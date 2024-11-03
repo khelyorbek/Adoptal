@@ -1,5 +1,5 @@
 // Importing all the necessary libraries and components and assets
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Grid, Container, Text } from '@nextui-org/react';
 import loadingSvg from '../icons/loading.svg'
 // Custom components and functions
@@ -8,13 +8,17 @@ import CatCard from "./CatCard";
 import FilterSidebar from "./FilterSidebar";
 import PageSwitch from './PageSwitch';
 
+// importing a global context (current user enabler)
+import GlobalContext from '../GlobalContext';
+
 // main function
 const CatList = () => {
     // using state to keep track of all the cats
     const [cats, setCats] = useState();
-    const [currentPage, setCurrentPage] = useState();
+    // receiving the global context for current user
+    const { currentPage, setCurrentPage } = useContext(GlobalContext);
     const [totalPages, setTotalPages] = useState();
-    const [filters, setFilters] = useState({});
+    const [filters, setFilters] = useState({ page: currentPage });
 
     // grabbing a list of cats
     useEffect(() => {
@@ -40,6 +44,7 @@ const CatList = () => {
 
             // sets the pets state to the cats received from API
             setCats(pets);
+
             // sets the current page number to the one received from api
             setCurrentPage(res.pagination.current_page)
             // sets the max num of pages to the one received from api
@@ -79,7 +84,7 @@ const CatList = () => {
                                             >
                                             </img>
                                         </div>
-                                        <Text size={35} b color="secondary">Your filter criteria did not return any results...</Text>
+                                        <Text size={35} b color="secondary">Your filter criteria did not return any results...</Text>PageSwitch
                                         <Text size={24} >Please adjust the filter on the left and click on Apply Filter to retry.</Text>
                                     </Container>
                                     // If the reults return actual data, map through it and display our custom component and pass the cat into the component as a prop
@@ -96,7 +101,7 @@ const CatList = () => {
                 </Grid>
                 <Grid xs={12} justify="center" >
                     {/* for displaying the pagination, passing the filters and the page number we receive from the API */}
-                    <PageSwitch totalPages={totalPages} currentPage={currentPage} filters={filters} setFilters={setFilters} setCats={setCats} ></PageSwitch>
+                    <PageSwitch totalPages={totalPages} filters={filters} setFilters={setFilters} setCats={setCats} ></PageSwitch>
                 </Grid>
             </Grid.Container>
         </Container>

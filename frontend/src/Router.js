@@ -16,6 +16,7 @@ const Router = () => {
 
     // receiving the global context for current user
     const { currentUser, setCurrentUser } = useContext(GlobalContext)
+    const { currentPage, setCurrentPage } = useContext(GlobalContext);
 
     // Pretty self explanatory here
     // Dynamically render a Catlist component
@@ -27,7 +28,7 @@ const Router = () => {
             <Route
                 path="/"
                 element={
-                    <CatList></CatList>
+                    <CatList currentPage={currentPage} setCurrentPage={setCurrentPage}></CatList>
                 }>
             </Route>
 
@@ -37,15 +38,15 @@ const Router = () => {
                     currentUser
                         ? <AdoptList currentUser={currentUser} setCurrentUser={setCurrentUser}> </AdoptList>
                         : <LoginRequiredPage></LoginRequiredPage>
-                        }>
+                }>
             </Route>
 
             <Route
                 path="/mynotes"
                 element={
                     currentUser
-                    ? <MyNotes></MyNotes>
-                    : <LoginRequiredPage></LoginRequiredPage>
+                        ? <MyNotes></MyNotes>
+                        : <LoginRequiredPage></LoginRequiredPage>
                 }>
             </Route>
 
@@ -53,8 +54,8 @@ const Router = () => {
                 path="/mycomments"
                 element={
                     currentUser
-                    ? <MyComments></MyComments>
-                    : <LoginRequiredPage></LoginRequiredPage>
+                        ? <MyComments></MyComments>
+                        : <LoginRequiredPage></LoginRequiredPage>
                 }>
             </Route>
 

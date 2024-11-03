@@ -1,9 +1,15 @@
 // importing the pagination component and the css
+import { useContext } from 'react';
+// importing a global context (current user enabler)
+import GlobalContext from '../GlobalContext';
 import { Pagination } from "@nextui-org/react";
 import './CatCard.css'
 
 // receiving the props from the parent component
-const PageSwitch = ({ currentPage, totalPages, setFilters, setCats, filters }) => {
+const PageSwitch = ({ totalPages, setFilters, setCats, filters }) => {
+    // receiving the global context for current user
+    const { currentPage, setCurrentPage } = useContext(GlobalContext);
+
     return (
         <>
             <div style={{
@@ -34,6 +40,8 @@ const PageSwitch = ({ currentPage, totalPages, setFilters, setCats, filters }) =
                                     ...filters,
                                     page: page
                                 });
+
+                                setCurrentPage(page);
                             } catch (err) {
                                 console.log("Adoptal > Front-end > cats > PageSwitch.js > onChange > ", err);
                             }

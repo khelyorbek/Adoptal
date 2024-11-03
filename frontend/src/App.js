@@ -38,6 +38,8 @@ const lightTheme = createTheme({
 function App() {
   // using state to keep track of current user
   const [currentUser, setCurrentUser] = useState(null);
+  // using state to keep track of current page
+  const [currentPage, setCurrentPage] = useState(null);
 
   // using state for keeping track of the theme color
   const [isDark, setIsDark] = useState(() => {
@@ -75,10 +77,10 @@ function App() {
       if (res.data.message === "Error while processing your request") {
         // set the current user to nothing
         setCurrentUser(null);
-        
+
         // for debugging
         // console.log("App.js > res.data.message", res.data.message);
-      } 
+      }
       // if the request is successful
       else {
         // then setting the current user to the data that we received from the back-end
@@ -104,13 +106,13 @@ function App() {
     localStorage.setItem('isDarkThemeOn', isDark);
   }, [isDark]);
 
-    // 2. Use at the root of your app per NextUI documentation
+  // 2. Use at the root of your app per NextUI documentation
   return (<>
     {/* wrapping our entire application in the provider */}
     <NextUIProvider theme={isDark === true ? darkTheme : lightTheme} >
 
-      {/* Passing current user state and setCurrentUser function as global context to all child componenets */}
-      <GlobalContext.Provider value={{ currentUser, setCurrentUser }}>
+      {/* Passing current user and page states and as global context to all child componenets */}
+      <GlobalContext.Provider value={{ currentUser, setCurrentUser, currentPage, setCurrentPage }}>
 
         {/* using BrowserRouter from react-router-dom for dynamic navigation (refresh-less) */}
         <BrowserRouter>
@@ -126,7 +128,7 @@ function App() {
       </GlobalContext.Provider>
       <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     </NextUIProvider >
-    
+
   </>)
 }
 
