@@ -1,10 +1,10 @@
 // Importing all the necessary libraries and components and assets
 import React, { useContext, useState } from 'react';
-import { Modal, Button, Input, Row, Loading, Image, Avatar as NextUIAvatar, Tooltip, Text, Dropdown, Navbar } from '@nextui-org/react';
+import { Modal, Button, Input, Row, Loading, Image, Avatar, Tooltip, Text, Dropdown, Navbar } from '@nextui-org/react';
 import { useNavigate } from "react-router-dom";
 
 // Importing Avatar from the boring avatars library instead
-import Avatar from 'boring-avatars'
+import BoringAvatar from 'boring-avatars'
 
 // importing icons
 import UserIcon from '../icons/user.svg'
@@ -288,7 +288,7 @@ const LoginProfileToggle = () => {
                             />
                             */}
 
-                            <Avatar as="button" name={`${currentUser.firstName} ${currentUser.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
+                            <BoringAvatar as="button" size={36} name={`${currentUser.firstName} ${currentUser.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
 
 
                         </Dropdown.Trigger>
@@ -479,7 +479,7 @@ const LoginProfileToggle = () => {
         return (<>
             <Tooltip content="Login" placement="bottom" color="invert">
                 {/* showing a standard user icon */}
-                <NextUIAvatar
+                <Avatar
                     bordered
                     as="button"
                     color="gradient"

@@ -1,7 +1,7 @@
 // importing the necessary libraries, custom methods, icons and stylesheets
 import React, { useState, useEffect, useMemo, useContext } from 'react';
 import { Card, Col, Row, Button, Text, Container, Grid, Textarea, Loading } from "@nextui-org/react";
-import Avatar from 'boring-avatars'
+import BoringAvatar from 'boring-avatars'
 import { useParams } from "react-router-dom";
 import ImageGallery from 'react-image-gallery';
 import './CatDetail.css';
@@ -845,7 +845,7 @@ const CatDetail = () => {
                                                                 */}
 
 
-                                                                <Avatar as="button" name={`${comment.firstName} ${comment.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
+                                                                <BoringAvatar as="button" size={36} name={`${comment.firstName} ${comment.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
 
                                                                 {/* Displays information about the user */}
                                                                 <Grid.Container css={{ pl: "$6" }}>
