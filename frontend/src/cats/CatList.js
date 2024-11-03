@@ -33,7 +33,10 @@ const CatList = () => {
             let res = await AdoptalApi.getAllCats(filters);
 
             // filtering out animals without photos. sorry kitties :(
-            const pets = res.animals.filter(pet => pet.photos.length > 0)
+            // const pets = res.animals.filter(pet => pet.photos.length > 0)
+
+            // on another note, decided to keep showing kitties without photos
+            const pets = res.animals;
 
             // sets the pets state to the cats received from API
             setCats(pets);

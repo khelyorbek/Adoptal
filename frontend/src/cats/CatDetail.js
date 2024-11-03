@@ -845,7 +845,7 @@ const CatDetail = () => {
                                                                 */}
 
 
-                                                                <BoringAvatar as="button" size={36} name={`${comment.firstName} ${comment.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
+                                                                <BoringAvatar as="button" size={48} name={`${comment.firstName} ${comment.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
 
                                                                 {/* Displays information about the user */}
                                                                 <Grid.Container css={{ pl: "$6" }}>

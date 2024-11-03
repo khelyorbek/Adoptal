@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 // Importing Avatar from the boring avatars library instead
 import BoringAvatar from 'boring-avatars'
+import { renderToStaticMarkup } from 'react-dom/server'
 
 // importing icons
 import UserIcon from '../icons/user.svg'
@@ -266,30 +267,32 @@ const LoginProfileToggle = () => {
         // console.log("Selected key from dropdown >>> ", key);
     }
 
+
     // for debugging
     // console.log("LoginProfileToggle >>> currentUser >>>", currentUser);
 
     // if the user is logged in
     if (currentUser) {
+        // Generating a React component from Boring avatars,
+        // then converting it into a static SVG markup
+        // then encoding it into URI so nothing is lost
+        const BAvatar = encodeURIComponent(renderToStaticMarkup(<BoringAvatar as="button" size={36} name={`${currentUser.firstName} ${currentUser.lastName}`} variant="beam" colors={['#FFF7E6', '#D48EFC', '#DCB3FE', '#AB7CFF', '#B4C4FF']} />))
+
         // Show a user profile circle
         return (<>
             <Tooltip content="Profile" placement="bottom" color="invert">
                 <Dropdown placement="bottom-right">
                     <Navbar.Item>
                         <Dropdown.Trigger>
-                            {/* Old Avatar using NextUI 
+                            {/* Old Avatar using NextUI */}
                             <Avatar
                                 bordered
                                 as="button"
                                 color="gradient"
                                 size="md"
-                                // this uses automatic avatar generation API based on the first and last name
-                                src={`https://source.boringavatars.com/beam/150/${currentUser.firstName}%20${currentUser.lastName}?colors=FFF7E6,D48EFC,DCB3FE,AB7CFF,B4C4FF`}
+                                // receiving the generated SVG as a src for the Avatar
+                                src={`data:image/svg+xml;utf8, ${BAvatar}`}
                             />
-                            */}
-
-                            <BoringAvatar as="button" size={36} name={`${currentUser.firstName} ${currentUser.lastName}`} variant="beam" colors={["#FFF7E6", "#D48EFC", "#DCB3FE", "#AB7CFF", "#B4C4FF"]} />
-
 
                         </Dropdown.Trigger>
                     </Navbar.Item>
