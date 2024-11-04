@@ -10,13 +10,29 @@ const app = require("../app");
 
 async function renewToken() {
     try {
-        // sending a post request to Oath endpoint of the PetFinder API to get a token
-        // storing the response in a variable
-        const token = await axios.post('https://api.petfinder.com/v2/oauth2/token', querystring.stringify({
+        /* IF YOU ONLY HAVE 1 TOKEN USE THIS
+        let token = await axios.post('https://api.petfinder.com/v2/oauth2/token', querystring.stringify({
             grant_type: 'client_credentials', // must be set to this per API docs
             client_id: process.env.PETFINDER_CLIENT_ID,  // from secrets file
-            client_secret: process.env.PETFINDER_CLIENT_SECRET // from secrets file
-        }));
+            client_secret: process.env.PETFINDER_CLIENT_SECRET, // from secrets file
+        */
+
+        // IF YOU HAVE MULTIPLE TOKENS, USE THIS 
+        // initializing the API token as empty string
+        let token = '';
+
+        // looping through the available API keys
+        for (let i = 0; i <= 7; i++) {
+            // sending a post request to Oath endpoint of the PetFinder API to get a token
+            // storing the response in a variable
+            token = await axios.post('https://api.petfinder.com/v2/oauth2/token', querystring.stringify({
+                grant_type: 'client_credentials', // must be set to this per API docs
+                client_id: `process.env.PETFINDER_CLIENT_ID_${i}`,  // from secrets file
+                client_secret: `process.env.PETFINDER_CLIENT_SECRET_${i}`, // from secrets file
+            }));
+
+            if (token.data.access_token) { break; }
+        }
 
         // storing the token into a global variable
         global.pf_auth_token = token.data.access_token;

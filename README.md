@@ -45,6 +45,10 @@ BCRYPT_WORK_FACTOR=TYPE-IN-12-OR-ANYTHING-HIGHER-FOR-PASSWORD-ENCRYPTION
 APP_SECRET=GENERATE-A-RANDOM-LONG-STRING-AND-PUT-IT-HERE
 ```
 
+NOTE:
+If you have a single Petfinder Client ID and Secret, use lines 13-18 in frontend/auth/adoptal_api.js file
+If you have multiple Petfinder Client IDs and Secrets, use lines 20-35 in frontend/auth/adoptal_api.js file
+
 12. Go into the frontend folder and create a .env file
 13. Open the file and add the following and replace the values after = with your own
 
