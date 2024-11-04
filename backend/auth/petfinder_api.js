@@ -17,9 +17,9 @@ async function renewToken() {
             client_secret: process.env.PETFINDER_CLIENT_SECRET, // from secrets file
         */
 
-        // IF YOU HAVE MULTIPLE TOKENS, USE THIS 
-        // initializing the API token as empty string
-        let token = '';
+        // IF YOU HAVE MULTIPLE TOKENS, USE THIS. UPDATE THE ARRAYS WITH HOWEVER MANY IDS AND SECRETS YOU HAVE
+        const PETFINDER_IDS = [process.env.PETFINDER_CLIENT_ID_0, process.env.PETFINDER_CLIENT_ID_1, process.env.PETFINDER_CLIENT_ID_2, process.env.PETFINDER_CLIENT_ID_3, process.env.PETFINDER_CLIENT_ID_4, process.env.PETFINDER_CLIENT_ID_5, process.env.PETFINDER_CLIENT_ID_6, process.env.PETFINDER_CLIENT_ID_7];
+        const PETFINDER_SECRETS = [process.env.PETFINDER_CLIENT_SECRET_0, process.env.PETFINDER_CLIENT_SECRET_1, process.env.PETFINDER_CLIENT_SECRET_2, process.env.PETFINDER_CLIENT_SECRET_3, process.env.PETFINDER_CLIENT_SECRET_4, process.env.PETFINDER_CLIENT_SECRET_5, process.env.PETFINDER_CLIENT_SECRET_6, process.env.PETFINDER_CLIENT_SECRET_7];
 
         // looping through the available API keys
         for (let i = 0; i <= 7; i++) {
@@ -27,11 +27,10 @@ async function renewToken() {
             // storing the response in a variable
             token = await axios.post('https://api.petfinder.com/v2/oauth2/token', querystring.stringify({
                 grant_type: 'client_credentials', // must be set to this per API docs
-                client_id: `process.env.PETFINDER_CLIENT_ID_${i}`,  // from secrets file
-                client_secret: `process.env.PETFINDER_CLIENT_SECRET_${i}`, // from secrets file
+                client_id: PETFINDER_IDS[i],  // from secrets file
+                client_secret: PETFINDER_SECRETS[i], // from secrets file
             }));
-
-            if (token.data.access_token) { break; }
+            if (token.data.access_token) { break; } // if token is obtained, break the loop
         }
 
         // storing the token into a global variable
