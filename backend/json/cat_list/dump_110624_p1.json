@@ -1,0 +1,1176 @@
+{
+  "animals": [
+    {
+      "id": 73861150,
+      "organization_id": "NC952",
+      "url": "https://www.petfinder.com/cat/mrs-piggles-73861150/nc/jacksonville/adoption-first-animal-rescue-nc952/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Tabby (Brown / Chocolate)",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Young",
+      "gender": "Female",
+      "size": "Small",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": ["Array"],
+      "name": "Mrs. Piggles",
+      "description": "Please visit our website www.adoptionfirstanimalrescue.com to learn more about this amazing pet and to see other available dogs and cats.",
+      "organization_animal_id": "42959",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:17:07+0000",
+      "published_at": "2024-11-06T21:17:06+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@adoptionfirstanimalrescue.com",
+        "phone": "(910) 290-3795",
+        "address": {
+          "address1": "114 Enterprise St",
+          "address2": null,
+          "city": "Jacksonville",
+          "state": "NC",
+          "postcode": "28546",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861150" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/nc952" }
+      }
+    },
+    {
+      "id": 73861151,
+      "organization_id": "NC952",
+      "url": "https://www.petfinder.com/cat/red-rum-73861151/nc/jacksonville/adoption-first-animal-rescue-nc952/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": "White", "secondary": null, "tertiary": null },
+      "age": "Young",
+      "gender": "Female",
+      "size": "Small",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": ["Array"],
+      "name": "Red Rum",
+      "description": "Please visit our website www.adoptionfirstanimalrescue.com to learn more about this amazing pet and to see other available dogs and cats.",
+      "organization_animal_id": "42855",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:17:07+0000",
+      "published_at": "2024-11-06T21:17:06+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@adoptionfirstanimalrescue.com",
+        "phone": "(910) 290-3795",
+        "address": {
+          "address1": "114 Enterprise St",
+          "address2": null,
+          "city": "Jacksonville",
+          "state": "NC",
+          "postcode": "28546",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861151" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/nc952" }
+      }
+    },
+    {
+      "id": 73861152,
+      "organization_id": "NC952",
+      "url": "https://www.petfinder.com/dog/clyde-73861152/nc/jacksonville/adoption-first-animal-rescue-nc952/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Pit Bull Terrier",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Yellow / Tan / Blond / Fawn",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Young",
+      "gender": "Male",
+      "size": "Small",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": true, "cats": null },
+      "tags": ["Playful"],
+      "name": "Clyde",
+      "description": "Clyde is a petite fella who loves to play. He enjoys interaction and prefers one on one attention. He does...",
+      "organization_animal_id": "42825",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:17:07+0000",
+      "published_at": "2024-11-06T21:17:06+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@adoptionfirstanimalrescue.com",
+        "phone": "(910) 290-3795",
+        "address": {
+          "address1": "114 Enterprise St",
+          "address2": null,
+          "city": "Jacksonville",
+          "state": "NC",
+          "postcode": "28546",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861152" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/nc952" }
+      }
+    },
+    {
+      "id": 73861124,
+      "organization_id": "TX309",
+      "url": "https://www.petfinder.com/cat/bean-73861124/tx/fort-worth/humane-society-of-north-texas-tx309/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Bean",
+      "description": "Hi, I\u0026amp;#39;m Bean! I\u0026amp;#39;m a curious kitten who loves to explore. I\u0026amp;#39;m always on the lookout for my next adventure,...",
+      "organization_animal_id": "56625596",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:53+0000",
+      "published_at": "2024-11-06T21:16:52+0000",
+      "distance": null,
+      "contact": {
+        "email": "Info@hsnt.org",
+        "phone": "(817) 332-4768",
+        "address": {
+          "address1": "1840 East Lancaster Ave.",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76103",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861124" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/tx309" }
+      }
+    },
+    {
+      "id": 73861125,
+      "organization_id": "TX309",
+      "url": "https://www.petfinder.com/dog/lady-73861125/tx/fort-worth/humane-society-of-north-texas-tx309/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Mixed Breed",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Lady",
+      "description": "Hello, I\u0026amp;#39;m Lady! My days are filled with a mix of goofy antics and independent exploration. I\u0026amp;#39;m a cuddly gal...",
+      "organization_animal_id": "57178671",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:53+0000",
+      "published_at": "2024-11-06T21:16:52+0000",
+      "distance": null,
+      "contact": {
+        "email": "Info@hsnt.org",
+        "phone": "(817) 332-4768",
+        "address": {
+          "address1": "1840 East Lancaster Ave.",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76103",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861125" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx309" }
+      }
+    },
+    {
+      "id": 73861126,
+      "organization_id": "TX309",
+      "url": "https://www.petfinder.com/cat/joey-73861126/tx/fort-worth/humane-society-of-north-texas-tx309/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Small",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Joey",
+      "description": null,
+      "organization_animal_id": "57219873",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:53+0000",
+      "published_at": "2024-11-06T21:16:52+0000",
+      "distance": null,
+      "contact": {
+        "email": "Info@hsnt.org",
+        "phone": "(817) 332-4768",
+        "address": {
+          "address1": "1840 East Lancaster Ave.",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76103",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861126" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/tx309" }
+      }
+    },
+    {
+      "id": 73861127,
+      "organization_id": "TX309",
+      "url": "https://www.petfinder.com/dog/stimpy-73861127/tx/fort-worth/humane-society-of-north-texas-tx309/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Mixed Breed",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Stimpy",
+      "description": "Hello, I\u0026amp;#39;m Stimpy! I\u0026amp;#39;m a sweet, curious puppy who loves to explore. I have a mellow and gentle nature, but...",
+      "organization_animal_id": "57093776",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:53+0000",
+      "published_at": "2024-11-06T21:16:52+0000",
+      "distance": null,
+      "contact": {
+        "email": "Info@hsnt.org",
+        "phone": "(817) 332-4768",
+        "address": {
+          "address1": "1840 East Lancaster Ave.",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76103",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861127" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx309" }
+      }
+    },
+    {
+      "id": 73861128,
+      "organization_id": "TX309",
+      "url": "https://www.petfinder.com/cat/ziva-73861128/tx/fort-worth/humane-society-of-north-texas-tx309/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Ziva",
+      "description": "Hello, I\u0026amp;#39;m Ziva. I\u0026amp;#39;ve spent many days exploring the nooks and crannies of this shelter, satisfying my curiosity. I\u0026amp;#39;ve seen...",
+      "organization_animal_id": "56437793",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:53+0000",
+      "published_at": "2024-11-06T21:16:52+0000",
+      "distance": null,
+      "contact": {
+        "email": "Info@hsnt.org",
+        "phone": "(817) 332-4768",
+        "address": {
+          "address1": "1840 East Lancaster Ave.",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76103",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861128" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/tx309" }
+      }
+    },
+    {
+      "id": 73861122,
+      "organization_id": "TX309",
+      "url": "https://www.petfinder.com/dog/ren-73861122/tx/fort-worth/humane-society-of-north-texas-tx309/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Mixed Breed",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Ren",
+      "description": "Hi there! I\u0026amp;#39;m Ren. Life is a fun game of fetch for me. I\u0026amp;#39;m always curious, sniffing out new adventures...",
+      "organization_animal_id": "57093799",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:52+0000",
+      "published_at": "2024-11-06T21:16:51+0000",
+      "distance": null,
+      "contact": {
+        "email": "Info@hsnt.org",
+        "phone": "(817) 332-4768",
+        "address": {
+          "address1": "1840 East Lancaster Ave.",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76103",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861122" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx309" }
+      }
+    },
+    {
+      "id": 73861123,
+      "organization_id": "TX309",
+      "url": "https://www.petfinder.com/dog/mars-73861123/tx/fort-worth/humane-society-of-north-texas-tx309/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Mixed Breed",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Mars",
+      "description": "Hello, I\u0026amp;#39;m Mars. I\u0026amp;#39;m as sweet as the candy bar I\u0026amp;#39;m named after. I love playing fetch, and I\u0026amp;#39;ll bring...",
+      "organization_animal_id": "57077251",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:52+0000",
+      "published_at": "2024-11-06T21:16:51+0000",
+      "distance": null,
+      "contact": {
+        "email": "Info@hsnt.org",
+        "phone": "(817) 332-4768",
+        "address": {
+          "address1": "1840 East Lancaster Ave.",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76103",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861123" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx309" }
+      }
+    },
+    {
+      "id": 73861121,
+      "organization_id": "VA698",
+      "url": "https://www.petfinder.com/cat/quesadilla-73861121/va/gloucester/gloucester-mathews-humane-society-va698/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Baby",
+      "gender": "Female",
+      "size": "Small",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Quesadilla",
+      "description": null,
+      "organization_animal_id": "56874713",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:51+0000",
+      "published_at": "2024-11-06T21:16:50+0000",
+      "distance": null,
+      "contact": {
+        "email": "animalplacement@gmhumanesociety.org",
+        "phone": "(804) 693-5520",
+        "address": {
+          "address1": "6620 Jackson Lane",
+          "address2": null,
+          "city": "Gloucester",
+          "state": "VA",
+          "postcode": "23061",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861121" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/va698" }
+      }
+    },
+    {
+      "id": 73861100,
+      "organization_id": "TN589",
+      "url": "https://www.petfinder.com/cat/trixie-bonded-with-tiger-73861100/tn/hixson/scratch-inc-tn589/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Tabby",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Tabby (Gray / Blue / Silver)",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Young",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [
+        "Affectionate",
+        "Athletic",
+        "Curious",
+        "Friendly",
+        "Playful",
+        "Funny"
+      ],
+      "name": "Trixie (bonded with Tiger)",
+      "description": "Trixie is an adorable and sweet little girl who loves to be petted, play with her toys and her equally...",
+      "organization_animal_id": null,
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/85abed45-6332-45e3-8c78-18a792663b50.jpeg?versionId=gHYw0zrY6_ifnB07y90fnO8UgiyZRLN_\u0026bust=1730927793\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/85abed45-6332-45e3-8c78-18a792663b50.jpeg?versionId=gHYw0zrY6_ifnB07y90fnO8UgiyZRLN_\u0026bust=1730927793\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/85abed45-6332-45e3-8c78-18a792663b50.jpeg?versionId=gHYw0zrY6_ifnB07y90fnO8UgiyZRLN_\u0026bust=1730927793\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/85abed45-6332-45e3-8c78-18a792663b50.jpeg?versionId=gHYw0zrY6_ifnB07y90fnO8UgiyZRLN_\u0026bust=1730927793"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/2b150a89-cc03-4be8-9479-ce3516c8c44f.jpeg?versionId=YbSamr7Rdfx6KkYW1LbP6YgF9_w.Uwez\u0026bust=1730927794\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/2b150a89-cc03-4be8-9479-ce3516c8c44f.jpeg?versionId=YbSamr7Rdfx6KkYW1LbP6YgF9_w.Uwez\u0026bust=1730927794\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/2b150a89-cc03-4be8-9479-ce3516c8c44f.jpeg?versionId=YbSamr7Rdfx6KkYW1LbP6YgF9_w.Uwez\u0026bust=1730927794\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/2b150a89-cc03-4be8-9479-ce3516c8c44f.jpeg?versionId=YbSamr7Rdfx6KkYW1LbP6YgF9_w.Uwez\u0026bust=1730927794"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/fa146217-05c5-408c-ac70-68b71be5455f.jpeg?versionId=mfAlYfiYqBphWvXqqCapY3f_bYvFuegU\u0026bust=1730927794\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/fa146217-05c5-408c-ac70-68b71be5455f.jpeg?versionId=mfAlYfiYqBphWvXqqCapY3f_bYvFuegU\u0026bust=1730927794\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/fa146217-05c5-408c-ac70-68b71be5455f.jpeg?versionId=mfAlYfiYqBphWvXqqCapY3f_bYvFuegU\u0026bust=1730927794\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/fa146217-05c5-408c-ac70-68b71be5455f.jpeg?versionId=mfAlYfiYqBphWvXqqCapY3f_bYvFuegU\u0026bust=1730927794"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/44d9ff3b-874c-4788-9eb4-257cb7004bc7.jpeg?versionId=9ZBzzXGrhpUgyBCsqaGzxMCrPuw1oDKx\u0026bust=1730927795\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/44d9ff3b-874c-4788-9eb4-257cb7004bc7.jpeg?versionId=9ZBzzXGrhpUgyBCsqaGzxMCrPuw1oDKx\u0026bust=1730927795\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/44d9ff3b-874c-4788-9eb4-257cb7004bc7.jpeg?versionId=9ZBzzXGrhpUgyBCsqaGzxMCrPuw1oDKx\u0026bust=1730927795\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/44d9ff3b-874c-4788-9eb4-257cb7004bc7.jpeg?versionId=9ZBzzXGrhpUgyBCsqaGzxMCrPuw1oDKx\u0026bust=1730927795"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/a237da70-dd08-4e86-b5a0-e14b074054e3.jpeg?versionId=.7KtoD8U34voLvImx5_jLutl4pQScySV\u0026bust=1730927795\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/a237da70-dd08-4e86-b5a0-e14b074054e3.jpeg?versionId=.7KtoD8U34voLvImx5_jLutl4pQScySV\u0026bust=1730927795\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/a237da70-dd08-4e86-b5a0-e14b074054e3.jpeg?versionId=.7KtoD8U34voLvImx5_jLutl4pQScySV\u0026bust=1730927795\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/a237da70-dd08-4e86-b5a0-e14b074054e3.jpeg?versionId=.7KtoD8U34voLvImx5_jLutl4pQScySV\u0026bust=1730927795"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/e30646dd-c4ae-49cd-a928-b2505bd2ff02/image/117bee5d-116c-4aae-9eda-54546e57b2cc.jpeg?versionId=iaoIwyILhjr5LO3w49eyZ9TPCbXs3Cle\u0026bust=1730927794"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:50+0000",
+      "published_at": "2024-11-06T21:16:49+0000",
+      "distance": null,
+      "contact": {
+        "email": "Scratchcats@gmail.com",
+        "phone": "4238272349",
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Hixson",
+          "state": "TN",
+          "postcode": "37343",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861100" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/tn589" }
+      }
+    },
+    {
+      "id": 73861119,
+      "organization_id": "VA88",
+      "url": "https://www.petfinder.com/dog/velma-73861119/va/virginia-beach/virginia-beach-spca-va88/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Pit Bull Terrier",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Baby",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Velma",
+      "description": null,
+      "organization_animal_id": "57210803",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:47+0000",
+      "published_at": "2024-11-06T21:16:46+0000",
+      "distance": null,
+      "contact": {
+        "email": "adoption@vbspca.com",
+        "phone": "(757) 427-0070",
+        "address": {
+          "address1": "3040 Holland Road",
+          "address2": null,
+          "city": "Virginia Beach",
+          "state": "VA",
+          "postcode": "23453",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861119" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/va88" }
+      }
+    },
+    {
+      "id": 73861012,
+      "organization_id": "CA2218",
+      "url": "https://www.petfinder.com/cat/billie-73861012/ca/agoura-hills/eastwood-ranch-foundation-ca2218/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": "White", "secondary": null, "tertiary": null },
+      "age": "Young",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": null, "dogs": null, "cats": true },
+      "tags": ["Quiet", "Independent", "Loves", "Playful", "Friendly"],
+      "name": "Billie",
+      "description": "Meet Billie! She is a stunning white domestic short hair kitty that\u2019s 1yo, 6lb, and eager to find a loving...",
+      "organization_animal_id": null,
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/f564979c-e7f4-46a6-9751-25e882b6e953.jpg?versionId=qIgBCxiMiEHf9V3JF6OTkA8v2rPO17WP\u0026bust=1730927717\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/f564979c-e7f4-46a6-9751-25e882b6e953.jpg?versionId=qIgBCxiMiEHf9V3JF6OTkA8v2rPO17WP\u0026bust=1730927717\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/f564979c-e7f4-46a6-9751-25e882b6e953.jpg?versionId=qIgBCxiMiEHf9V3JF6OTkA8v2rPO17WP\u0026bust=1730927717\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/f564979c-e7f4-46a6-9751-25e882b6e953.jpg?versionId=qIgBCxiMiEHf9V3JF6OTkA8v2rPO17WP\u0026bust=1730927717"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/ec71f3bd-5663-444d-8aa0-afce7bda5f4e.jpg?versionId=yn4jB5J9l2MHq9HensxmNaIcpSEvP_XY\u0026bust=1730927722\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/ec71f3bd-5663-444d-8aa0-afce7bda5f4e.jpg?versionId=yn4jB5J9l2MHq9HensxmNaIcpSEvP_XY\u0026bust=1730927722\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/ec71f3bd-5663-444d-8aa0-afce7bda5f4e.jpg?versionId=yn4jB5J9l2MHq9HensxmNaIcpSEvP_XY\u0026bust=1730927722\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/ec71f3bd-5663-444d-8aa0-afce7bda5f4e.jpg?versionId=yn4jB5J9l2MHq9HensxmNaIcpSEvP_XY\u0026bust=1730927722"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/32da4b93-adb3-409f-865c-7a4f955f064f/image/b8c1871a-0073-40a9-8bf5-e3cdea8ed3a9.jpg?versionId=x9xwp0qZgJOQyxg6zIfd4k93cGHATCru\u0026bust=1730927709"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:43+0000",
+      "published_at": "2024-11-06T21:16:42+0000",
+      "distance": null,
+      "contact": {
+        "email": "maissad@eastwoodranch.org",
+        "phone": "(818) 338-1551",
+        "address": {
+          "address1": "28260 Dorothy Dr",
+          "address2": null,
+          "city": "Agoura Hills",
+          "state": "CA",
+          "postcode": "91301",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861012" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/ca2218" }
+      }
+    },
+    {
+      "id": 73861118,
+      "organization_id": "TX26",
+      "url": "https://www.petfinder.com/dog/57226395-73861118/tx/fort-worth/city-of-fort-worth-animal-shelter-tx26/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Cattle Dog",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "57226395",
+      "description": null,
+      "organization_animal_id": "57226395",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:37+0000",
+      "published_at": "2024-11-06T21:16:36+0000",
+      "distance": null,
+      "contact": {
+        "email": "fwaccadopt@fortworthtexas.gov",
+        "phone": "(817) 392-1234",
+        "address": {
+          "address1": "4900 Martin Street",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76119",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861118" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx26" }
+      }
+    },
+    {
+      "id": 73861114,
+      "organization_id": "TX26",
+      "url": "https://www.petfinder.com/dog/mashal-73861114/tx/fort-worth/city-of-fort-worth-animal-shelter-tx26/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "German Shepherd Dog",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Senior",
+      "gender": "Male",
+      "size": "Extra Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Mashal",
+      "description": null,
+      "organization_animal_id": "57224550",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:36+0000",
+      "published_at": "2024-11-06T21:16:35+0000",
+      "distance": null,
+      "contact": {
+        "email": "fwaccadopt@fortworthtexas.gov",
+        "phone": "(817) 392-1234",
+        "address": {
+          "address1": "4900 Martin Street",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76119",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861114" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx26" }
+      }
+    },
+    {
+      "id": 73861115,
+      "organization_id": "TX26",
+      "url": "https://www.petfinder.com/dog/57226652-73861115/tx/fort-worth/city-of-fort-worth-animal-shelter-tx26/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Pit Bull Terrier",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "57226652",
+      "description": null,
+      "organization_animal_id": "57226652",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:36+0000",
+      "published_at": "2024-11-06T21:16:35+0000",
+      "distance": null,
+      "contact": {
+        "email": "fwaccadopt@fortworthtexas.gov",
+        "phone": "(817) 392-1234",
+        "address": {
+          "address1": "4900 Martin Street",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76119",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861115" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx26" }
+      }
+    },
+    {
+      "id": 73861116,
+      "organization_id": "TX26",
+      "url": "https://www.petfinder.com/dog/57225062-73861116/tx/fort-worth/city-of-fort-worth-animal-shelter-tx26/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Pit Bull Terrier",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "57225062",
+      "description": null,
+      "organization_animal_id": "57225062",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:36+0000",
+      "published_at": "2024-11-06T21:16:35+0000",
+      "distance": null,
+      "contact": {
+        "email": "fwaccadopt@fortworthtexas.gov",
+        "phone": "(817) 392-1234",
+        "address": {
+          "address1": "4900 Martin Street",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76119",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861116" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx26" }
+      }
+    },
+    {
+      "id": 73861117,
+      "organization_id": "TX26",
+      "url": "https://www.petfinder.com/dog/57224266-73861117/tx/fort-worth/city-of-fort-worth-animal-shelter-tx26/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Maltese",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Young",
+      "gender": "Female",
+      "size": "Small",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "57224266",
+      "description": null,
+      "organization_animal_id": "57224266",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:36+0000",
+      "published_at": "2024-11-06T21:16:35+0000",
+      "distance": null,
+      "contact": {
+        "email": "fwaccadopt@fortworthtexas.gov",
+        "phone": "(817) 392-1234",
+        "address": {
+          "address1": "4900 Martin Street",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76119",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861117" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx26" }
+      }
+    },
+    {
+      "id": 73861108,
+      "organization_id": "TX26",
+      "url": "https://www.petfinder.com/dog/athena-73861108/tx/fort-worth/city-of-fort-worth-animal-shelter-tx26/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Pit Bull Terrier",
+        "secondary": "Mixed Breed",
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Athena",
+      "description": null,
+      "organization_animal_id": "53741116",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:16:35+0000",
+      "published_at": "2024-11-06T21:16:34+0000",
+      "distance": null,
+      "contact": {
+        "email": "fwaccadopt@fortworthtexas.gov",
+        "phone": "(817) 392-1234",
+        "address": {
+          "address1": "4900 Martin Street",
+          "address2": null,
+          "city": "Fort Worth",
+          "state": "TX",
+          "postcode": "76119",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861108" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx26" }
+      }
+    }
+  ],
+  "pagination": {
+    "count_per_page": 20,
+    "total_count": 339543,
+    "current_page": 1,
+    "total_pages": 16978,
+    "_links": { "next": { "href": "/v2/animals?page=2" } }
+  }
+}

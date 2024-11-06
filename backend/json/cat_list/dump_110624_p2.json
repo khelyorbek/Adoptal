@@ -1,0 +1,1275 @@
+{
+  "animals": [
+    {
+      "id": 73860919,
+      "organization_id": "VA850",
+      "url": "https://www.petfinder.com/cat/cauldrons-potion-73860919/va/richmond/purring-hearts-va-va850/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Medium Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": "Black", "secondary": null, "tertiary": null },
+      "age": "Baby",
+      "gender": "Male",
+      "size": "Small",
+      "coat": "Medium",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": null, "dogs": null, "cats": true },
+      "tags": ["Affectionate", "Friendly", "Playful"],
+      "name": "Cauldron\u0027s Potion",
+      "description": "Hi, my name is Cauldron\u0026#039;s Potion. I am a 3-month-old, medium-haired, male, black kitten. I am a sweet and friendly...",
+      "organization_animal_id": null,
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/fc826b40-439c-4936-9316-b3d68bbdaaf7/image/a0609e6c-ded4-4e58-84f9-e6fe656370ca.jpeg?versionId=VW9qcoyx9gDJmds_irq3STL98w6lAPId\u0026bust=1730927936"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:53+0000",
+      "published_at": "2024-11-06T21:19:52+0000",
+      "distance": null,
+      "contact": {
+        "email": "purringheartsva@gmail.com",
+        "phone": null,
+        "address": {
+          "address1": "11740 W Broad st",
+          "address2": null,
+          "city": "Richmond",
+          "state": "VA",
+          "postcode": "23233",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73860919" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/va850" }
+      }
+    },
+    {
+      "id": 73684730,
+      "organization_id": "WA564",
+      "url": "https://www.petfinder.com/cat/tanya-73684730/wa/chehalis/kitty-kat-haven-wa564/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": null, "dogs": null, "cats": false },
+      "tags": ["Curious", "Affectionate", "Friendly", "Independent"],
+      "name": "Tanya",
+      "description": "Tanya \u2013 4 years old, indoor only, needs to be the only cat in the house.\n\n\t\nShe has an outgoing...",
+      "organization_animal_id": null,
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/bc76b83e-6846-4459-b2d2-29f44d57d580.jpg?versionId=fV84HyzaGi6S2NIyGy23azBXM71xCwZx\u0026bust=1729811900\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/bc76b83e-6846-4459-b2d2-29f44d57d580.jpg?versionId=fV84HyzaGi6S2NIyGy23azBXM71xCwZx\u0026bust=1729811900\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/bc76b83e-6846-4459-b2d2-29f44d57d580.jpg?versionId=fV84HyzaGi6S2NIyGy23azBXM71xCwZx\u0026bust=1729811900\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/bc76b83e-6846-4459-b2d2-29f44d57d580.jpg?versionId=fV84HyzaGi6S2NIyGy23azBXM71xCwZx\u0026bust=1729811900"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/ca2ba66e-3d54-4c43-b451-a6222870eab6.jpg?versionId=ItYo1g8AEL3sxpyi8W6rtiLnXP9Im2Mw\u0026bust=1729811965\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/ca2ba66e-3d54-4c43-b451-a6222870eab6.jpg?versionId=ItYo1g8AEL3sxpyi8W6rtiLnXP9Im2Mw\u0026bust=1729811965\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/ca2ba66e-3d54-4c43-b451-a6222870eab6.jpg?versionId=ItYo1g8AEL3sxpyi8W6rtiLnXP9Im2Mw\u0026bust=1729811965\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/ca2ba66e-3d54-4c43-b451-a6222870eab6.jpg?versionId=ItYo1g8AEL3sxpyi8W6rtiLnXP9Im2Mw\u0026bust=1729811965"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/a012a280-510f-4679-ac98-098379b6dd26.jpg?versionId=xFgMb2uzqvfhH5x3DxKDF74riEftrcOR\u0026bust=1729812233\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/a012a280-510f-4679-ac98-098379b6dd26.jpg?versionId=xFgMb2uzqvfhH5x3DxKDF74riEftrcOR\u0026bust=1729812233\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/a012a280-510f-4679-ac98-098379b6dd26.jpg?versionId=xFgMb2uzqvfhH5x3DxKDF74riEftrcOR\u0026bust=1729812233\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/a012a280-510f-4679-ac98-098379b6dd26.jpg?versionId=xFgMb2uzqvfhH5x3DxKDF74riEftrcOR\u0026bust=1729812233"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/17647f96-688c-40cd-a458-ac3169daaae8.jpg?versionId=XY5GT5FFr6NhKZdMad70C96a2jEzp4_A\u0026bust=1729812552\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/17647f96-688c-40cd-a458-ac3169daaae8.jpg?versionId=XY5GT5FFr6NhKZdMad70C96a2jEzp4_A\u0026bust=1729812552\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/17647f96-688c-40cd-a458-ac3169daaae8.jpg?versionId=XY5GT5FFr6NhKZdMad70C96a2jEzp4_A\u0026bust=1729812552\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/17647f96-688c-40cd-a458-ac3169daaae8.jpg?versionId=XY5GT5FFr6NhKZdMad70C96a2jEzp4_A\u0026bust=1729812552"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/80cf398c-9846-4167-900e-e1952ad2451d.jpg?versionId=RGD3Huj5XOVCeKnzyeAH_1MrpjEVtETQ\u0026bust=1729812619\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/80cf398c-9846-4167-900e-e1952ad2451d.jpg?versionId=RGD3Huj5XOVCeKnzyeAH_1MrpjEVtETQ\u0026bust=1729812619\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/80cf398c-9846-4167-900e-e1952ad2451d.jpg?versionId=RGD3Huj5XOVCeKnzyeAH_1MrpjEVtETQ\u0026bust=1729812619\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/80cf398c-9846-4167-900e-e1952ad2451d.jpg?versionId=RGD3Huj5XOVCeKnzyeAH_1MrpjEVtETQ\u0026bust=1729812619"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/3e65f278-fd54-4083-be32-f5188bd0389c/image/15cee430-fd57-45e2-ae85-2204e68bc79c.jpg?versionId=xd3MAsagi9_ayCA8ZbANDvYVmYGXfEK3\u0026bust=1729812691"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:33+0000",
+      "published_at": "2024-11-06T21:19:32+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittyhavenwa@gmail.com",
+        "phone": "360-304-1457",
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Chehalis",
+          "state": "WA",
+          "postcode": "98532",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73684730" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/wa564" }
+      }
+    },
+    {
+      "id": 73858950,
+      "organization_id": "MB12",
+      "url": "https://www.petfinder.com/dog/vida-73858950/mb/winnipeg/winnipeg-animal-services-agency-mb12/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Boxer",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": null, "dogs": true, "cats": null },
+      "tags": [
+        "Friendly",
+        "Curious",
+        "Athletic",
+        "Quiet",
+        "Affectionate",
+        "Smart"
+      ],
+      "name": "Vida",
+      "description": "Vida is a sweet, energetic and playful dog. She is quite shy at first, but friendly once she warms up...",
+      "organization_animal_id": null,
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/313fa56b-20fb-4a4e-aab3-f76427e7bba6/image/41a08154-99b7-42d4-81ed-b7cf15b8455a.jpg?versionId=OEzLOkZt6UKjSNTnU0A3buM9cCNnEkNG\u0026bust=1730915804"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:32+0000",
+      "published_at": "2024-11-06T21:19:31+0000",
+      "distance": null,
+      "contact": {
+        "email": "animalservicesagency@winnipeg.ca",
+        "phone": "(877) 311-4974",
+        "address": {
+          "address1": "1057 Logan Avenue",
+          "address2": null,
+          "city": "Winnipeg",
+          "state": "MB",
+          "postcode": "R3E 3N8",
+          "country": "CA"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73858950" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/mb12" }
+      }
+    },
+    {
+      "id": 73861011,
+      "organization_id": "MN448",
+      "url": "https://www.petfinder.com/cat/valentina-73861011/mn/st-paul/no-kitten-left-behind-mn-mn448/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Tabby (Buff / Tan / Fawn)",
+        "secondary": "Tabby (Brown / Chocolate)",
+        "tertiary": "Buff / Tan / Fawn"
+      },
+      "age": "Young",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": null, "dogs": false, "cats": true },
+      "tags": [
+        "Affectionate",
+        "Athletic",
+        "Curious",
+        "Friendly",
+        "Funny",
+        "Gentle",
+        "Independent",
+        "Loves",
+        "Playful",
+        "Quiet",
+        "Smart"
+      ],
+      "name": "Valentina",
+      "description": null,
+      "organization_animal_id": null,
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:17+0000",
+      "published_at": "2024-11-06T21:19:16+0000",
+      "distance": null,
+      "contact": {
+        "email": "amtauer@hotmail.com",
+        "phone": null,
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "St Paul",
+          "state": "MN",
+          "postcode": "55101",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861011" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/mn448" }
+      }
+    },
+    {
+      "id": 73829360,
+      "organization_id": "OH706",
+      "url": "https://www.petfinder.com/dog/sammi-73829360/oh/plain-city/canine-collective-oh706/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Mixed Breed",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Gray / Blue / Silver",
+        "secondary": "White / Cream",
+        "tertiary": null
+      },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Sammi",
+      "description": "Sammi is a very sweet laid back 2 yr old mixed breed. She currently weighs 50 lbs. Sammi came to...",
+      "organization_animal_id": "R2472",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:10+0000",
+      "published_at": "2024-11-06T21:19:09+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@CanineCollective.org",
+        "phone": null,
+        "address": {
+          "address1": "11144 US 42N",
+          "address2": null,
+          "city": "Plain City",
+          "state": "OH",
+          "postcode": "43064",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73829360" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/oh706" }
+      }
+    },
+    {
+      "id": 73861097,
+      "organization_id": "TX2503",
+      "url": "https://www.petfinder.com/dog/yara-73861097/tx/canyon/gracies-project-tx2503/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Rottweiler",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": "Bicolor", "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Large",
+      "coat": "Medium",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": true, "cats": null },
+      "tags": ["Affectionate", "Friendly", "Gentle", "Quiet", "Shy"],
+      "name": "Yara",
+      "description": "Hi, my name is Yara! I am a 3 year old female adult rottie with a gentle and quiet personality....",
+      "organization_animal_id": null,
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/c7bdd637-2134-4cf6-a1da-92788fa6794a/image/3b68b322-35c9-4a63-ac83-fe894a44eab0.jpg?versionId=ywSyfpTZUEdHHzeLZGVGjsqdcuniSWVZ\u0026bust=1730927799"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:04+0000",
+      "published_at": "2024-11-06T21:19:03+0000",
+      "distance": null,
+      "contact": {
+        "email": "graciesproject21@yahoo.com",
+        "phone": "(806) 731-4599",
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Canyon",
+          "state": "TX",
+          "postcode": "79015",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861097" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx2503" }
+      }
+    },
+    {
+      "id": 73861178,
+      "organization_id": "TX190",
+      "url": "https://www.petfinder.com/dog/boomer-sat-73861178/tx/quinlan/texas-great-pyrenees-rescue-inc-tx190/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Great Pyrenees",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Baby",
+      "gender": "Male",
+      "size": "Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": true,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": true, "dogs": true, "cats": true },
+      "tags": [],
+      "name": "Boomer SAT",
+      "description": null,
+      "organization_animal_id": "9cedc1a7-4bd8-4e4f-8c1d-5cbb3f909f54",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:02+0000",
+      "published_at": "2024-11-06T21:19:01+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@txpyrs.org",
+        "phone": "(877) 746-9508",
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Quinlan",
+          "state": "TX",
+          "postcode": "75474",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861178" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx190" }
+      }
+    },
+    {
+      "id": 73861175,
+      "organization_id": "TX190",
+      "url": "https://www.petfinder.com/dog/big-ben-sat-73861175/tx/quinlan/texas-great-pyrenees-rescue-inc-tx190/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Great Pyrenees",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Extra Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": true,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": true, "dogs": true, "cats": true },
+      "tags": [],
+      "name": "Big Ben SAT",
+      "description": null,
+      "organization_animal_id": "0f2dbd27-4e57-4cf1-8523-d8756bd00ae2",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:00+0000",
+      "published_at": "2024-11-06T21:18:59+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@txpyrs.org",
+        "phone": "(877) 746-9508",
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Quinlan",
+          "state": "TX",
+          "postcode": "75474",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861175" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx190" }
+      }
+    },
+    {
+      "id": 73861176,
+      "organization_id": "TX190",
+      "url": "https://www.petfinder.com/dog/ryan-sat-73861176/tx/quinlan/texas-great-pyrenees-rescue-inc-tx190/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Great Pyrenees",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Young",
+      "gender": "Male",
+      "size": "Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": true,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": true, "dogs": true, "cats": true },
+      "tags": [],
+      "name": "Ryan SAT",
+      "description": null,
+      "organization_animal_id": "fa0762ab-0f25-40a4-8277-54de5762e401",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:00+0000",
+      "published_at": "2024-11-06T21:18:59+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@txpyrs.org",
+        "phone": "(877) 746-9508",
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Quinlan",
+          "state": "TX",
+          "postcode": "75474",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861176" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx190" }
+      }
+    },
+    {
+      "id": 73861177,
+      "organization_id": "TX190",
+      "url": "https://www.petfinder.com/dog/bubbles-sat-73861177/tx/quinlan/texas-great-pyrenees-rescue-inc-tx190/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Great Pyrenees",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Baby",
+      "gender": "Female",
+      "size": "Large",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": false,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": false
+      },
+      "environment": { "children": null, "dogs": null, "cats": null },
+      "tags": [],
+      "name": "Bubbles SAT",
+      "description": null,
+      "organization_animal_id": "d353ba57-d548-423a-aa11-5fd361696cd0",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:19:00+0000",
+      "published_at": "2024-11-06T21:18:59+0000",
+      "distance": null,
+      "contact": {
+        "email": "info@txpyrs.org",
+        "phone": "(877) 746-9508",
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Quinlan",
+          "state": "TX",
+          "postcode": "75474",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861177" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/tx190" }
+      }
+    },
+    {
+      "id": 73861120,
+      "organization_id": "IN296",
+      "url": "https://www.petfinder.com/cat/banks-73861120/in/franklin/humane-society-johnson-county-in296/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": false,
+        "unknown": false
+      },
+      "colors": { "primary": "Black", "secondary": null, "tertiary": null },
+      "age": "Young",
+      "gender": "Male",
+      "size": "Large",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": ["Quiet", "Loyal", "Dignified", "Loves"],
+      "name": "Banks",
+      "description": null,
+      "organization_animal_id": null,
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/0cf21ffb-63ec-4e3b-b6ed-ddfd639bc20e/image/aab5a9cb-ecc4-47f8-9781-a86abc6886a0.jpeg?versionId=IbC5X_z3AnzgFC6DTYUWgl2h_dt0iYXl\u0026bust=1730927865"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:54+0000",
+      "published_at": "2024-11-06T21:18:53+0000",
+      "distance": null,
+      "contact": {
+        "email": "anne.sutton@hsjc.org",
+        "phone": "(317) 535-6626",
+        "address": {
+          "address1": "3827 N Graham Road",
+          "address2": null,
+          "city": "Franklin",
+          "state": "IN",
+          "postcode": "46131",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861120" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/in296" }
+      }
+    },
+    {
+      "id": 73860880,
+      "organization_id": "WA02",
+      "url": "https://www.petfinder.com/dog/stanley-73860880/wa/pasco/pet-over-population-prevention-popp-wa02/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Dog",
+      "species": "Dog",
+      "breeds": {
+        "primary": "Poodle",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Black",
+        "secondary": "White / Cream",
+        "tertiary": null
+      },
+      "age": "Young",
+      "gender": "Male",
+      "size": "Medium",
+      "coat": "Wire",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": false,
+        "declawed": null,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": true, "cats": null },
+      "tags": [
+        "Affectionate",
+        "Friendly",
+        "Funny",
+        "Gentle",
+        "Playful",
+        "Smart",
+        "Loves",
+        "Curious"
+      ],
+      "name": "Stanley",
+      "description": "Sometimes life gives you lemons.... twice. I am NOT the lemon, I am Stanley!\n\nTwice I have found myself looking...",
+      "organization_animal_id": "Christina",
+      "photos": [
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/5150df4e-ad33-42f4-996a-c49f3457743e.jpeg?versionId=mFxVaDbbSzTcOX_ZfDEpfBdNUQqBjxBo\u0026bust=1730927144\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/5150df4e-ad33-42f4-996a-c49f3457743e.jpeg?versionId=mFxVaDbbSzTcOX_ZfDEpfBdNUQqBjxBo\u0026bust=1730927144\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/5150df4e-ad33-42f4-996a-c49f3457743e.jpeg?versionId=mFxVaDbbSzTcOX_ZfDEpfBdNUQqBjxBo\u0026bust=1730927144\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/5150df4e-ad33-42f4-996a-c49f3457743e.jpeg?versionId=mFxVaDbbSzTcOX_ZfDEpfBdNUQqBjxBo\u0026bust=1730927144"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/adc30795-7c0f-46f6-981d-f036a9a59fa8.jpeg?versionId=SFzewHQhcOLco7OtzKcwJHA0WQw7eaJy\u0026bust=1730927158\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/adc30795-7c0f-46f6-981d-f036a9a59fa8.jpeg?versionId=SFzewHQhcOLco7OtzKcwJHA0WQw7eaJy\u0026bust=1730927158\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/adc30795-7c0f-46f6-981d-f036a9a59fa8.jpeg?versionId=SFzewHQhcOLco7OtzKcwJHA0WQw7eaJy\u0026bust=1730927158\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/adc30795-7c0f-46f6-981d-f036a9a59fa8.jpeg?versionId=SFzewHQhcOLco7OtzKcwJHA0WQw7eaJy\u0026bust=1730927158"
+        },
+        {
+          "small": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/7c0c7bca-b520-4185-8902-672a07d92561.jpeg?versionId=deCbD7Ps4a_ymZT7Ci2rJ0.oFXhiMnzU\u0026bust=1730927170\u0026width=100",
+          "medium": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/7c0c7bca-b520-4185-8902-672a07d92561.jpeg?versionId=deCbD7Ps4a_ymZT7Ci2rJ0.oFXhiMnzU\u0026bust=1730927170\u0026width=300",
+          "large": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/7c0c7bca-b520-4185-8902-672a07d92561.jpeg?versionId=deCbD7Ps4a_ymZT7Ci2rJ0.oFXhiMnzU\u0026bust=1730927170\u0026width=600",
+          "full": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/7c0c7bca-b520-4185-8902-672a07d92561.jpeg?versionId=deCbD7Ps4a_ymZT7Ci2rJ0.oFXhiMnzU\u0026bust=1730927170"
+        }
+      ],
+      "primary_photo_cropped": {
+        "small": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082\u0026width=300",
+        "medium": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082\u0026width=450",
+        "large": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082\u0026width=600",
+        "full": "https://dbw3zep4prcju.cloudfront.net/animal/6515eb98-db55-45ba-857c-944b7c44a2a7/image/c88db33b-d89f-43b7-91c9-9c26beb045b5.jpeg?versionId=UgPxMHK2EGgcWUHqjL6a6ghBKXB1Fk2i\u0026bust=1730927082"
+      },
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:27+0000",
+      "published_at": "2024-11-06T21:18:26+0000",
+      "distance": null,
+      "contact": {
+        "email": "dogsadopt@popptricities.org",
+        "phone": null,
+        "address": {
+          "address1": null,
+          "address2": null,
+          "city": "Pasco",
+          "state": "WA",
+          "postcode": "99301",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73860880" },
+        "type": { "href": "/v2/types/dog" },
+        "organization": { "href": "/v2/organizations/wa02" }
+      }
+    },
+    {
+      "id": 73861157,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/frenchie-73861157/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Black \u0026 White / Tuxedo",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Adult",
+      "gender": "Female",
+      "size": "Medium",
+      "coat": null,
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": false, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Frenchie",
+      "description": "My markings are some of the most unique! The thumb print on my nose is eye catching! My favorite place...",
+      "organization_animal_id": "ps_53236794",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861157" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    },
+    {
+      "id": 73861158,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/gatsby-73861158/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Gray \u0026 White",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Large",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Gatsby",
+      "description": "Gatsby did some time on the street so food his is passion. He\u0026amp;#39;s not an overeater. He just gets very...",
+      "organization_animal_id": "ps_2148177-293344",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861158" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    },
+    {
+      "id": 73861159,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/ice-73861159/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Orange \u0026 White",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Young",
+      "gender": "Male",
+      "size": "Medium",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Ice",
+      "description": null,
+      "organization_animal_id": "ps_2199179-293344",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861159" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    },
+    {
+      "id": 73861160,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/lefty-73861160/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": null, "secondary": null, "tertiary": null },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Large",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Lefty",
+      "description": "Lefty is a great listener. If you are looking for a friend who will hang on your every word and...",
+      "organization_animal_id": "ps_79831042",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861160" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    },
+    {
+      "id": 73861161,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/burton-73861161/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Brown / Chocolate",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Adult",
+      "gender": "Male",
+      "size": "Large",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Burton",
+      "description": null,
+      "organization_animal_id": "ps_2204764-293344",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861161" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    },
+    {
+      "id": 73861162,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/nicky-73861162/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Gray \u0026 White",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Senior",
+      "gender": "Male",
+      "size": "Large",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Nicky",
+      "description": null,
+      "organization_animal_id": "ps_2153125-293344",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861162" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    },
+    {
+      "id": 73861163,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/barbie-73861163/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": {
+        "primary": "Gray / Blue / Silver",
+        "secondary": null,
+        "tertiary": null
+      },
+      "age": "Baby",
+      "gender": "Female",
+      "size": "Small",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Barbie",
+      "description": null,
+      "organization_animal_id": "ps_2132591-293344",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861163" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    },
+    {
+      "id": 73861164,
+      "organization_id": "PA186",
+      "url": "https://www.petfinder.com/cat/bear-73861164/pa/norristown/kitty-cottage-adoption-center-pa186/?referrer_id=36fa90b2-026e-4f97-9308-2a7c08e6434e\u0026utm_source=api\u0026utm_medium=partnership\u0026utm_content=36fa90b2-026e-4f97-9308-2a7c08e6434e",
+      "type": "Cat",
+      "species": "Cat",
+      "breeds": {
+        "primary": "Domestic Short Hair",
+        "secondary": null,
+        "mixed": true,
+        "unknown": false
+      },
+      "colors": { "primary": "Black", "secondary": null, "tertiary": null },
+      "age": "Baby",
+      "gender": "Male",
+      "size": "Small",
+      "coat": "Short",
+      "attributes": {
+        "spayed_neutered": true,
+        "house_trained": true,
+        "declawed": false,
+        "special_needs": false,
+        "shots_current": true
+      },
+      "environment": { "children": true, "dogs": null, "cats": true },
+      "tags": [],
+      "name": "Bear",
+      "description": null,
+      "organization_animal_id": "ps_2140409-293344",
+      "photos": [],
+      "primary_photo_cropped": null,
+      "videos": [],
+      "status": "adoptable",
+      "status_changed_at": "2024-11-06T21:18:25+0000",
+      "published_at": "2024-11-06T21:18:24+0000",
+      "distance": null,
+      "contact": {
+        "email": "kittycottagepa@gmail.com",
+        "phone": "(610) 731-0101",
+        "address": {
+          "address1": "317 West Johnson Highway",
+          "address2": null,
+          "city": "Norristown",
+          "state": "PA",
+          "postcode": "19401",
+          "country": "US"
+        }
+      },
+      "_links": {
+        "self": { "href": "/v2/animals/73861164" },
+        "type": { "href": "/v2/types/cat" },
+        "organization": { "href": "/v2/organizations/pa186" }
+      }
+    }
+  ],
+  "pagination": {
+    "count_per_page": 20,
+    "total_count": 339564,
+    "current_page": 1,
+    "total_pages": 16979,
+    "_links": { "next": { "href": "/v2/animals?page=2" } }
+  }
+}

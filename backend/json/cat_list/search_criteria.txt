@@ -1,0 +1,9 @@
+https://api.petfinder.com/v2/animals
+
+Include Bearer token
+
+type = cat
+location = 15219
+distance = 20
+limit = 20
+page = 1-9
