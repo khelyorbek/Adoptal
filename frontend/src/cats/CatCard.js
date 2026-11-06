@@ -24,7 +24,7 @@ const CatCard = ({ cat }) => {
 
     let catPhoto = cat?.attributes?.pictureThumbnailUrl
         ? cat.attributes.pictureThumbnailUrl.replace(/width=\d+/, 'width=400')
-        : "/no_photo_640.jpg";
+        : "/no_photo.png";
 
     // returns a card with Cat's photo and information
     // sets the id on press which triggers the redirect using useEffect

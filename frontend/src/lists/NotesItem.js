@@ -4,6 +4,9 @@ import { Grid, Image, Card, Textarea, Button, Row, Col, Text, Loading } from "@n
 import '../cats/CatCard.css'
 import GlobalContext from '../GlobalContext';
 
+// For cleaning up raw text received from API that contains items like &nbsp 
+import { decode } from 'he';
+
 // Custom components and functions
 import AdoptalApi from '../api/adoptalBackend';
 
@@ -16,6 +19,14 @@ const NotesItem = ({ cat, type }) => {
     const [loading, setLoading] = useState(false); // loading state for Saving
     const [loadingDelete, setLoadingDelete] = useState(false); // loading state for Deleting
     const [success, setSuccess] = useState(false); // success state
+
+
+    let catPhoto = cat.data[0].attributes?.pictureThumbnailUrl
+        ? cat.data[0].attributes?.pictureThumbnailUrl.replace(/width=\d+/, 'width=400')
+        : "/no_photo.png";
+
+    // using the he decoder to remove &nbsp and other artifacts from HTML to Raw text conversion in API
+    cat.data[0].attributes.descriptionText = decode(cat.data[0].attributes.descriptionText);
 
     // creating a universal changle handler function that stored values into state
     const handleChange = e => {
@@ -46,7 +57,7 @@ const NotesItem = ({ cat, type }) => {
                 setLoading(true);
 
                 // sending a back-end request with current username, cat id and the form data value
-                const res = await AdoptalApi.addNote(currentUser.username, cat.id, formData.txtInput)
+                const res = await AdoptalApi.addNote(currentUser.username, parseInt(cat.data[0].id), formData.txtInput)
 
                 // for debugging
                 // console.log(res);
@@ -67,7 +78,7 @@ const NotesItem = ({ cat, type }) => {
                             // keeping whats out there now
                             ...currentUser.privateNotes,
                             // but setting the note for the select cat to new value
-                            [parseInt(cat.id)]: formData.txtInput
+                            [parseInt(cat.data[0].id)]: formData.txtInput
                         }
                     })
                 } else {
@@ -81,7 +92,7 @@ const NotesItem = ({ cat, type }) => {
                 setLoading(true);
 
                 // sending a back-end request with current username, cat id and the form data value
-                const res = await AdoptalApi.addComment(currentUser.username, cat.id, formData.txtInput)
+                const res = await AdoptalApi.addComment(currentUser.username, parseInt(cat.data[0].id), formData.txtInput)
 
                 // for debugging
                 // console.log(res);
@@ -102,7 +113,7 @@ const NotesItem = ({ cat, type }) => {
                             // keeping whats out there now
                             ...currentUser.publicComments,
                             // but setting the comment for the select cat to new value
-                            [parseInt(cat.id)]: formData.txtInput
+                            [parseInt(cat.data[0].id)]: formData.txtInput
                         }
                     })
                 } else {
@@ -125,7 +136,7 @@ const NotesItem = ({ cat, type }) => {
                 setLoadingDelete(true);
 
                 // sending a back-end request with current username and cat id
-                const res = await AdoptalApi.removeNote(currentUser.username, cat.id)
+                const res = await AdoptalApi.removeNote(currentUser.username, parseInt(cat.data[0].id))
 
                 // for debugging
                 // console.log(res);
@@ -140,7 +151,7 @@ const NotesItem = ({ cat, type }) => {
                     // creating a copy of the current private Notes of user
                     const newNotes = currentUser.privateNotes;
                     // deleting the entry that we have for this cat
-                    delete newNotes[parseInt(cat.id)];
+                    delete newNotes[parseInt(cat.data[0].id)];
 
                     // settings the current user
                     setCurrentUser({
@@ -160,7 +171,7 @@ const NotesItem = ({ cat, type }) => {
                 setLoadingDelete(true);
 
                 // sending a back-end request with current username and cat id
-                const res = await AdoptalApi.removeComment(currentUser.username, cat.id)
+                const res = await AdoptalApi.removeComment(currentUser.username, parseInt(cat.data[0].id))
 
                 // for debugging
                 // console.log(res);
@@ -175,7 +186,7 @@ const NotesItem = ({ cat, type }) => {
                     // creating a copy of the current private Notes of user
                     const newComments = currentUser.publicComments;
                     // deleting the entry that we have for this cat
-                    delete newComments[parseInt(cat.id)];
+                    delete newComments[parseInt(cat.data[0].id)];
 
                     // settings the current user
                     setCurrentUser({
@@ -199,11 +210,11 @@ const NotesItem = ({ cat, type }) => {
         {
             // if the component is set to visible
             visible
-                ? <Grid xs={12} key={cat.id} justify="flex-start">
+                ? <Grid xs={12} key={parseInt(cat.data[0].id)} justify="flex-start">
                     {/* displaying a card with the cat's information */}
                     {/* displays 4 columns */}
 
-                    
+
                     <Card isHoverable className="loaded">
                         <Card.Body css={{ p: 0 }}>
                             <Grid.Container gap={0} justify="flex-start">
@@ -213,21 +224,21 @@ const NotesItem = ({ cat, type }) => {
                                     <Image
                                         showSkeleton
                                         // if there is no photo available, use a placeholder photo
-                                        src={cat.primary_photo_cropped !== null ? cat.primary_photo_cropped.small : "/no_photo_640.jpg"}
+                                        src={catPhoto}
                                         objectFit="cover"
                                         width="100%"
                                         height={300}
-                                        alt={cat.name}
+                                        alt={cat.data[0].attributes?.name}
                                     />
                                 </Grid>
 
                                 {/* column 2 - cat's details */}
                                 <Grid xs={9}>
                                     <Row css={{ p: "0rem 2rem" }}>
-                                        
+
                                         <Col>
                                             <Row justify='center'>
-                                                <Text b color="secondary" size={24}>{cat.name}</Text>
+                                                <Text b color="secondary" size={24}>{cat.data[0].attributes?.name}</Text>
                                             </Row>
                                             <Row>
                                                 {/* column 2 - cat's details */}
@@ -237,7 +248,7 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>ID:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{cat.id}</Text>
+                                                            <Text size={16}>{cat.data[0].id ? cat.data[0].id : "Unknown"}</Text>
                                                         </Col>
 
                                                     </Row>
@@ -246,7 +257,7 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>Breed:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{cat.breeds.primary}</Text>
+                                                            <Text size={16}>   {cat.data[0].attributes.breedPrimary ? cat.data[0].attributes.breedPrimary : 'Unknown'}</Text>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -254,7 +265,7 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>Color:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{cat.colors.primary}</Text>
+                                                            <Text size={16}>{cat.data[0].attributes.colorDetails ? cat.data[0].attributes.colorDetails : 'Unknown'}</Text>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -262,7 +273,7 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>Age:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{cat.age}</Text>
+                                                            <Text size={16}>{cat.data[0].attributes.ageString ? cat.data[0].attributes.ageString : 'Unknown'}</Text>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -270,7 +281,7 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>Gender:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{cat.gender}</Text>
+                                                            <Text size={16}>    {cat.data[0].attributes.sex ? cat.data[0].attributes.sex : 'Unknown'}</Text>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -278,7 +289,9 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>Size:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{cat.size}</Text>
+                                                            <Text size={16}>{cat.data[0].attributes.sizeCurrent != null
+                                                                ? `${Number(cat.data[0].attributes.sizeCurrent).toFixed(1)} ${cat.data[0].attributes.sizeUOM || 'lbs'}`
+                                                                : 'Unknown'}</Text>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -286,10 +299,9 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>Spayed / Neutered:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{
-                                                                cat.attributes.spayed_neutered
-                                                                    ? "Yes"
-                                                                    : "No"}</Text>
+                                                            <Text size={16}>{cat.data[0].attributes.isAltered != null
+                                                                ? (cat.data[0].attributes.isAltered ? "Yes" : "No")
+                                                                : "Unknown"}</Text>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -297,10 +309,9 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>Vaccinated:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{
-                                                                cat.attributes.shots_current
-                                                                    ? "Yes"
-                                                                    : "No"}</Text>
+                                                            <Text size={16}>{cat.data[0].attributes.isCurrentVaccinations != null
+                                                                ? (cat.data[0].attributes.isCurrentVaccinations ? "Yes" : "No")
+                                                                : "Unknown"}</Text>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -308,10 +319,9 @@ const NotesItem = ({ cat, type }) => {
                                                             <Text b size={16}>House Trained:</Text>
                                                         </Col>
                                                         <Col>
-                                                            <Text size={16}>{
-                                                                cat.attributes.house_trained
-                                                                    ? "Yes"
-                                                                    : "No"}</Text>
+                                                            <Text size={16}> {cat.data[0].attributes.isHousetrained != null
+                                                                ? (cat.data[0].attributes.isHousetrained ? "Yes" : "No")
+                                                                : "Unknown"}</Text>
                                                         </Col>
                                                     </Row>
                                                 </Col>
@@ -319,8 +329,7 @@ const NotesItem = ({ cat, type }) => {
                                                 {/* column 3 - cat's description and name */}
                                                 <Col css={{ p: "0rem 1rem" }}>
                                                     <Row css={{ height: "100%" }}>
-                                                        <Text size={16}>{
-                                                            cat.description}</Text>
+                                                        <Text size={16}>{cat.data[0].attributes.descriptionText}</Text>
                                                     </Row>
                                                 </Col>
 

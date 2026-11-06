@@ -102,7 +102,7 @@ const MyComments = () => {
                             // map through the array
                             ? cats.map(cat =>
                                 // and render a notes item custom component and pass the cat as a prop
-                                <NotesItem cat={cat} key={cat.id}></NotesItem>
+                                <NotesItem cat={cat} key={cat.data[0].id}></NotesItem>
                             )
                             // if the cats are still loading, display a loading spinner
                             : <img src={loadingSvg} alt='loading spinner' style={{ margin: "0 auto" }}></img>

@@ -217,9 +217,9 @@ const CatDetail = () => {
                     // if the items are pictures, add them to the carousel memo
                     if (item.type === 'pictures' && item.attributes) {
                         carouselItems.push({
-                            thumbnail: item.attributes.small?.url || "/no_photo_640.jpg",
-                            original: item.attributes.large?.url || "/no_photo_640.jpg",
-                            fullscreen: item.attributes.original?.url || item.attributes.large?.url || "/no_photo_640.jpg",
+                            thumbnail: item.attributes.small?.url || "/no_photo.png",
+                            original: item.attributes.large?.url || "/no_photo.png",
+                            fullscreen: item.attributes.original?.url || item.attributes.large?.url || "/no_photo.png",
                             loading: loadingSvg
                         });
                     }
@@ -249,9 +249,9 @@ const CatDetail = () => {
                 // If no photos exist, add a single fallback placeholder
                 if (carouselItems.length === 0) {
                     carouselItems.push({
-                        thumbnail: "/no_photo_640.jpg",
-                        original: "/no_photo_640.jpg",
-                        fullscreen: "/no_photo_640.jpg",
+                        thumbnail: "/no_photo.png",
+                        original: "/no_photo.png",
+                        fullscreen: "/no_photo.png",
                         thumbnailHeight: "125",
                         loading: loadingSvg
                     });
@@ -649,7 +649,7 @@ const CatDetail = () => {
                             </Modal.Header>
 
                             <Modal.Body >
-                                <Text size={20} style={{ fontWeight: "normal" }}>
+                                <Text size={22} style={{ fontWeight: "normal" }}>
                                     {orgDetails[0]?.adoptionProcess}
 
                                 </Text>

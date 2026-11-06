@@ -33,19 +33,23 @@ const AdoptList = () => {
             // for debugging
             // console.log("FILTERS >>>", filters);
 
+            // Debug
+            // console.log("Front-end > AdoptList > getAdoptList > user.wantToAdopt > ", user.wantToAdopt);
+
             // for every id in the wantToAdopt array
             for (let id of user.wantToAdopt) {
+
                 // sending a request to back-end to get information of every cat
                 let res = await AdoptalApi.getSingleCat(id);
 
                 // for debugging
-                // console.log("RESSSSSS>>>", res)
+                // console.log("Front-end > AdoptList > getAdoptList > res > ", res);
 
                 // If the request doesn't error, adding the cat to the array of cats
                 if (res !== "Not found") { arr.push(res) }
             }
             // for debugging
-            // console.log("cats array >>>", arr)
+            // console.log("Front-end > AdoptList > getAdoptList > cats array >", arr);
 
             // returning the array of cats after looping is finished
             return arr;
@@ -93,7 +97,7 @@ const AdoptList = () => {
                             // map through the array
                             ? cats.map(cat =>
                                 // and render a list item custom component and pass the cat as a prop
-                                <ListItem cat={cat} key={cat.id}></ListItem>
+                                <ListItem cat={cat} key={cat.data[0].id}></ListItem>
                             )
                             // if the cats are still loading, display a loading spinner
                             : <img src={loadingSvg} alt='loading spinner' style={{ margin: "0 auto" }}></img>

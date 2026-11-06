@@ -10,6 +10,13 @@ import AdoptalApi from '../api/adoptalBackend';
 
 // receiving the props from the parent component
 const ListItem = ({ cat }) => {
+    // Debug
+    // console.log("Front-end > ListItem > cat > ", cat);
+
+    let catPhoto = cat.data[0].attributes?.pictureThumbnailUrl
+        ? cat.data[0].attributes?.pictureThumbnailUrl.replace(/width=\d+/, 'width=400')
+        : "/no_photo.png";
+
     // receiving the global context for current user
     const { currentUser, setCurrentUser } = useContext(GlobalContext);
     // using state to keep track of component visibility
@@ -19,7 +26,7 @@ const ListItem = ({ cat }) => {
     async function removeFromList() {
         try {
             // sending a request to back-end and sending current username and the id of the cat
-            const res = await AdoptalApi.toggleAdoptItem(currentUser.username, cat.id)
+            const res = await AdoptalApi.toggleAdoptItem(currentUser.username, parseInt(cat.data[0].id))
 
             // for debugging
             // console.log("RESSSSS >>>", res);
@@ -32,7 +39,7 @@ const ListItem = ({ cat }) => {
                 // creating a copy of current user
                 const usr = currentUser;
                 // modifying the array of want to adopt and removing the cat id from it
-                usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== cat.id)
+                usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== parseInt(cat.data[0].id))
 
                 // for debugging
                 // console.log("usr >>>>>>>>>>>", usr);
@@ -51,23 +58,23 @@ const ListItem = ({ cat }) => {
         {
             // if the component is visible
             visible
-                ? <Grid xs={12} sm={6} md={4} lg={3} xl={2} key={cat.id} justify="center">
+                ? <Grid xs={12} sm={6} md={4} lg={3} xl={2} key={parseInt(cat.data[0].id)} justify="center">
                     {/* display a card with the information of the pet */}
                     <Card isPressable isHoverable className="loaded">
                         <Card.Body css={{ p: 0 }}>
                             <Card.Image
-                            // if there is no photo available, use a placeholder photo
-                                src={cat.primary_photo_cropped !== null ? cat.primary_photo_cropped.small : "/no_photo_640.jpg"}
+                                // if there is no photo available, use a placeholder photo
+                                src={catPhoto}
                                 objectFit="cover"
                                 width="100%"
                                 height={300}
-                                alt={cat.name}
+                                alt={cat.data[0].name}
                             />
                         </Card.Body>
                         <Card.Footer>
                             <Row justify="space-between" align="center">
                                 <Col span={8}>
-                                    <Text b>{cat.name}</Text>
+                                    <Text b>{cat.data[0].attributes.name}</Text>
                                 </Col>
                                 <Col span={4}>
                                     {/* displaying a button that allow us to remove the cat from the list */}

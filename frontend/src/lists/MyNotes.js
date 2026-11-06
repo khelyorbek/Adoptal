@@ -59,9 +59,9 @@ const MyNotes = () => {
         } catch (err) {
             console.log("Adoptal > Front-end > lists > MyNotes.js > getCatList > ", err);
         }
-        
+
     }
-// if cats have finished loading / processing
+    // if cats have finished loading / processing
     if (cats) {
         // check if the length of the state is 0 (empty)
         if (cats.length === 0) {
@@ -81,14 +81,14 @@ const MyNotes = () => {
                     <Text size={24} >Please add a private note to a pet for it to appear here.</Text>
                 </Container>)
         }
-         // if the length of the state is not 0 (array with data)
+        // if the length of the state is not 0 (array with data)
         else {
             // returning the Public comments list 
             return <Container>
                 <div style={{ textAlign: "center", margin: "0.5rem 0" }}>
                     <Text b color="secondary" size={30}>My Private Notes List</Text>
                 </div>
-                
+
                 {/* for debugging */}
                 {/* {console.log("cats state >>>", cats)} */}
 
@@ -96,11 +96,11 @@ const MyNotes = () => {
                     {
                         // if cats are loaded
                         cats
-                        // map through the array
+                            // map through the array
                             ? cats.map(cat =>
                                 // and render a notes item custom component and pass the cat as a prop
                                 // note that we are passing a type of NOTES here since we are reusing the NotesItem component that was used in MyComments as well
-                                <NotesItem cat={cat} key={cat.id} type={"notes"}></NotesItem>
+                                <NotesItem cat={cat} key={cat.data[0].id} type={"notes"}></NotesItem>
                             )
                             // if the cats are still loading, display a loading spinner
                             : <img src={loadingSvg} alt='loading spinner' style={{ margin: "0 auto" }}></img>
