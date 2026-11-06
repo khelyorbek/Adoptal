@@ -1,6 +1,6 @@
 // importing the necessary libraries, custom methods, icons and stylesheets
 import React, { useState, useEffect, useMemo, useContext, useRef } from 'react';
-import { Card, Col, Row, Button, Text, Container, Grid, Textarea, Loading } from "@nextui-org/react";
+import { Card, Col, Row, Button, Text, Container, Grid, Textarea, Loading, Modal } from "@nextui-org/react";
 import BoringAvatar from 'boring-avatars'
 import { useParams } from "react-router-dom";
 import ImageGallery from 'react-image-gallery';
@@ -148,7 +148,7 @@ const CatDetail = () => {
 
     // using state to store variables
     const [cat, setCat] = useState();
-    const [catPhotos, setCatPhotos] = useState();
+    const [isAdoptionInfoOpen, setAdoptionInfoOpen] = useState(false);
     const [addr, setAddr] = useState();
     const [adopted, setAdopted] = useState();
     const [adoptedLoading, setAdoptedLoading] = useState(false);
@@ -631,8 +631,37 @@ const CatDetail = () => {
 
                     // if the response from back-end is normal (not 404), displaying cat details
                     : <Container aria-label="main container">
+                        {/* Adding a modal that goes over everything for Adoption Process as a text */}
+                        <Modal
+                            closeButton
+                            blur
+                            width="1000px"
+                            aria-labelledby="adoption-process"
+                            open={isAdoptionInfoOpen}
+                            // whe closed, settings the visibility of the modal to false
+                            onClose={() => { setAdoptionInfoOpen(false); }}
+
+                        >
+                            <Modal.Header>
+                                <Text h3 size={22} style={{ color: "#8f27ff" }}>
+                                    Adoption Process
+                                </Text>
+                            </Modal.Header>
+
+                            <Modal.Body >
+                                <Text size={20} style={{ fontWeight: "normal" }}>
+                                    {orgDetails[0]?.adoptionProcess}
+
+                                </Text>
+
+
+                            </Modal.Body>
+
+                        </Modal>
                         <Row>
                             <Col>
+
+
                                 {/* image carousel */}
                                 <ImageGallery
                                     ref={galleryRef}
@@ -692,121 +721,8 @@ const CatDetail = () => {
 
                         <br></br>
 
-                        {/* Only show Adoption information if the information exists */}
-                        {orgDetails[0]?.adoptionProcess
-                            ? <Row css={{ mt: "$6", mb: "$6" }}>
-                                <Col xs={12}>
-                                    <Text h3 size={22} >
-                                        <span style={{ color: "#8f27ff" }}>Adoption Process: </span>
-                                        <span style={{ fontWeight: "normal", }}>{orgDetails[0]?.adoptionProcess}</span>
-                                    </Text>
-                                </Col>
-                            </Row>
-                            : ''
-                        }
-
-                        {
-                            // if the user has finished loading / exists / logged in
-                            currentUser
-                                ? <Grid xs={12} md={6} lg={4} alignItems="flex-start">
-                                    <Grid.Container aria-label="third column">
-                                        <div className='cat-detail-section' aria-label="adopt list status">
-                                            <Grid xs={12}>
-                                                <Text b size={24} color="secondary">
-                                                    Adopt List
-                                                </Text>
-                                            </Grid>
-
-                                            <Grid xs={12}>
-                                                <Text
-                                                    size={18}>
-                                                    {/* Displays if an animal is in the adopt list or not */}
-                                                    {cat.data[0].attributes.name} is {adopted ? '' : 'not'} in your Adopt List
-                                                </Text>
-
-                                                {/* Allows to toggle the adopt status */}
-                                                <Button
-                                                    color={adopted ? "error" : "primary"}
-                                                    onPress={handleAdoptToggle}
-                                                    flat>
-                                                    {
-                                                        adoptedLoading
-                                                            // Displays a loding bar if the loading state is set to true
-                                                            ? <Loading type="points" color="currentColor" size="md" />
-                                                            : adopted
-                                                                ? `Remove ${cat.data[0].attributes.name}`
-                                                                : `Add ${cat.data[0].attributes.name}`
-                                                    }
-                                                </Button>
 
 
-                                            </Grid>
-                                        </div>
-
-                                        <div className='cat-detail-section' aria-label="private notes">
-                                            <Grid xs={12}>
-                                                <Text b size={24} color="secondary">
-                                                    My Private Notes
-                                                </Text>
-                                            </Grid>
-
-                                            <Row>
-
-                                                {/* Displays user's private note about the animal */}
-                                                <Textarea
-                                                    aria-label="private note input"
-                                                    fullWidth
-                                                    size="md"
-                                                    name='txtInput'
-                                                    // When the value changes, state gets updated
-                                                    onChange={handleNoteChange}
-                                                    minRows={7}
-                                                    maxRows={20}
-                                                    // Grabs the initial value from the state or sets it to empty
-                                                    initialValue={noteData ? noteData.txtInput : ''}
-                                                    bordered
-                                                ></Textarea>
-                                            </Row>
-                                            <div aria-label="success message">
-                                                {/* success message only shows when the state is set to true */}
-                                                {noteSuccess ? <Text color="success" size={16}> Successfully updated note.</Text> : ''}
-                                            </div>
-                                            <Row justify="space-between" css={{ paddingTop: "1rem" }}>
-                                                {/* Button for handling the private note deletion  */}
-                                                <Button
-                                                    flat
-                                                    onPress={handleNoteDelete}
-                                                    color="error"
-                                                    type="submit"
-                                                    auto>
-                                                    {
-                                                        // Shows a loading bar if the state is true
-                                                        noteLoadingDelete
-                                                            ? <Loading type="points" color="currentColor" size="md" />
-                                                            : "Delete"
-                                                    }
-                                                </Button>
-                                                {/* Button for submitting changes to the private notes */}
-                                                <Button
-                                                    flat
-                                                    onPress={handleNoteSubmit}
-                                                    auto
-                                                    type="submit" color="success">
-                                                    {
-                                                        noteLoadingSubmit
-                                                            ? <Loading type="points" color="currentColor" size="md" />
-                                                            : "Save"
-                                                    }
-                                                </Button>
-
-
-                                            </Row>
-                                        </div>
-                                    </Grid.Container>
-                                </Grid>
-                                // if the user is not loaded yet, displays an empty area
-                                : ''
-                        }
 
 
                         <br></br>
@@ -1008,14 +924,6 @@ const CatDetail = () => {
                                         </Grid>
                                     </div>
 
-                                </Grid.Container>
-                            </Grid>
-
-                            <Grid xs={12} md={6} lg={4}>
-                                <Grid.Container aria-label="basic info" alignContent="flex-start">
-
-
-
                                     <div className='cat-detail-section' aria-label="levels">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
@@ -1055,6 +963,15 @@ const CatDetail = () => {
                                         </Grid>
 
                                     </div>
+                                </Grid.Container>
+                            </Grid>
+
+                            <Grid xs={12} md={6} lg={4}>
+                                <Grid.Container aria-label="basic info" alignContent="flex-start">
+
+
+
+
 
                                     <div className='cat-detail-section' aria-label="needs">
                                         <Grid xs={12}>
@@ -1148,14 +1065,6 @@ const CatDetail = () => {
                                         </Grid>
                                     </div>
 
-
-                                </Grid.Container>
-                            </Grid>
-
-                            <Grid xs={12} md={6} lg={4}>
-                                <Grid.Container aria-label="second column" alignContent="flex-start">
-
-
                                     <div className='cat-detail-section' aria-label="location">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
@@ -1214,10 +1123,118 @@ const CatDetail = () => {
                                     </div>
 
 
-                                    <br></br>
+                                </Grid.Container>
+                            </Grid>
+
+                            <Grid xs={12} md={6} lg={4}>
+                                <Grid.Container aria-label="third column" alignContent="flex-start">
+
+                                    {
+                                        // if the user has finished loading / exists / logged in
+                                        currentUser
+                                            ?
+                                            <>
+                                                <div className='cat-detail-section' aria-label="adopt list status">
+                                                    <Grid xs={12}>
+                                                        <Text b size={24} color="secondary">
+                                                            Want to Adopt List
+                                                        </Text>
+                                                    </Grid>
+
+                                                    <Grid xs={12}>
+                                                        <Text
+                                                            size={18}>
+                                                            {/* Displays if an animal is in the adopt list or not */}
+                                                            {cat.data[0].attributes.name} is {adopted ? '' : 'not'} in your Adopt List
+                                                        </Text>
+
+                                                        {/* Allows to toggle the adopt status */}
+                                                        <Button
+                                                            color={adopted ? "error" : "primary"}
+                                                            onPress={handleAdoptToggle}
+                                                            flat>
+                                                            {
+                                                                adoptedLoading
+                                                                    // Displays a loding bar if the loading state is set to true
+                                                                    ? <Loading type="points" color="currentColor" size="md" />
+                                                                    : adopted
+                                                                        ? `Remove ${cat.data[0].attributes.name}`
+                                                                        : `Add ${cat.data[0].attributes.name}`
+                                                            }
+                                                        </Button>
+
+
+                                                    </Grid>
+                                                </div>
+
+                                                <div className='cat-detail-section' aria-label="private notes">
+                                                    <Grid xs={12}>
+                                                        <Text b size={24} color="secondary">
+                                                            My Private Notes
+                                                        </Text>
+                                                    </Grid>
+
+                                                    <Row>
+
+                                                        {/* Displays user's private note about the animal */}
+                                                        <Textarea
+                                                            aria-label="private note input"
+                                                            fullWidth
+                                                            size="md"
+                                                            name='txtInput'
+                                                            // When the value changes, state gets updated
+                                                            onChange={handleNoteChange}
+                                                            minRows={7}
+                                                            maxRows={20}
+                                                            // Grabs the initial value from the state or sets it to empty
+                                                            initialValue={noteData ? noteData.txtInput : ''}
+                                                            bordered
+                                                        ></Textarea>
+                                                    </Row>
+                                                    <div aria-label="success message">
+                                                        {/* success message only shows when the state is set to true */}
+                                                        {noteSuccess ? <Text color="success" size={16}> Successfully updated note.</Text> : ''}
+                                                    </div>
+                                                    <Row justify="space-between" css={{ paddingTop: "1rem" }}>
+                                                        {/* Button for handling the private note deletion  */}
+                                                        <Button
+                                                            flat
+                                                            onPress={handleNoteDelete}
+                                                            color="error"
+                                                            type="submit"
+                                                            auto>
+                                                            {
+                                                                // Shows a loading bar if the state is true
+                                                                noteLoadingDelete
+                                                                    ? <Loading type="points" color="currentColor" size="md" />
+                                                                    : "Delete"
+                                                            }
+                                                        </Button>
+                                                        {/* Button for submitting changes to the private notes */}
+                                                        <Button
+                                                            flat
+                                                            onPress={handleNoteSubmit}
+                                                            auto
+                                                            type="submit" color="success">
+                                                            {
+                                                                noteLoadingSubmit
+                                                                    ? <Loading type="points" color="currentColor" size="md" />
+                                                                    : "Save"
+                                                            }
+                                                        </Button>
+
+
+                                                    </Row>
+                                                </div>
+                                            </>
+                                            // if the user is not loaded yet, displays an empty area
+                                            : ''
+                                    }
+
+
 
                                     {/* Only show Adoption, Organization website and Facebook page buttons if links exists in data */}
-                                    {cat.data[0].attributes.url || orgDetails[0]?.url || orgDetails[0]?.facebookUrl
+                                    {cat.data[0].attributes.url || orgDetails[0]?.url || orgDetails[0]?.facebookUrl || cat.data[0].attributes.adoptionProcess
                                         ? <div className='cat-detail-section' aria-label="map">
                                             <Grid xs={12}>
                                                 <Text b size={24} color="secondary">
@@ -1228,6 +1245,14 @@ const CatDetail = () => {
                                                 {
                                                     cat.data[0].attributes.url
                                                         ? <Button as="a" color="secondary" style={{ marginBottom: "1rem" }} href={cat.data[0].attributes.url} target="_blank" rel="noopener noreferrer" >Adoption link for {cat.data[0].attributes.name}</Button>
+                                                        : ''
+                                                }
+
+                                                {
+                                                    orgDetails[0]?.adoptionProcess
+                                                        ? <Button flat color="secondary" style={{ marginBottom: "1rem", width: "100%" }} onPress={() => setAdoptionInfoOpen(true)}>
+                                                            Adoption Process
+                                                        </Button>
                                                         : ''
                                                 }
 
@@ -1246,6 +1271,8 @@ const CatDetail = () => {
                                         </div>
                                         : ''
                                     }
+
+
 
                                 </Grid.Container>
                             </Grid>
