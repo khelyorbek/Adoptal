@@ -40,15 +40,15 @@ const CatList = () => {
             // const pets = res.animals.filter(pet => pet.photos.length > 0)
 
             // on another note, decided to keep showing kitties without photos
-            const pets = res.animals;
+            const pets = res.data.data;
 
             // sets the pets state to the cats received from API
             setCats(pets);
 
             // sets the current page number to the one received from api
-            setCurrentPage(res.pagination.current_page)
+            setCurrentPage(res.data.meta.pageReturned)
             // sets the max num of pages to the one received from api
-            setTotalPages(res.pagination.total_pages);
+            setTotalPages(res.data.meta.pages);
 
             // for debugging
             // console.log(res)

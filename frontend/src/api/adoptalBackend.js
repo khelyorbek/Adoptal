@@ -9,6 +9,7 @@ class AdoptalApi {
     static async getAllCats(filters) {
         try {
             const p = {
+                type: filters.type,
                 zip: filters.zip,
                 page: filters.page,
                 distance: filters.distance,
@@ -29,10 +30,10 @@ class AdoptalApi {
             // for debugging only
             // console.log("adoptalBackend >>> getAllCats >>> FILTERs Received at Method >>> ", filters)
             // console.log("adoptalBackend >>> getAllCats >>> Payload Sent to Backend >>> ", p)
-            // console.log("adoptalBackend >>> getAllCats >>> Response received from backend >>>", res.data)
+            // console.log("adoptalBackend >>> getAllCats >>> Response received from backend >>>", res)
 
             // responding with the received data
-            return res.data;
+            return res;
         } catch (err) {
             console.log("Adoptal > Front-end > api > adoptalBackend.js > getAllCats > ", err);
         }
@@ -49,16 +50,12 @@ class AdoptalApi {
             const res = await axios.get(`${BACKEND_URL}/cat/${id}`)
 
             // for debugging only
-            // console.log("RRRRRRRRRRRRRRRRRRRRRR>>>", res)
+            // console.log("Front-end > adoptalBackend > getSingleCat(id) >", res)
 
-            // if there is an error
-            if (res.data === 'Not found') {
-                // returning the message
-                return res.data;
-            } else {
-                // if there is no error, returning data on animal
-                return res.data.animal;
-            }
+
+            // if there is no error, returning data on animal
+            return res.data;
+
         } catch (err) {
             console.log("Adoptal > Front-end > api > adoptalBackend.js > getSingleCat > ", err);
         }
