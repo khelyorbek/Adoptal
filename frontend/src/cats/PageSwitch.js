@@ -1,14 +1,18 @@
 // importing the pagination component and the css
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 // importing a global context (current user enabler)
 import GlobalContext from '../GlobalContext';
 import { Pagination } from "@nextui-org/react";
 import './CatCard.css'
 
 // receiving the props from the parent component
-const PageSwitch = ({ totalPages, setFilters, setCats, filters }) => {
-    // receiving the global context for current user
-    const { currentPage, setCurrentPage } = useContext(GlobalContext);
+const PageSwitch = ({ setCats, globalFilters: propFilters, setGlobalFilters: propSetFilters }) => {
+    const context = useContext(GlobalContext);
+    const globalFilters = propFilters || context?.globalFilters || {};
+    const setGlobalFilters = propSetFilters || context?.setGlobalFilters;
+
+    const totalPages = globalFilters?.totalPages || 1;
+    const currentPage = globalFilters?.currentPage || 1;
 
     return (
         <>
@@ -24,24 +28,16 @@ const PageSwitch = ({ totalPages, setFilters, setCats, filters }) => {
                     size="lg"
                     rounded
                     shadow
-                    boundaries={2}
+                    boundaries={1}
                     color="secondary"
                     // when a page is clicked, change the state of the parent
                     onChange={
                         (page) => {
                             try {
-                                // for debugging
-                                // console.log("PAGE>>>", page);
-
                                 // settings the cats to none which will prompt a component re-render
                                 setCats(null);
                                 // settings the filters to what is there right now but changing the page number
-                                setFilters({
-                                    ...filters,
-                                    page: page
-                                });
-
-                                setCurrentPage(page);
+                                setGlobalFilters(prev => ({ ...prev, currentPage: page }));
                             } catch (err) {
                                 console.log("Adoptal > Front-end > cats > PageSwitch.js > onChange > ", err);
                             }

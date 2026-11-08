@@ -35,16 +35,102 @@ async function getAllPets(filters) {
         let apiBody = {
             "data": {
                 "filters": [
-                    // Animal type
+                    // Animal type 
+                    // Options (Ex: Bird, Cat, Dog, Mouse, Rabbit)
                     {
                         "fieldName": "species.singular",
                         "operation": "equals",
                         "criteria": filters?.query?.type || "cat"
-                    }
-                ],
+                    },
+                    // Age
+                    // Options: "Baby", "Young", "Adult", "Senior"
+                    ...(filters?.query?.age ? [{
+                        "fieldName": "animals.ageGroup",
+                        "operation": "equals",
+                        "criteria": filters?.query?.age
+                    }] : []),
+                    // Size
+                    // Options: "Small", "Medium", "Large", "X-Large"
+                    ...(filters?.query?.size ? [{
+                        "fieldName": "animals.sizeGroup",
+                        "operation": "equals",
+                        "criteria": filters?.query?.size
+                    }] : []),
+                    // Coat Length
+                    // Options: "Short", "Medium", "Long", "Wire", "Hairless", "Curly"
+                    ...(filters?.query?.coat ? [{
+                        "fieldName": "animals.coatLength",
+                        "operation": "equals",
+                        "criteria": filters?.query?.coat
+                    }] : []),
+                    // Good with Children
+                    // Options: boolean
+                    ...(filters?.query?.good_with_children ? [{
+                        "fieldName": "animals.isKidsOk",
+                        "operation": "equals",
+                        "criteria": filters?.query?.good_with_children
+                    }] : []),
+                    // Good with Dogs
+                    // Options: boolean
+                    ...(filters?.query?.good_with_dogs ? [{
+                        "fieldName": "animals.isDogsOk",
+                        "operation": "equals",
+                        "criteria": filters?.query?.good_with_dogs
+                    }] : []),
+                    // Good with Cats
+                    // Options: boolean
+                    ...(filters?.query?.good_with_cats ? [{
+                        "fieldName": "animals.isCatsOk",
+                        "operation": "equals",
+                        "criteria": filters?.query?.good_with_cats
+                    }] : []),
+                    // Housetrained
+                    // Options: boolean
+                    ...(filters?.query?.house_trained ? [{
+                        "fieldName": "animals.isHousetrained",
+                        "operation": "equals",
+                        "criteria": filters?.query?.house_trained
+                    }] : []),
+                    // Declawed
+                    // Options: boolean
+                    ...(filters?.query?.declawed ? [{
+                        "fieldName": "animals.isDeclawed",
+                        "operation": "equals",
+                        "criteria": filters?.query?.declawed
+                    }] : []),
+                    // Special Needs
+                    // Options: boolean
+                    ...(filters?.query?.special_needs ? [{
+                        "fieldName": "animals.isSpecialNeeds",
+                        "operation": "equals",
+                        "criteria": filters?.query?.special_needs
+                    }] : []),
+                    // Sex
+                    // Options: "Female", "Male"
+                    ...(filters?.query?.gender ? [{
+                        "fieldName": "animals.sex",
+                        "operation": "equals",
+                        "criteria": filters?.query?.gender
+                    }] : []),
+                    // Spayed / Neutered 
+                    // Options: boolean
+                    ...(filters?.query?.spayed_neutered ? [{
+                        "fieldName": "animals.isAltered",
+                        "operation": "equals",
+                        "criteria": filters?.query?.spayed_neutered
+                    }] : []),
+                    // Current on Vaccinations 
+                    // Options: boolean
+                    ...(filters?.query?.current_vaccinations ? [{
+                        "fieldName": "animals.isCurrentVaccinations",
+                        "operation": "equals",
+                        "criteria": filters?.query?.current_vaccinations
+                    }] : [])
+
+                ].filter(Boolean),
                 "filterRadius": {
-                    "postalcode": filters?.query?.zip || "43221",
-                    "miles": filters?.query?.distance ? String(filters.query.distance) : "25"
+                    "postalcode": filters?.query?.zip || "15219",
+                    "miles": filters?.query?.distance ? String(filters.query.distance) : "20"
                 }
             }
 

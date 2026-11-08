@@ -34,15 +34,22 @@ mongoose.set('strictQuery', false);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// creating CORS config to avoid error "blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource"
+// creating CORS config to allow cross-origin requests from our front-end and back-end environments
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://adoptal-api.elyorbek.com",
+  "http://localhost:3001",
+  "https://adoptal.elyorbek.com"
+];
+
 const corsConfig = {
-  origin: true,
+  origin: allowedOrigins,
   credentials: true,
 };
 
 // telling express to use cors we just created
 app.use(cors(corsConfig));
-app.options('*', cors(corsConfig))
+app.options('*', cors(corsConfig));
 
 
 // ------------------------- EXPRESS SESSION CONFIG -------------------------

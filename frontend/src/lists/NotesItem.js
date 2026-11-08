@@ -210,17 +210,17 @@ const NotesItem = ({ cat, type }) => {
         {
             // if the component is set to visible
             visible
-                ? <Grid xs={12} key={parseInt(cat.data[0].id)} justify="flex-start">
+                ? <Grid xs={12} key={parseInt(cat.data[0].id)} justify="flex-start" >
                     {/* displaying a card with the cat's information */}
                     {/* displays 4 columns */}
 
 
-                    <Card isHoverable className="loaded">
-                        <Card.Body css={{ p: 0 }}>
+                    <Card isHoverable className="loaded" >
+                        <Card.Body css={{ p: 0 }} style={{ overflow: "hidden" }}>
                             <Grid.Container gap={0} justify="flex-start">
 
                                 {/* column 1 - cat's photo */}
-                                <Grid xs={3}>
+                                <Grid xs={12} md={3}>
                                     <Image
                                         showSkeleton
                                         // if there is no photo available, use a placeholder photo
@@ -233,169 +233,179 @@ const NotesItem = ({ cat, type }) => {
                                 </Grid>
 
                                 {/* column 2 - cat's details */}
-                                <Grid xs={9}>
-                                    <Row css={{ p: "0rem 2rem" }}>
+                                <Grid xs={12} md={9}>
+                                    <Row css={{ p: "$4", "@md": { p: "0rem 2rem" } }}>
 
                                         <Col>
-                                            <Row justify='center'>
+                                            <Row justify='center' css={{ mb: "$2" }}>
                                                 <Text b color="secondary" size={24}>{cat.data[0].attributes?.name}</Text>
                                             </Row>
-                                            <Row>
-                                                {/* column 2 - cat's details */}
-                                                <Col css={{ borderRight: "1px solid $neutralBorder" }}>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>ID:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>{cat.data[0].id ? cat.data[0].id : "Unknown"}</Text>
-                                                        </Col>
+                                            <Grid.Container gap={1}>
+                                                {/* section 1 - cat's details */}
+                                                <Grid xs={12} md={4} css={{ borderRight: "none", "@md": { borderRight: "1px solid $neutralBorder", pr: "$4" } }}>
+                                                    <Col>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>ID:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>{cat.data[0].id ? cat.data[0].id : "Unknown"}</Text>
+                                                            </Col>
 
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>Breed:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>   {cat.data[0].attributes.breedPrimary ? cat.data[0].attributes.breedPrimary : 'Unknown'}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>Color:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>{cat.data[0].attributes.colorDetails ? cat.data[0].attributes.colorDetails : 'Unknown'}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>Age:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>{cat.data[0].attributes.ageString ? cat.data[0].attributes.ageString : 'Unknown'}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>Gender:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>    {cat.data[0].attributes.sex ? cat.data[0].attributes.sex : 'Unknown'}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>Size:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>{cat.data[0].attributes.sizeCurrent != null
-                                                                ? `${Number(cat.data[0].attributes.sizeCurrent).toFixed(1)} ${cat.data[0].attributes.sizeUOM || 'lbs'}`
-                                                                : 'Unknown'}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>Spayed / Neutered:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>{cat.data[0].attributes.isAltered != null
-                                                                ? (cat.data[0].attributes.isAltered ? "Yes" : "No")
-                                                                : "Unknown"}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>Vaccinated:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}>{cat.data[0].attributes.isCurrentVaccinations != null
-                                                                ? (cat.data[0].attributes.isCurrentVaccinations ? "Yes" : "No")
-                                                                : "Unknown"}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Text b size={16}>House Trained:</Text>
-                                                        </Col>
-                                                        <Col>
-                                                            <Text size={16}> {cat.data[0].attributes.isHousetrained != null
-                                                                ? (cat.data[0].attributes.isHousetrained ? "Yes" : "No")
-                                                                : "Unknown"}</Text>
-                                                        </Col>
-                                                    </Row>
-                                                </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>Breed:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>   {cat.data[0].attributes.breedPrimary ? cat.data[0].attributes.breedPrimary : 'Unknown'}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>Color:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>{cat.data[0].attributes.colorDetails ? cat.data[0].attributes.colorDetails : 'Unknown'}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>Age:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>{cat.data[0].attributes.ageString ? cat.data[0].attributes.ageString : 'Unknown'}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>Gender:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>    {cat.data[0].attributes.sex ? cat.data[0].attributes.sex : 'Unknown'}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>Size:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>{cat.data[0].attributes.sizeCurrent != null
+                                                                    ? `${Number(cat.data[0].attributes.sizeCurrent).toFixed(1)} ${cat.data[0].attributes.sizeUOM || 'lbs'}`
+                                                                    : 'Unknown'}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>Spayed / Neutered:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>{cat.data[0].attributes.isAltered != null
+                                                                    ? (cat.data[0].attributes.isAltered ? "✅ Yes" : "No")
+                                                                    : "Unknown"}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>Vaccinated:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}>{cat.data[0].attributes.isCurrentVaccinations != null
+                                                                    ? (cat.data[0].attributes.isCurrentVaccinations ? "✅ Yes" : "No")
+                                                                    : "Unknown"}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Text b size={16}>House Trained:</Text>
+                                                            </Col>
+                                                            <Col>
+                                                                <Text size={16}> {cat.data[0].attributes.isHousetrained != null
+                                                                    ? (cat.data[0].attributes.isHousetrained ? "✅ Yes" : "No")
+                                                                    : "Unknown"}</Text>
+                                                            </Col>
+                                                        </Row>
+                                                    </Col>
+                                                </Grid>
 
-                                                {/* column 3 - cat's description and name */}
-                                                <Col css={{ p: "0rem 1rem" }}>
-                                                    <Row css={{ height: "100%" }}>
-                                                        <Text size={16}>{cat.data[0].attributes.descriptionText}</Text>
-                                                    </Row>
-                                                </Col>
+                                                {/* section 2 - cat's description and name */}
+                                                <Grid xs={12} md={4} css={{ p: "1rem 0", "@md": { p: "0rem 1rem" } }}>
+                                                    <Col>
+                                                        <Row justify="center" css={{ mb: "$2" }}>
+                                                            <Text b size={16}>Description</Text>
+                                                        </Row>
+                                                        <div
+                                                            style={{
+                                                                maxHeight: "15em",
+                                                                lineHeight: "1.5",
+                                                                overflowY: "auto",
+                                                                overflowX: "hidden",
+                                                                width: "100%",
+                                                                paddingRight: "0.25rem"
+                                                            }}
+                                                        >
+                                                            <Text size={16} style={{ lineHeight: "1.5", margin: 0 }}>
+                                                                {cat.data[0].attributes?.descriptionText || 'No description available.'}
+                                                            </Text>
+                                                        </div>
+                                                    </Col>
+                                                </Grid>
 
-                                                {/* column 4 - cat's note or comment and buttons to update and delete them */}
-                                                <Col css={{ p: "0rem 1rem", borderLeft: "1px solid $neutralBorder" }}>
-                                                    <Row>
-                                                        <Col>
-                                                            <Row justify='center'>
+                                                {/* section 3 - cat's note or comment and buttons to update and delete them */}
+                                                <Grid xs={12} md={4} css={{ p: "1rem 0", borderLeft: "none", "@md": { p: "0rem 1rem", borderLeft: "1px solid $neutralBorder" } }}>
+                                                    <Col>
+                                                        <Row justify='center'>
+                                                            {
+                                                                success
+                                                                    ? <Text b color="success" size={16}>{type === "notes" ? "Note" : "Comment"} successfully updated!</Text>
+                                                                    : <Text b size={16}>My {type === "notes" ? "Note" : "Comment"}</Text>
+                                                            }
+
+                                                        </Row>
+                                                        <Row>
+                                                            <Textarea
+                                                                fullWidth
+                                                                size="md"
+                                                                name='txtInput'
+                                                                onChange={handleChange}
+                                                                minRows={7}
+                                                                maxRows={20}
+                                                                initialValue={type === "notes" ? cat.privateNotes : cat.publicComments}
+                                                                bordered
+                                                                aria-label="note input"
+                                                            ></Textarea>
+                                                        </Row>
+                                                        <Row justify="space-between" css={{ paddingTop: "1rem" }}>
+                                                            {/* displaying a button that allow us to remove the item */}
+                                                            <Button
+                                                                flat
+                                                                onPress={handleDelete}
+                                                                color="error"
+                                                                type="submit"
+                                                                auto>
                                                                 {
-                                                                    success
-                                                                        ? <Text b color="success" size={16}>{type === "notes" ? "Note" : "Comment"} successfully updated!</Text>
-                                                                        : <Text b size={16}>My {type === "notes" ? "Note" : "Comment"}</Text>
+                                                                    loadingDelete
+                                                                        ? <Loading type="points" color="currentColor" size="md" />
+                                                                        : "Delete"
                                                                 }
+                                                            </Button>
 
-                                                            </Row>
-                                                            <Row>
-                                                                <Textarea
-                                                                    fullWidth
-                                                                    size="md"
-                                                                    name='txtInput'
-                                                                    onChange={handleChange}
-                                                                    minRows={7}
-                                                                    maxRows={20}
-                                                                    initialValue={type === "notes" ? cat.privateNotes : cat.publicComments}
-                                                                    bordered
-                                                                    aria-label="note input"
-                                                                ></Textarea>
-                                                            </Row>
-                                                            <Row justify="space-between" css={{ paddingTop: "1rem" }}>
-                                                                {/* displaying a button that allow us to remove the item */}
-                                                                <Button
-                                                                    flat
-                                                                    onPress={handleDelete}
-                                                                    color="error"
-                                                                    type="submit"
-                                                                    auto>
-                                                                    {
-                                                                        loadingDelete
-                                                                            ? <Loading type="points" color="currentColor" size="md" />
-                                                                            : "Delete"
-                                                                    }
-                                                                </Button>
-
-                                                                {/* displaying a button that allow us to update the data of the item */}
-                                                                <Button
-                                                                    flat
-                                                                    onPress={handleSubmit}
-                                                                    auto
-                                                                    type="submit" color="success">
-                                                                    {
-                                                                        loading
-                                                                            ? <Loading type="points" color="currentColor" size="md" />
-                                                                            : "Save"
-                                                                    }
-                                                                </Button>
-                                                            </Row>
-                                                        </Col>
-
-
-                                                    </Row>
-                                                </Col>
-                                            </Row>
-
-
-
-
+                                                            {/* displaying a button that allow us to update the data of the item */}
+                                                            <Button
+                                                                flat
+                                                                onPress={handleSubmit}
+                                                                auto
+                                                                type="submit" color="success">
+                                                                {
+                                                                    loading
+                                                                        ? <Loading type="points" color="currentColor" size="md" />
+                                                                        : "Save"
+                                                                }
+                                                            </Button>
+                                                        </Row>
+                                                    </Col>
+                                                </Grid>
+                                            </Grid.Container>
                                         </Col>
                                     </Row>
                                 </Grid>

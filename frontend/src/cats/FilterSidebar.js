@@ -1,86 +1,140 @@
 // Importing all the necessary libraries and components and assets
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Input, Col, Row, Button, Dropdown, Text, Checkbox } from '@nextui-org/react';
+import GlobalContext from '../GlobalContext';
 
 // receiving the props from the parent component
-const FilterSidebar = ({ setFilters, setCats }) => {
-    // using state to keep track of form data (filters)
-    const [formData, setFormData] = useState();
+const FilterSidebar = ({ setCats, globalFilters: propFilters, setGlobalFilters: propSetFilters }) => {
+    const context = useContext(GlobalContext);
+    const globalFilters = propFilters || context?.globalFilters || {};
+    const setGlobalFilters = propSetFilters || context?.setGlobalFilters;
+
+    // using state to keep track of form data (zip, distance)
+    const [formData, setFormData] = useState({
+        zip: globalFilters?.zip || '',
+        distance: globalFilters?.distance || ''
+    });
 
     // State and handler for Age
-    const [ageList, setAgeList] = useState(new Set(["Select All"]));
+    const [ageList, setAgeList] = useState(new Set([globalFilters?.age ? globalFilters.age.toLowerCase() : "Select All"]));
 
-    // for storing the list of values for Age. Only updates / renders once on load
+    // State and handler for Gender
+    const [genderList, setGenderList] = useState(new Set([globalFilters?.gender ? globalFilters.gender.toLowerCase() : "Select All"]));
+
+    // State for Size
+    const [sizeList, setSizeList] = useState(new Set([globalFilters?.size ? globalFilters.size.toLowerCase() : "Select All"]));
+
+    // State for Coat
+    const [coatList, setCoatList] = useState(new Set([globalFilters?.coat ? globalFilters.coat.toLowerCase() : "Select All"]));
+
+    // Checkbox keys
+    const checkboxKeys = [
+        "good_with_children", "good_with_dogs", "good_with_cats",
+        "house_trained", "declawed", "special_needs", "current_vaccinations"
+    ];
+
+    // State for checkboxes
+    const [selectedCheckboxes, setSelectedCheckboxes] = useState(() => {
+        return checkboxKeys.filter(key => Boolean(globalFilters?.[key]));
+    });
+
+    // Sync input fields when globalFilters change externally
+    useEffect(() => {
+        setFormData({
+            zip: globalFilters?.zip || '',
+            distance: globalFilters?.distance || ''
+        });
+    }, [globalFilters?.zip, globalFilters?.distance]);
+
+    // Sync dropdowns when globalFilters change externally
+    useEffect(() => {
+        if (globalFilters?.age) setAgeList(new Set([globalFilters.age.toLowerCase()]));
+        if (globalFilters?.gender) setGenderList(new Set([globalFilters.gender.toLowerCase()]));
+        if (globalFilters?.size) setSizeList(new Set([globalFilters.size.toLowerCase()]));
+        if (globalFilters?.coat) setCoatList(new Set([globalFilters.coat.toLowerCase()]));
+    }, [globalFilters?.age, globalFilters?.gender, globalFilters?.size, globalFilters?.coat]);
+
+    // Sync checkboxes when globalFilters change externally
+    useEffect(() => {
+        setSelectedCheckboxes(checkboxKeys.filter(key => Boolean(globalFilters?.[key])));
+    }, [
+        globalFilters?.good_with_children,
+        globalFilters?.good_with_dogs,
+        globalFilters?.good_with_cats,
+        globalFilters?.house_trained,
+        globalFilters?.declawed,
+        globalFilters?.special_needs,
+        globalFilters?.current_vaccinations
+    ]);
+
+    // for storing the list of values for Age.
     const ageListValue = React.useMemo(
         () => Array.from(ageList).join(", ").replaceAll("_", " "),
         [ageList]
     );
 
-    // for storing the list of values for State. Only updates / renders once on load
-    const [sizeList, setSizeList] = useState(new Set(["Select All"]));
+    // for storing the list of values for Gender.
+    const genderListValue = React.useMemo(
+        () => Array.from(genderList).join(", ").replaceAll("_", " "),
+        [genderList]
+    );
+
+    // for storing the list of values for Size.
     const sizeListValue = React.useMemo(
         () => Array.from(sizeList).join(", ").replaceAll("_", " "),
         [sizeList]
     );
 
-    // for storing the list of values for Coat. Only updates / renders once on load
-    const [coatList, setCoatList] = useState(new Set(["Select All"]));
+    // for storing the list of values for Coat.
     const coatListValue = React.useMemo(
         () => Array.from(coatList).join(", ").replaceAll("_", " "),
         [coatList]
     );
 
-    // State for checkboxes
-    const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
-
-    // creating a universal changle handler function that stored values into state
+    // creating a change handler function that stores input values into local form state
     const handleChange = e => {
-        // taking the target of the event and destructuing the name attribute and the value of the input
         const { name, value } = e.target;
-
-        // if the form input is the username, sending it in all lowercase to make sure username is case in-sensitive
-        let valueFormatted = name === 'username' ? value.toLowerCase() : value;
-
-        // setting the new value of the state
         setFormData(data => ({
-            // to be the current value of the state
             ...data,
-            // and whenever the new value is (Example: nameOfInput: valueOfInput)
-            [name]: valueFormatted
-        }))
-    }
+            [name]: value
+        }));
+    };
 
-    // / creating a custom method to handle the submission of the form
-    async function handleSubmit(e, type) {
+    // creating a custom method to handle the submission of the form
+    async function handleSubmit(e) {
         try {
             // preventing default behavior
             e.preventDefault();
 
-            // setting payload variable to what we have in the form already
+            // setting payload with all filter criteria
             const payload = {
-                ...formData,
-                // but also adding the filters from the dropdown that we selected
-                // if select all is selected, passign null as the filter, which will display everything
+                zip: formData?.zip ? formData.zip : null,
+                distance: formData?.distance ? formData.distance : null,
                 age: ageListValue.toLowerCase() === "select all" ? null : ageListValue,
                 size: sizeListValue.toLowerCase() === "select all" ? null : sizeListValue,
                 coat: coatListValue.toLowerCase() === "select all" ? null : coatListValue,
+                gender: genderListValue.toLowerCase() === "select all" ? null : genderListValue,
+                currentPage: 1, // reset to page 1 on new filter search
             };
 
-            // going through all the checkboxes that we are TICKED and adding it to the payload with value of true
-            selectedCheckboxes.map(i => payload[i] = true)
+            // going through checkboxes and setting true or null
+            checkboxKeys.forEach(key => {
+                payload[key] = selectedCheckboxes.includes(key) ? true : null;
+            });
 
-            // for debugging
-            // console.log("FilterSidebar >>> PAYLOAD SENT to Method >>>", payload);
-
-            // settings the cat to nothing which will prompt the component to re-render
+            // settings the cat to null which will prompt the component to show loading spinner
             setCats(null);
 
-            // settings the filters and passing the payload
-            await setFilters(payload);
+            // updating the globalFilters state by merging payload
+            if (setGlobalFilters) {
+                setGlobalFilters(currentFilters => ({
+                    ...currentFilters,
+                    ...payload
+                }));
+            }
         } catch (err) {
             console.log("Adoptal > Front-end > cats > FilterSidebar.js > handleSubmit > ", err);
         }
-        
     }
 
     return (
@@ -93,10 +147,12 @@ const FilterSidebar = ({ setFilters, setCats }) => {
                     <Input
                         color="secondary"
                         type="number"
+                        max={99999}
                         fullWidth
                         placeholder='15219'
                         css={{ marginBottom: "1rem" }}
                         name="zip"
+                        value={formData?.zip !== undefined ? formData.zip : (globalFilters?.zip || '')}
                         aria-label='zip code'
                         // When the value is changed, calling our custom handler method that updates the state
                         onChange={handleChange}
@@ -110,9 +166,10 @@ const FilterSidebar = ({ setFilters, setCats }) => {
                         max="500"
                         fullWidth
                         placeholder='20'
-                        labelRight="Miles"
+                        labelRight="miles"
                         css={{ marginBottom: "1rem" }}
                         name="distance"
+                        value={formData?.distance !== undefined ? formData.distance : (globalFilters?.distance || '')}
                         aria-label='distance'
                         // When the value is changed, calling our custom handler method that updates the state
                         onChange={handleChange}
@@ -144,6 +201,33 @@ const FilterSidebar = ({ setFilters, setCats }) => {
                             <Dropdown.Item key="young">Young</Dropdown.Item>
                             <Dropdown.Item key="adult">Adult</Dropdown.Item>
                             <Dropdown.Item key="senior">Senior</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+
+                    {/* Dropdowns for Gender */}
+                    <Text color="secondary" aria-label='gender' css={{ fontSize: "var(--nextui-fontSizes-md)" }}>Gender</Text>
+                    <Dropdown>
+                        <Dropdown.Button
+                            flat
+                            color="inherit"
+                            css={{ width: "100%", tt: "capitalize", marginBottom: "1rem" }}>
+                            {/* sets the button text to the current value that is stored in the state */}
+                            {genderListValue}
+                        </Dropdown.Button>
+                        <Dropdown.Menu
+                            aria-label="Single selection actions"
+                            color="secondary"
+                            disallowEmptySelection
+                            selectionMode="single"
+                            // setting the key values to the memo that we initially created
+                            genderListKeys={genderList}
+                            // when something is selected, updating the state
+                            onSelectionChange={setGenderList}
+                        >
+                            {/* dropdown options */}
+                            <Dropdown.Item key="select_all">Select All</Dropdown.Item>
+                            <Dropdown.Item key="male">Male</Dropdown.Item>
+                            <Dropdown.Item key="female">Female</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
 
@@ -202,6 +286,8 @@ const FilterSidebar = ({ setFilters, setCats }) => {
                             <Dropdown.Item key="short">Short</Dropdown.Item>
                             <Dropdown.Item key="medium">Medium</Dropdown.Item>
                             <Dropdown.Item key="long">Long</Dropdown.Item>
+                            <Dropdown.Item key="wire">Wire</Dropdown.Item>
+                            <Dropdown.Item key="curly">Curly</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
 
@@ -222,6 +308,9 @@ const FilterSidebar = ({ setFilters, setCats }) => {
                         <Checkbox aria-label="house_trained" value="house_trained">House trained</Checkbox>
                         <Checkbox aria-label="declawed" value="declawed">De-clawed</Checkbox>
                         <Checkbox aria-label="special_needs" value="special_needs">Special needs</Checkbox>
+                        {/* Removing the spayed/neutered checkbox because the API doesn't really have that data available. It will still be available in API if needed for future. According to most adoption places, the cat will already be spayed/neutered when adopted */}
+                        {/* <Checkbox aria-label="spayed_neutered" value="spayed_neutered">Spayed / Neutered</Checkbox> */}
+                        <Checkbox aria-label="current_vaccinations" value="current_vaccinations">Current Vaccinations</Checkbox>
                     </Checkbox.Group>
 
                     {/* Button for submitting / applying the filter */}
@@ -233,6 +322,18 @@ const FilterSidebar = ({ setFilters, setCats }) => {
                         color="secondary"
                         auto>
                         Apply Filter
+                    </Button>
+
+                    {/* Button for clearing all filters */}
+                    <Button
+                        style={{ margin: "1rem auto" }}
+                        size="lg"
+                        ghost
+                        color="secondary"
+                        auto
+                        onClick={() => { setGlobalFilters({}) }}
+                    >
+                        Clear Filter
                     </Button>
 
                 </Col>

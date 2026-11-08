@@ -39,7 +39,7 @@ function App() {
   // using state to keep track of current user
   const [currentUser, setCurrentUser] = useState(null);
   // using state to keep track of current page
-  const [currentPage, setCurrentPage] = useState(null);
+  const [globalFilters, setGlobalFilters] = useState({});
 
   // using state for keeping track of the theme color
   const [isDark, setIsDark] = useState(() => {
@@ -98,6 +98,10 @@ function App() {
   // useEffect to handle custom methods that need run on first App load
   useEffect(() => {
     getUser();
+
+    // debug
+    console.log("Front-end > App > Global currentUser > ", currentUser);
+    console.log("Front-end > App > Global globalFilters > ", globalFilters);
   }, [])
 
   // useEffect to handle whenever the dark theme state is changed
@@ -112,7 +116,7 @@ function App() {
     <NextUIProvider theme={isDark === true ? darkTheme : lightTheme} >
 
       {/* Passing current user and page states and as global context to all child componenets */}
-      <GlobalContext.Provider value={{ currentUser, setCurrentUser, currentPage, setCurrentPage }}>
+      <GlobalContext.Provider value={{ currentUser, setCurrentUser, globalFilters, setGlobalFilters }}>
 
         {/* using BrowserRouter from react-router-dom for dynamic navigation (refresh-less) */}
         <BrowserRouter>

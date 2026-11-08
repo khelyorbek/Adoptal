@@ -7,12 +7,27 @@ class AdoptalApi {
 
     // Custom method for getting all cat data from Petfinder
     static async getAllCats(filters) {
+        // debug
+        // console.log("Front-end > adoptalBackend > getAllCats > filters", filters);
+
         try {
             const p = {
+                // Type of animal (Ex: Bird, Cat, Dog, Mouse, Rabbit)
                 type: filters.type,
+
+                // The page of results to return (starting with 1).
+                page: filters.currentPage || filters.page || 1,
+
+                // The number of data objects to return in the results. The maximum limit for most endpoints is 250
+                limit: filters.limit,
+
+                // Zip code
                 zip: filters.zip,
-                page: filters.page,
+
+                // Distance
                 distance: filters.distance,
+
+                // See back-end > api.js for the rest of options
                 age: filters.age,
                 size: filters.size,
                 coat: filters.coat,
@@ -21,11 +36,15 @@ class AdoptalApi {
                 good_with_cats: filters.good_with_cats,
                 house_trained: filters.house_trained,
                 declawed: filters.declawed,
-                special_needs: filters.special_needs
+                special_needs: filters.special_needs,
+                gender: filters.gender,
+                spayed_neutered: filters.spayed_neutered,
+                current_vaccinations: filters.current_vaccinations,
+
             }
             // sending a get request to the endpoint and passing the parameters
             const res = await axios.get(`${BACKEND_URL}/cat`, {
-                params: { p }
+                params: p
             })
             // for debugging only
             // console.log("adoptalBackend >>> getAllCats >>> FILTERs Received at Method >>> ", filters)
@@ -52,9 +71,14 @@ class AdoptalApi {
             // for debugging only
             // console.log("Front-end > adoptalBackend > getSingleCat(id) >", res)
 
+            if (res.request.status === 200) {
+                // if there is no error, returning data on animal
+                return res.data;
+            } else {
+                // if there is an error, returning error code and test
+                return { status: res.request.status, error: res.request.statusText }
+            }
 
-            // if there is no error, returning data on animal
-            return res.data;
 
         } catch (err) {
             console.log("Adoptal > Front-end > api > adoptalBackend.js > getSingleCat > ", err);

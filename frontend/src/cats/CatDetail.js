@@ -348,16 +348,13 @@ const CatDetail = () => {
             // seding a request to the backend
             const res = await AdoptalApi.getSingleCat(id);
 
-            // using the he decoder to remove &nbsp and other artifacts from HTML to Raw text conversion in API
-            res.data[0].attributes.descriptionText = decode(res.data[0].attributes.descriptionText);
-
-            console.log("Front-end > CatDetail > getCat(id) > ", res);
-
             // for debugging
-            // console.log("RES >>>", res);
+            // console.log("Front-end > CatDetail > getCat(id) > ", res);
 
             // if the cat is found, then returning the data that we received
-            if (res) {
+            if (res.data) {
+                // using the he decoder to remove &nbsp and other artifacts from HTML to Raw text conversion in API
+                res.data[0].attributes.descriptionText = decode(res.data[0].attributes.descriptionText);
                 return res;
             }
             else {
@@ -367,6 +364,7 @@ const CatDetail = () => {
             }
         } catch (err) {
             console.log("Adoptal > Front-end > cats > CatDetail.js > getCat > ", err);
+            return "404";
         }
 
 
@@ -810,7 +808,17 @@ const CatDetail = () => {
                                                     cat.data[0].attributes.qualities != null
                                                         ? cat.data[0].attributes.qualities.map(quality => {
                                                             return (
-                                                                <span key={quality} style={{}}>{quality},</span>
+                                                                // 20889175
+                                                                <span key={quality}
+                                                                    style={{
+                                                                        border: "1px solid #8f27ff",
+                                                                        borderRadius: "1rem",
+                                                                        paddingRight: "0.5rem", paddingLeft: "0.5rem",
+                                                                        margin: "0.3rem",
+                                                                        display: "inline-block"
+                                                                    }}>
+                                                                    {quality}
+                                                                </span>
                                                             )
                                                         })
                                                         : ''
@@ -831,7 +839,7 @@ const CatDetail = () => {
                                                     Spayed/Neutered:{" "}
                                                 </b>
                                                 {cat.data[0].attributes.isAltered != null
-                                                    ? (cat.data[0].attributes.isAltered ? "Yes" : "No")
+                                                    ? (cat.data[0].attributes.isAltered ? "✅ Yes" : "❌ No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -853,7 +861,7 @@ const CatDetail = () => {
                                                     Up-to-date vaccinations:{" "}
                                                 </b>
                                                 {cat.data[0].attributes.isCurrentVaccinations != null
-                                                    ? (cat.data[0].attributes.isCurrentVaccinations ? "Yes" : "No")
+                                                    ? (cat.data[0].attributes.isCurrentVaccinations ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -874,7 +882,7 @@ const CatDetail = () => {
                                                     Good with Children:{" "}
                                                 </b>
                                                 {cat.data[0].attributes.isKidsOk != null
-                                                    ? (cat.data[0].attributes.isKidsOk ? "Yes" : "No")
+                                                    ? (cat.data[0].attributes.isKidsOk ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -885,7 +893,7 @@ const CatDetail = () => {
                                                     Good with Dogs:{" "}
                                                 </b>
                                                 {cat.data[0].attributes.isDogsOk != null
-                                                    ? (cat.data[0].attributes.isDogsOk ? "Yes" : "No")
+                                                    ? (cat.data[0].attributes.isDogsOk ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -896,7 +904,7 @@ const CatDetail = () => {
                                                     Good with other Cats:{" "}
                                                 </b>
                                                 {cat.data[0].attributes.isCatsOk != null
-                                                    ? (cat.data[0].attributes.isCatsOk ? "Yes" : "No")
+                                                    ? (cat.data[0].attributes.isCatsOk ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -918,7 +926,7 @@ const CatDetail = () => {
                                                     House Trained:{" "}
                                                 </b>
                                                 {cat.data[0].attributes.isHousetrained != null
-                                                    ? (cat.data[0].attributes.isHousetrained ? "Yes" : "No")
+                                                    ? (cat.data[0].attributes.isHousetrained ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
