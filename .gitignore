@@ -2,6 +2,9 @@
 secrets.js
 OLD_secrets.js
 
+# front-end build
+frontend/build
+
 # Logs
 logs
 *.log

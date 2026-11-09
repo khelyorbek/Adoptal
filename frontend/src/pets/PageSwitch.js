@@ -3,10 +3,10 @@ import React, { useContext } from 'react';
 // importing a global context (current user enabler)
 import GlobalContext from '../GlobalContext';
 import { Pagination } from "@nextui-org/react";
-import './CatCard.css'
+import './PetCard.css'
 
 // receiving the props from the parent component
-const PageSwitch = ({ setCats, globalFilters: propFilters, setGlobalFilters: propSetFilters }) => {
+const PageSwitch = ({ setPets, globalFilters: propFilters, setGlobalFilters: propSetFilters }) => {
     const context = useContext(GlobalContext);
     const globalFilters = propFilters || context?.globalFilters || {};
     const setGlobalFilters = propSetFilters || context?.setGlobalFilters;
@@ -34,12 +34,12 @@ const PageSwitch = ({ setCats, globalFilters: propFilters, setGlobalFilters: pro
                     onChange={
                         (page) => {
                             try {
-                                // settings the cats to none which will prompt a component re-render
-                                setCats(null);
+                                // settings the pets to none which will prompt a component re-render
+                                setPets(null);
                                 // settings the filters to what is there right now but changing the page number
                                 setGlobalFilters(prev => ({ ...prev, currentPage: page }));
                             } catch (err) {
-                                console.log("Adoptal > Front-end > cats > PageSwitch.js > onChange > ", err);
+                                console.log("Adoptal > Front-end > pets > PageSwitch.js > onChange > ", err);
                             }
                         }
                     }

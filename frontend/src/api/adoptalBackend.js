@@ -5,15 +5,15 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 // creating a class
 class AdoptalApi {
 
-    // Custom method for getting all cat data from Petfinder
-    static async getAllCats(filters) {
+    // Custom method for getting all pet data from Petfinder
+    static async getAllPets(filters, type) {
         // debug
         // console.log("Front-end > adoptalBackend > getAllCats > filters", filters);
 
         try {
             const p = {
                 // Type of animal (Ex: Bird, Cat, Dog, Mouse, Rabbit)
-                type: filters.type,
+                type: type,
 
                 // The page of results to return (starting with 1).
                 page: filters.currentPage || filters.page || 1,
@@ -43,33 +43,33 @@ class AdoptalApi {
 
             }
             // sending a get request to the endpoint and passing the parameters
-            const res = await axios.get(`${BACKEND_URL}/cat`, {
+            const res = await axios.get(`${BACKEND_URL}/pet`, {
                 params: p
             })
             // for debugging only
-            // console.log("adoptalBackend >>> getAllCats >>> FILTERs Received at Method >>> ", filters)
-            // console.log("adoptalBackend >>> getAllCats >>> Payload Sent to Backend >>> ", p)
-            // console.log("adoptalBackend >>> getAllCats >>> Response received from backend >>>", res)
+            // console.log("adoptalBackend >>> getAllPets >>> FILTERs Received at Method >>> ", filters)
+            // console.log("adoptalBackend >>> getAllPets >>> Payload Sent to Backend >>> ", p)
+            // console.log("adoptalBackend >>> getAllPets >>> Response received from backend >>>", res)
 
             // responding with the received data
             return res;
         } catch (err) {
-            console.log("Adoptal > Front-end > api > adoptalBackend.js > getAllCats > ", err);
+            console.log("Adoptal > Front-end > api > adoptalBackend.js > getAllPets > ", err);
         }
 
     }
 
-    // Custom method for getting single cat data from Petfinder
-    static async getSingleCat(id) {
+    // Custom method for getting single pet data from Petfinder
+    static async getSinglePet(id) {
         try {
             // for debugging
-            // console.log("adoptalBackend >>> getSingleCat >>> Response received from backend >>>", res.data.animal)
+            // console.log("adoptalBackend >>> getSinglePet >>> Response received from backend >>>", res.data.animal)
 
             // sending a get request to the backe-nd
-            const res = await axios.get(`${BACKEND_URL}/cat/${id}`)
+            const res = await axios.get(`${BACKEND_URL}/pet/${id}`)
 
             // for debugging only
-            // console.log("Front-end > adoptalBackend > getSingleCat(id) >", res)
+            // console.log("Front-end > adoptalBackend > getSinglePet(id) >", res)
 
             if (res.request.status === 200) {
                 // if there is no error, returning data on animal
@@ -81,7 +81,7 @@ class AdoptalApi {
 
 
         } catch (err) {
-            console.log("Adoptal > Front-end > api > adoptalBackend.js > getSingleCat > ", err);
+            console.log("Adoptal > Front-end > api > adoptalBackend.js > getSinglePet > ", err);
         }
 
     }
@@ -90,7 +90,7 @@ class AdoptalApi {
     static async toggleAdoptItem(username, id) {
         try {
             // sending a post request to the backend and sending data in params
-            const res = await axios.post(`${BACKEND_URL}/pet/adoptlist`, {
+            const res = await axios.post(`${BACKEND_URL}/lists/adoptlist`, {
                 params: {
                     id: id,
                     username: username
@@ -108,7 +108,7 @@ class AdoptalApi {
     static async addNote(username, id, note) {
         try {
             // sending a post request to the backend and sending data in params
-            const res = await axios.post(`${BACKEND_URL}/pet/private`, {
+            const res = await axios.post(`${BACKEND_URL}/lists/private`, {
                 params: {
                     id: id,
                     username: username,
@@ -127,7 +127,7 @@ class AdoptalApi {
     static async removeNote(username, id) {
         try {
             // sending a delete request to the backend and sending data in params
-            const res = await axios.delete(`${BACKEND_URL}/pet/private`, {
+            const res = await axios.delete(`${BACKEND_URL}/lists/private`, {
                 params: {
                     id: id,
                     username: username
@@ -145,7 +145,7 @@ class AdoptalApi {
     static async addComment(username, id, comment) {
         try {
             // sending a post request to the backend and sending data in params
-            const res = await axios.post(`${BACKEND_URL}/pet/public`, {
+            const res = await axios.post(`${BACKEND_URL}/lists/public`, {
                 params: {
                     id: id,
                     username: username,
@@ -164,7 +164,7 @@ class AdoptalApi {
     static async removeComment(username, id) {
         try {
             // sending a delete request to the backend and sending data in params
-            const res = await axios.delete(`${BACKEND_URL}/pet/public`, {
+            const res = await axios.delete(`${BACKEND_URL}/lists/public`, {
                 params: {
                     id: id,
                     username: username
@@ -179,10 +179,10 @@ class AdoptalApi {
     }
 
     // Custom method for getting all the comment for the selected pet
-    static async getAllCommentsPerCat(id) {
+    static async getAllCommentsPerPet(id) {
         try {
             // sending a get request to the backend
-            const res = await axios.get(`${BACKEND_URL}/pet/comments/${id}`)
+            const res = await axios.get(`${BACKEND_URL}/lists/comments/${id}`)
 
             // for debugging only
             // console.log("COMMENTS >>> ", res.data);
@@ -190,7 +190,7 @@ class AdoptalApi {
             // returning received data
             return res.data;
         } catch (err) {
-            console.log("Adoptal > Front-end > api > adoptalBackend.js > getAllCommentsPerCat > ", err);
+            console.log("Adoptal > Front-end > api > adoptalBackend.js > getAllCommentsPerPet > ", err);
         }
     }
 

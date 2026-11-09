@@ -4,7 +4,7 @@ import { Grid, Container, Text } from '@nextui-org/react';
 import loadingSvg from '../icons/loading.svg'
 // Custom components and functions
 import AdoptalApi from '../api/adoptalBackend';
-import CatCard from "./CatCard";
+import PetCard from "./PetCard";
 import FilterSidebar from "./FilterSidebar";
 import PageSwitch from './PageSwitch';
 
@@ -12,36 +12,38 @@ import PageSwitch from './PageSwitch';
 import GlobalContext from '../GlobalContext';
 
 // main function
-const CatList = () => {
-    // using state to keep track of all the cats
-    const [cats, setCats] = useState();
+const PetList = (type => {
+    // using state to keep track of all the pets
+    const [pets, setPets] = useState();
     // using to keep track of the load state
     const [loading, setLoading] = useState(false);
     // receiving the global context for current user
     const { globalFilters, setGlobalFilters } = useContext(GlobalContext);
 
-    // grabbing a list of cats
+    // grabbing a list of pets
     useEffect(() => {
-        // custom function for getting all the cats
+        // custom function for getting all the pets
         // accepts the filters attribute
-        async function getCats(filters) {
+        async function getPets(filters) {
             try {
                 setLoading(true);
 
                 // for debugging only
-                // console.log("Front-end > CatList > getCats > filters > ", filters);
+                // console.log("Front-end > PetList > getPets > filters > ", filters);
 
-                // uses our custom API method to get the cats and passes the filters to the method
-                let res = await AdoptalApi.getAllCats(filters);
+                // uses our custom API method to get the pets and passes the filters to the method
+                // also passing type to be used for determining which types of animals to display
+                let res = await AdoptalApi.getAllPets(filters, type);
 
-                // filtering out animals without photos. sorry kitties :(
-                // const pets = res.animals.filter(pet => pet.photos.length > 0)
-
-                // on another note, decided to keep showing kitties without photos
+                // responding with data received from API
                 const pets = res.data.data;
 
+                // for debugging only
+                // console.log("Front-end > PetList > getPets > pets > ", pets);
+
+
                 // sets the pets state to the cats received from API
-                setCats(pets);
+                setPets(pets);
 
                 // sets the current page and total pages from the API response
                 setGlobalFilters(prev => {
@@ -61,18 +63,18 @@ const CatList = () => {
                 setLoading(false);
 
                 // for debugging
-                // console.log("Front-end > CatList > getCats > pets", pets)
-                // console.log("Front-end > CatList > getCats > cats state", cats)
+                // console.log("Front-end > PetList > getPets > pets", pets)
+                // console.log("Front-end > PetList > getPets > cats state", cats)
             } catch (err) {
-                console.log("Front-end > CatList > getCats > ", err);
+                console.log("Front-end > PetList > getPets > ", err);
             }
 
         }
         // debug
-        console.log("Frontend > CatList > filters > ", globalFilters);
+        console.log("Frontend > PetList > filters > ", globalFilters);
 
         // calling the custom function anytime a filter state is changed. helps when user changes the filter on the left and resubmits
-        getCats(globalFilters);
+        getPets(globalFilters);
 
     }, [
         globalFilters?.currentPage,
@@ -101,14 +103,14 @@ const CatList = () => {
                 {/* Sidebar - Filters */}
                 <Grid xs={2} css={{ paddingTop: "16px" }}>
                     {/* Displaying a custom component and passing state setters as props */}
-                    <FilterSidebar globalFilters={globalFilters} setGlobalFilters={setGlobalFilters} setCats={setCats} ></FilterSidebar>
+                    <FilterSidebar globalFilters={globalFilters} setGlobalFilters={setGlobalFilters} setPets={setPets} ></FilterSidebar>
                 </Grid>
 
                 {/* Main content areas - List of pets */}
                 <Grid xs={10}>
 
                     <Grid.Container gap={1} >
-                        {/* if cats are loading display a spinner */}
+                        {/* if pets are loading display a spinner */}
                         {
                             loading
                                 ?
@@ -116,11 +118,11 @@ const CatList = () => {
 
                                 </img>
                                 :
-                                cats
+                                pets
                                     ?
-                                    cats.map(cat =>
-                                        <Grid xs={12} sm={6} md={4} lg={3} xl={2} key={cat.id} justify="center">
-                                            <CatCard cat={cat}></CatCard>
+                                    pets.map(pet =>
+                                        <Grid xs={12} sm={6} md={4} lg={3} xl={2} key={pet.id} justify="center">
+                                            <PetCard pet={pet}></PetCard>
                                         </Grid>)
                                     :
                                     <Container style={{
@@ -144,7 +146,7 @@ const CatList = () => {
                 </Grid>
                 <Grid xs={12} justify="center" >
                     {/* for displaying the pagination, passing the filters and the page number we receive from the API */}
-                    <PageSwitch globalFilters={globalFilters} setGlobalFilters={setGlobalFilters} setCats={setCats} ></PageSwitch>
+                    <PageSwitch globalFilters={globalFilters} setGlobalFilters={setGlobalFilters} setPets={setPets} ></PageSwitch>
                 </Grid>
             </Grid.Container>
         </Container>
@@ -153,5 +155,6 @@ const CatList = () => {
 
     </>)
 }
+)
 
-export default CatList;
+export default PetList;

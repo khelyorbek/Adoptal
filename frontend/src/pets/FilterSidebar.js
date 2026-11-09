@@ -4,7 +4,7 @@ import { Input, Col, Row, Button, Dropdown, Text, Checkbox } from '@nextui-org/r
 import GlobalContext from '../GlobalContext';
 
 // receiving the props from the parent component
-const FilterSidebar = ({ setCats, globalFilters: propFilters, setGlobalFilters: propSetFilters }) => {
+const FilterSidebar = ({ setPets, globalFilters: propFilters, setGlobalFilters: propSetFilters }) => {
     const context = useContext(GlobalContext);
     const globalFilters = propFilters || context?.globalFilters || {};
     const setGlobalFilters = propSetFilters || context?.setGlobalFilters;
@@ -122,8 +122,8 @@ const FilterSidebar = ({ setCats, globalFilters: propFilters, setGlobalFilters: 
                 payload[key] = selectedCheckboxes.includes(key) ? true : null;
             });
 
-            // settings the cat to null which will prompt the component to show loading spinner
-            setCats(null);
+            // settings the pets to null which will prompt the component to show loading spinner
+            setPets(null);
 
             // updating the globalFilters state by merging payload
             if (setGlobalFilters) {
@@ -133,7 +133,7 @@ const FilterSidebar = ({ setCats, globalFilters: propFilters, setGlobalFilters: 
                 }));
             }
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > FilterSidebar.js > handleSubmit > ", err);
+            console.log("Adoptal > Front-end > pets > FilterSidebar.js > handleSubmit > ", err);
         }
     }
 
@@ -308,7 +308,7 @@ const FilterSidebar = ({ setCats, globalFilters: propFilters, setGlobalFilters: 
                         <Checkbox aria-label="house_trained" value="house_trained">House trained</Checkbox>
                         <Checkbox aria-label="declawed" value="declawed">De-clawed</Checkbox>
                         <Checkbox aria-label="special_needs" value="special_needs">Special needs</Checkbox>
-                        {/* Removing the spayed/neutered checkbox because the API doesn't really have that data available. It will still be available in API if needed for future. According to most adoption places, the cat will already be spayed/neutered when adopted */}
+                        {/* Removing the spayed/neutered checkbox because the API doesn't really have that data available. It will still be available in API if needed for future. According to most adoption places, the pet will already be spayed/neutered when adopted */}
                         {/* <Checkbox aria-label="spayed_neutered" value="spayed_neutered">Spayed / Neutered</Checkbox> */}
                         <Checkbox aria-label="current_vaccinations" value="current_vaccinations">Current Vaccinations</Checkbox>
                     </Checkbox.Group>

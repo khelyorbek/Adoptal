@@ -4,7 +4,7 @@ import { Card, Col, Row, Button, Text, Container, Grid, Textarea, Loading, Modal
 import BoringAvatar from 'boring-avatars'
 import { useParams } from "react-router-dom";
 import ImageGallery from 'react-image-gallery';
-import './CatDetail.css';
+import './PetDetail.css';
 import loadingSvg from '../icons/loading.svg'
 // Custom components and functions
 import AdoptalApi from '../api/adoptalBackend';
@@ -130,8 +130,8 @@ const YouTubeSlide = ({ item, galleryRef }) => {
 };
 
 
-const CatDetail = () => {
-    // grabbing the id of a cat that is passed to us as a paramenter
+const PetDetail = () => {
+    // grabbing the id of a pet that is passed to us as a paramenter
     const { id } = useParams();
 
     // using a memo to set the items for the photo carousel
@@ -147,7 +147,7 @@ const CatDetail = () => {
 
 
     // using state to store variables
-    const [cat, setCat] = useState();
+    const [pet, setPet] = useState();
     const [isAdoptionInfoOpen, setAdoptionInfoOpen] = useState(false);
     const [addr, setAddr] = useState();
     const [adopted, setAdopted] = useState();
@@ -197,13 +197,13 @@ const CatDetail = () => {
     // when an id is passed or changes
     useEffect(() => {
 
-        // gets the cat by id and then sets it into state for usage
-        getCat(id).then(setCat);
+        // gets the pet by id and then sets it into state for usage
+        getPet(id).then(setPet);
 
 
     }, [id])
 
-    // when photos in carousel or a cat or a current user is changed
+    // when photos in carousel or a pet or a current user is changed
     // runs this effect
     useEffect(() => {
         // custom method for getting the photos of the pet
@@ -213,7 +213,7 @@ const CatDetail = () => {
                 carouselItems.length = 0;
 
                 // Filter and push only picture items
-                cat?.included?.forEach(item => {
+                pet?.included?.forEach(item => {
                     // if the items are pictures, add them to the carousel memo
                     if (item.type === 'pictures' && item.attributes) {
                         carouselItems.push({
@@ -242,7 +242,7 @@ const CatDetail = () => {
                         orgDetails.push(item.attributes);
 
                         // debugging
-                        // console.log("Front-end > CatDetail > getPhotosAndOrg > orgDetails > ", orgDetails)
+                        // console.log("Front-end > PetDetail > getPhotosAndOrg > orgDetails > ", orgDetails)
                     }
                 });
 
@@ -257,7 +257,7 @@ const CatDetail = () => {
                     });
                 }
             } catch (err) {
-                console.log("Adoptal > Front-end > cats > CatDetail.js > getPhotosAndOrg > ", err);
+                console.log("Adoptal > Front-end > pets > PetDetail.js > getPhotosAndOrg > ", err);
             }
 
         }
@@ -267,7 +267,7 @@ const CatDetail = () => {
             try {
                 if (user) {
                     // if user's want to adopt array includes the id of an animal
-                    if (user.wantToAdopt.includes(parseInt(cat.data[0].id))) {
+                    if (user.wantToAdopt.includes(parseInt(pet.data[0].id))) {
                         // set the want to adopt status to true
                         setAdopted(true);
                     } else {
@@ -276,7 +276,7 @@ const CatDetail = () => {
                     }
                 }
             } catch (err) {
-                console.log("Adoptal > Front-end > cats > CatDetail.js > getAdoptListStatus > ", err);
+                console.log("Adoptal > Front-end > pets > PetDetail.js > getAdoptListStatus > ", err);
             }
         }
 
@@ -286,39 +286,39 @@ const CatDetail = () => {
                 if (user) {
                     // setting the state
                     setNoteData({
-                        // to the value of the key of cat's id in the private notes object
+                        // to the value of the key of pet's id in the private notes object
                         // example: private notes: { 123456: "Some random note "}
-                        txtInput: currentUser.privateNotes[cat.data[0].id]
+                        txtInput: currentUser.privateNotes[pet.data[0].id]
                     })
                     // for debugging only
                     // console.log("NOTEDATA >>>>>" , noteData.txtInput);
                 }
 
             } catch (err) {
-                console.log("Adoptal > Front-end > cats > CatDetail.js > getPrivateNote > ", err);
+                console.log("Adoptal > Front-end > pets > PetDetail.js > getPrivateNote > ", err);
             }
         }
 
-        // custom function for getting all the comments from users for a specific cat
+        // custom function for getting all the comments from users for a specific pet
         async function getAllComments(id) {
             try {
                 // running an async request
-                const res = await AdoptalApi.getAllCommentsPerCat(id);
+                const res = await AdoptalApi.getAllCommentsPerPet(id);
                 // for debugging
                 // console.log("RECEIVED COMMENTS >>>", res);
 
                 // settings the state as the data received
                 setComments(res);
             } catch (err) {
-                console.log("Adoptal > Front-end > cats > CatDetail.js > getAllComments > ", err);
+                console.log("Adoptal > Front-end > pets > PetDetail.js > getAllComments > ", err);
             }
         }
 
         try {
-            // when the cat loads fully
-            if (cat) {
-                // and if the cat is actually found
-                if (cat !== "404") {
+            // when the pet loads fully
+            if (pet) {
+                // and if the pet is actually found
+                if (pet !== "404") {
                     // get the photos and load them into the photo carousel
                     // get the org details and store them in a memo to be displayed later
                     getPhotosAndOrg();
@@ -333,37 +333,37 @@ const CatDetail = () => {
                     getPrivateNote(currentUser);
 
                     // get the public comments
-                    getAllComments(cat.data[0].id);
+                    getAllComments(pet.data[0].id);
                 }
             };
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > CatDetail.js > useEffect > ", err);
+            console.log("Adoptal > Front-end > pets > PetDetail.js > useEffect > ", err);
         }
 
-    }, [carouselItems, orgDetails, cat, currentUser])
+    }, [carouselItems, orgDetails, pet, currentUser])
 
-    // custom function to get the cat by  id
-    async function getCat(id) {
+    // custom function to get the pet by  id
+    async function getPet(id) {
         try {
             // seding a request to the backend
-            const res = await AdoptalApi.getSingleCat(id);
+            const res = await AdoptalApi.getSinglePet(id);
 
             // for debugging
-            // console.log("Front-end > CatDetail > getCat(id) > ", res);
+            // console.log("Front-end > PetDetail > getPet(id) > ", res);
 
-            // if the cat is found, then returning the data that we received
+            // if the pet is found, then returning the data that we received
             if (res.data) {
                 // using the he decoder to remove &nbsp and other artifacts from HTML to Raw text conversion in API
                 res.data[0].attributes.descriptionText = decode(res.data[0].attributes.descriptionText);
                 return res;
             }
             else {
-                // if the cat is not found, displaying error and returning 404
-                console.log("Error while getting cat information from API");
+                // if the pet is not found, displaying error and returning 404
+                console.log("Error while getting pet information from API");
                 return "404";
             }
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > CatDetail.js > getCat > ", err);
+            console.log("Adoptal > Front-end > pets > PetDetail.js > getPet > ", err);
             return "404";
         }
 
@@ -377,7 +377,7 @@ const CatDetail = () => {
             setAdoptedLoading(true);
 
             // send an async request to Back-end
-            const res = await AdoptalApi.toggleAdoptItem(currentUser.username, cat.data[0].id);
+            const res = await AdoptalApi.toggleAdoptItem(currentUser.username, pet.data[0].id);
 
             // if successful
             if (res.msg === "Successfully removed animal from Want to Adopt list") {
@@ -389,8 +389,8 @@ const CatDetail = () => {
                 // creating a new variablle and storing the current user
                 const usr = currentUser;
 
-                // changing the want to adopt array to remove the cat's id
-                usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== cat.data[0].id)
+                // changing the want to adopt array to remove the pet's id
+                usr.wantToAdopt = usr.wantToAdopt.filter(c => c !== pet.data[0].id)
 
                 // for debugging
                 // console.log("usr >>>>>>>>>>>", usr);
@@ -407,8 +407,8 @@ const CatDetail = () => {
                 // creating a new variablle and storing the current user
                 const usr = currentUser;
 
-                // changing the want to adopt array to have the cat's id
-                usr.wantToAdopt.push(parseInt(cat.data[0].id))
+                // changing the want to adopt array to have the pet's id
+                usr.wantToAdopt.push(parseInt(pet.data[0].id))
 
                 // for debugging
                 // console.log("usr >>>>>>>>>>>", usr);
@@ -417,7 +417,7 @@ const CatDetail = () => {
                 setCurrentUser(usr)
             }
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > CatDetail.js > handleAdoptToggle > ", err);
+            console.log("Adoptal > Front-end > pets > PetDetail.js > handleAdoptToggle > ", err);
         }
     }
 
@@ -445,7 +445,7 @@ const CatDetail = () => {
             setNoteLoadingSubmit(true);
 
             // sending an async request to the API
-            const res = await AdoptalApi.addNote(currentUser.username, parseInt(cat.data[0].id), noteData.txtInput)
+            const res = await AdoptalApi.addNote(currentUser.username, parseInt(pet.data[0].id), noteData.txtInput)
 
             // for debugging
             // console.log(res);
@@ -466,7 +466,7 @@ const CatDetail = () => {
                     privateNotes: {
                         ...currentUser.privateNotes,
                         // with a new line with k/v in the private Notes object
-                        [parseInt(cat.data[0].id)]: noteData.txtInput
+                        [parseInt(pet.data[0].id)]: noteData.txtInput
                     }
                 })
             } else {
@@ -474,7 +474,7 @@ const CatDetail = () => {
                 console.log("Error while saving private note")
             }
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > CatDetail.js > handleNoteSubmit > ", err);
+            console.log("Adoptal > Front-end > pets > PetDetail.js > handleNoteSubmit > ", err);
         }
     }
 
@@ -485,7 +485,7 @@ const CatDetail = () => {
 
             // set the loading to true before the async request
             setNoteLoadingDelete(true);
-            const res = await AdoptalApi.removeNote(currentUser.username, parseInt(cat.data[0].id))
+            const res = await AdoptalApi.removeNote(currentUser.username, parseInt(pet.data[0].id))
             // console.log(res);
             if (res.msg === "Successfully deleted private note") {
                 // turn off loading
@@ -498,7 +498,7 @@ const CatDetail = () => {
                 // creating a new variable and copying the current data
                 const newNotes = currentUser.privateNotes;
                 // deleting the data for the current pet
-                delete newNotes[parseInt(cat.data[0].id)];
+                delete newNotes[parseInt(pet.data[0].id)];
 
                 // setting the current user
                 setCurrentUser({
@@ -512,7 +512,7 @@ const CatDetail = () => {
                 console.log("Error while deleting private note")
             }
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > CatDetail.js > handleNoteDelete > ", err);
+            console.log("Adoptal > Front-end > pets > PetDetail.js > handleNoteDelete > ", err);
         }
 
     }
@@ -539,7 +539,7 @@ const CatDetail = () => {
 
             // set the loading to true before the async request
             setCommentLoadingSubmit(true);
-            const res = await AdoptalApi.addComment(currentUser.username, parseInt(cat.data[0].id), commentData.txtInput)
+            const res = await AdoptalApi.addComment(currentUser.username, parseInt(pet.data[0].id), commentData.txtInput)
             // console.log(res);
             if (res.msg === "Successfully added public note") {
                 // turn off loading
@@ -555,7 +555,7 @@ const CatDetail = () => {
                     publicComments: {
                         ...currentUser.publicComments,
                         // with a new line with k/v in the publicComments object
-                        [parseInt(cat.data[0].id)]: commentData.txtInput
+                        [parseInt(pet.data[0].id)]: commentData.txtInput
                     }
                 })
             } else {
@@ -563,7 +563,7 @@ const CatDetail = () => {
                 console.log("Error while saving public note")
             }
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > CatDetail.js > handleCommentSubmit > ", err);
+            console.log("Adoptal > Front-end > pets > PetDetail.js > handleCommentSubmit > ", err);
         }
     }
 
@@ -574,7 +574,7 @@ const CatDetail = () => {
 
             // set the loading to true before the async request
             setCommentLoadingDelete(true);
-            const res = await AdoptalApi.removeComment(currentUser.username, parseInt(cat.data[0].id))
+            const res = await AdoptalApi.removeComment(currentUser.username, parseInt(pet.data[0].id))
             // console.log(res);
             if (res.msg === "Successfully deleted public comment") {
                 // turn off loading
@@ -587,7 +587,7 @@ const CatDetail = () => {
                 // creating a new variable and copying the current data
                 const newComments = currentUser.publicComments;
                 // deleting the data for the current pet
-                delete newComments[parseInt(cat.data[0].id)];
+                delete newComments[parseInt(pet.data[0].id)];
 
                 // setting the current user
                 setCurrentUser({
@@ -601,7 +601,7 @@ const CatDetail = () => {
                 console.log("Error while deleting public comment")
             }
         } catch (err) {
-            console.log("Adoptal > Front-end > cats > CatDetail.js > handleCommentDelete > ", err);
+            console.log("Adoptal > Front-end > pets > PetDetail.js > handleCommentDelete > ", err);
         }
 
     }
@@ -610,9 +610,9 @@ const CatDetail = () => {
 
         {
             // if the pet has completed loading
-            cat
+            pet
                 // if the response from back-end is 404, displaying a message saying that its not found
-                ? cat === "404"
+                ? pet === "404"
                     ? <Container aria-label="error note found image" style={{
                         textAlign: "center"
                     }}>
@@ -627,7 +627,7 @@ const CatDetail = () => {
                         <Text size={24} >The resource you are trying to access was not found or is no longer available.</Text>
                     </Container>
 
-                    // if the response from back-end is normal (not 404), displaying cat details
+                    // if the response from back-end is normal (not 404), displaying pet details
                     : <Container aria-label="main container">
                         {/* Adding a modal that goes over everything for Adoption Process as a text */}
                         <Modal
@@ -685,13 +685,13 @@ const CatDetail = () => {
                         <br></br>
                         <Row >
                             <Col xs={12} >
-                                <Text h1 style={{ textAlign: "center" }}>{cat.data[0].attributes.name}</Text>
+                                <Text h1 style={{ textAlign: "center" }}>{pet.data[0].attributes.name}</Text>
                             </Col>
                         </Row>
                         <Row >
                             <Col xs={12} >
                                 <Text h3 style={{ textAlign: "center", color: "green" }}>
-                                    {cat.data[0].attributes.isAdoptionPending != null && cat.data[0].attributes.isAdoptionPending === true ? "📝 Adoption pending" : ''}
+                                    {pet.data[0].attributes.isAdoptionPending != null && pet.data[0].attributes.isAdoptionPending === true ? "📝 Adoption pending" : ''}
 
                                 </Text>
                             </Col>
@@ -699,7 +699,7 @@ const CatDetail = () => {
                         <Row >
                             <Col xs={12} >
                                 <Text h3 style={{ textAlign: "center", color: "purple" }}>
-                                    {cat.data[0].attributes.adoptionFeeString != null ? cat.data[0].attributes.adoptionFeeString === true : ''}
+                                    {pet.data[0].attributes.adoptionFeeString != null ? pet.data[0].attributes.adoptionFeeString === true : ''}
 
                                 </Text>
                             </Col>
@@ -711,7 +711,7 @@ const CatDetail = () => {
                                 <Text h3 size={22}>
 
                                     <span style={{ color: "#8f27ff" }}>About Me: </span>
-                                    <span style={{ fontWeight: "normal", }}>{cat.data[0].attributes.descriptionText}</span>
+                                    <span style={{ fontWeight: "normal", }}>{pet.data[0].attributes.descriptionText}</span>
                                 </Text>
                             </Col>
                         </Row>
@@ -728,7 +728,7 @@ const CatDetail = () => {
                         <Grid.Container gap={1} justify="space-evenly" aria-label="details-columns">
                             <Grid xs={12} md={6} lg={4}>
                                 <Grid.Container aria-label="basic info" alignContent="flex-start">
-                                    <div className='cat-detail-section' aria-label="basic information">
+                                    <div className='pet-detail-section' aria-label="basic information">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Information
@@ -740,7 +740,7 @@ const CatDetail = () => {
                                                 <b>
                                                     Breed:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.breedPrimary ? cat.data[0].attributes.breedPrimary : 'Unknown'}
+                                                {pet.data[0].attributes.breedPrimary ? pet.data[0].attributes.breedPrimary : 'Unknown'}
                                             </Text>
                                         </Grid>
 
@@ -749,7 +749,7 @@ const CatDetail = () => {
                                                 <b>
                                                     Color:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.colorDetails ? cat.data[0].attributes.colorDetails : 'Unknown'}
+                                                {pet.data[0].attributes.colorDetails ? pet.data[0].attributes.colorDetails : 'Unknown'}
                                             </Text>
                                         </Grid>
 
@@ -758,7 +758,7 @@ const CatDetail = () => {
                                                 <b>
                                                     Age:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.ageString ? cat.data[0].attributes.ageString : 'Unknown'}
+                                                {pet.data[0].attributes.ageString ? pet.data[0].attributes.ageString : 'Unknown'}
                                             </Text>
                                         </Grid>
 
@@ -767,7 +767,7 @@ const CatDetail = () => {
                                                 <b>
                                                     Gender:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.sex ? cat.data[0].attributes.sex : 'Unknown'}
+                                                {pet.data[0].attributes.sex ? pet.data[0].attributes.sex : 'Unknown'}
                                             </Text>
                                         </Grid>
 
@@ -776,8 +776,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Size:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.sizeCurrent != null
-                                                    ? `${Number(cat.data[0].attributes.sizeCurrent).toFixed(1)} ${cat.data[0].attributes.sizeUOM || 'lbs'}`
+                                                {pet.data[0].attributes.sizeCurrent != null
+                                                    ? `${Number(pet.data[0].attributes.sizeCurrent).toFixed(1)} ${pet.data[0].attributes.sizeUOM || 'lbs'}`
                                                     : 'Unknown'}
                                             </Text>
                                         </Grid>
@@ -786,7 +786,7 @@ const CatDetail = () => {
                                                 <b>
                                                     Coat Length:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.coatLength ? cat.data[0].attributes.coatLength : 'Unknown'}
+                                                {pet.data[0].attributes.coatLength ? pet.data[0].attributes.coatLength : 'Unknown'}
                                             </Text>
                                         </Grid>
                                         <Grid xs={12}>
@@ -794,8 +794,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Indoor or Outdoor:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.indoorOutdoor != null
-                                                    ? cat.data[0].attributes.indoorOutdoor
+                                                {pet.data[0].attributes.indoorOutdoor != null
+                                                    ? pet.data[0].attributes.indoorOutdoor
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -805,8 +805,8 @@ const CatDetail = () => {
                                                     Qualities:{" "}
                                                 </b>
                                                 {
-                                                    cat.data[0].attributes.qualities != null
-                                                        ? cat.data[0].attributes.qualities.map(quality => {
+                                                    pet.data[0].attributes.qualities != null
+                                                        ? pet.data[0].attributes.qualities.map(quality => {
                                                             return (
                                                                 // 20889175
                                                                 <span key={quality}
@@ -827,7 +827,7 @@ const CatDetail = () => {
                                         </Grid>
                                     </div>
 
-                                    <div className='cat-detail-section' aria-label="medical behavioral section">
+                                    <div className='pet-detail-section' aria-label="medical behavioral section">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Medical
@@ -838,8 +838,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Spayed/Neutered:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isAltered != null
-                                                    ? (cat.data[0].attributes.isAltered ? "✅ Yes" : "❌ No")
+                                                {pet.data[0].attributes.isAltered != null
+                                                    ? (pet.data[0].attributes.isAltered ? "✅ Yes" : "❌ No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -849,8 +849,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Declawed:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isDeclawed != null
-                                                    ? (cat.data[0].attributes.isDeclawed ? "Yes" : "No")
+                                                {pet.data[0].attributes.isDeclawed != null
+                                                    ? (pet.data[0].attributes.isDeclawed ? "Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -860,8 +860,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Up-to-date vaccinations:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isCurrentVaccinations != null
-                                                    ? (cat.data[0].attributes.isCurrentVaccinations ? "✅ Yes" : "No")
+                                                {pet.data[0].attributes.isCurrentVaccinations != null
+                                                    ? (pet.data[0].attributes.isCurrentVaccinations ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -869,7 +869,7 @@ const CatDetail = () => {
 
                                     </div>
 
-                                    <div className='cat-detail-section' aria-label="environmental">
+                                    <div className='pet-detail-section' aria-label="environmental">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Social
@@ -881,8 +881,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Good with Children:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isKidsOk != null
-                                                    ? (cat.data[0].attributes.isKidsOk ? "✅ Yes" : "No")
+                                                {pet.data[0].attributes.isKidsOk != null
+                                                    ? (pet.data[0].attributes.isKidsOk ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -892,8 +892,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Good with Dogs:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isDogsOk != null
-                                                    ? (cat.data[0].attributes.isDogsOk ? "✅ Yes" : "No")
+                                                {pet.data[0].attributes.isDogsOk != null
+                                                    ? (pet.data[0].attributes.isDogsOk ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -901,10 +901,10 @@ const CatDetail = () => {
                                         <Grid xs={12}>
                                             <Text size={18}>
                                                 <b>
-                                                    Good with other Cats:{" "}
+                                                    Good with Cats:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isCatsOk != null
-                                                    ? (cat.data[0].attributes.isCatsOk ? "✅ Yes" : "No")
+                                                {pet.data[0].attributes.isCatsOk != null
+                                                    ? (pet.data[0].attributes.isCatsOk ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -914,8 +914,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Reaction to new people:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.newPeopleReaction != null
-                                                    ? cat.data[0].attributes.newPeopleReaction
+                                                {pet.data[0].attributes.newPeopleReaction != null
+                                                    ? pet.data[0].attributes.newPeopleReaction
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -925,14 +925,14 @@ const CatDetail = () => {
                                                 <b>
                                                     House Trained:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isHousetrained != null
-                                                    ? (cat.data[0].attributes.isHousetrained ? "✅ Yes" : "No")
+                                                {pet.data[0].attributes.isHousetrained != null
+                                                    ? (pet.data[0].attributes.isHousetrained ? "✅ Yes" : "No")
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
                                     </div>
 
-                                    <div className='cat-detail-section' aria-label="levels">
+                                    <div className='pet-detail-section' aria-label="levels">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Temperament
@@ -943,8 +943,8 @@ const CatDetail = () => {
                                                     <b>
                                                         Activity Level:{" "}
                                                     </b>
-                                                    {cat.data[0].attributes.activityLevel != null
-                                                        ? cat.data[0].attributes.activityLevel
+                                                    {pet.data[0].attributes.activityLevel != null
+                                                        ? pet.data[0].attributes.activityLevel
                                                         : "Unknown"}
                                                 </Text>
                                             </Grid>
@@ -953,8 +953,8 @@ const CatDetail = () => {
                                                     <b>
                                                         Energy Level:{" "}
                                                     </b>
-                                                    {cat.data[0].attributes.energyLevel != null
-                                                        ? cat.data[0].attributes.energyLevel
+                                                    {pet.data[0].attributes.energyLevel != null
+                                                        ? pet.data[0].attributes.energyLevel
                                                         : "Unknown"}
                                                 </Text>
                                             </Grid>
@@ -963,8 +963,8 @@ const CatDetail = () => {
                                                     <b>
                                                         Vocal Level:{" "}
                                                     </b>
-                                                    {cat.data[0].attributes.vocalLevel != null
-                                                        ? cat.data[0].attributes.vocalLevel
+                                                    {pet.data[0].attributes.vocalLevel != null
+                                                        ? pet.data[0].attributes.vocalLevel
                                                         : "Unknown"}
                                                 </Text>
                                             </Grid>
@@ -981,7 +981,7 @@ const CatDetail = () => {
 
 
 
-                                    <div className='cat-detail-section' aria-label="needs">
+                                    <div className='pet-detail-section' aria-label="needs">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Care
@@ -993,8 +993,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Exercise Needs:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.exerciseNeeds != null
-                                                    ? cat.data[0].attributes.exerciseNeeds
+                                                {pet.data[0].attributes.exerciseNeeds != null
+                                                    ? pet.data[0].attributes.exerciseNeeds
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -1004,8 +1004,8 @@ const CatDetail = () => {
                                                 <b>
                                                     Grooming Needs:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.groomingNeeds != null
-                                                    ? cat.data[0].attributes.groomingNeeds
+                                                {pet.data[0].attributes.groomingNeeds != null
+                                                    ? pet.data[0].attributes.groomingNeeds
                                                     : "Unknown"}
                                             </Text>
                                         </Grid>
@@ -1014,14 +1014,14 @@ const CatDetail = () => {
                                                 <b>
                                                     Special Needs:{" "}
                                                 </b>
-                                                {cat.data[0].attributes.isSpecialNeeds != null
-                                                    ? (cat.data[0].attributes.isSpecialNeeds ? "Yes" : "No")
+                                                {pet.data[0].attributes.isSpecialNeeds != null
+                                                    ? (pet.data[0].attributes.isSpecialNeeds ? "Yes" : "No")
                                                     : "Unknown"}
-                                                {cat.data[0].attributes.isSpecialNeeds ? cat.data[0].attributes.specialNeedsDetails : ''}
+                                                {pet.data[0].attributes.isSpecialNeeds ? pet.data[0].attributes.specialNeedsDetails : ''}
                                             </Text>
                                         </Grid>
                                     </div>
-                                    <div className='cat-detail-section' aria-label="contact information">
+                                    <div className='pet-detail-section' aria-label="contact information">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Contact
@@ -1032,7 +1032,7 @@ const CatDetail = () => {
                                                 <b>
                                                     RescueGroups ID:{" "}
                                                 </b>
-                                                {cat.data[0].id ? cat.data[0].id : "Unknown"}
+                                                {pet.data[0].id ? pet.data[0].id : "Unknown"}
                                             </Text>
                                         </Grid>
                                         <Grid xs={12}>
@@ -1041,7 +1041,7 @@ const CatDetail = () => {
                                                     Pet ID:{" "}
 
                                                 </b>
-                                                {cat.data[0].attributes.rescueId ? cat.data[0].attributes.rescueId : "Unknown"}
+                                                {pet.data[0].attributes.rescueId ? pet.data[0].attributes.rescueId : "Unknown"}
 
                                             </Text>
                                         </Grid>
@@ -1073,7 +1073,7 @@ const CatDetail = () => {
                                         </Grid>
                                     </div>
 
-                                    <div className='cat-detail-section' aria-label="location">
+                                    <div className='pet-detail-section' aria-label="location">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Location
@@ -1113,7 +1113,7 @@ const CatDetail = () => {
                                         </Grid>
                                     </div>
 
-                                    <div className='cat-detail-section' aria-label="map">
+                                    <div className='pet-detail-section' aria-label="map">
                                         <Grid xs={12}>
                                             <Text b size={24} color="secondary">
                                                 Map
@@ -1142,7 +1142,7 @@ const CatDetail = () => {
                                         currentUser
                                             ?
                                             <>
-                                                <div className='cat-detail-section' aria-label="adopt list status">
+                                                <div className='pet-detail-section' aria-label="adopt list status">
                                                     <Grid xs={12}>
                                                         <Text b size={24} color="secondary">
                                                             Want to Adopt List
@@ -1153,7 +1153,7 @@ const CatDetail = () => {
                                                         <Text
                                                             size={18}>
                                                             {/* Displays if an animal is in the adopt list or not */}
-                                                            {cat.data[0].attributes.name} is {adopted ? '' : 'not'} in your Adopt List
+                                                            {pet.data[0].attributes.name} is {adopted ? '' : 'not'} in your Adopt List
                                                         </Text>
 
                                                         {/* Allows to toggle the adopt status */}
@@ -1166,8 +1166,8 @@ const CatDetail = () => {
                                                                     // Displays a loding bar if the loading state is set to true
                                                                     ? <Loading type="points" color="currentColor" size="md" />
                                                                     : adopted
-                                                                        ? `Remove ${cat.data[0].attributes.name}`
-                                                                        : `Add ${cat.data[0].attributes.name}`
+                                                                        ? `Remove ${pet.data[0].attributes.name}`
+                                                                        : `Add ${pet.data[0].attributes.name}`
                                                             }
                                                         </Button>
 
@@ -1175,7 +1175,7 @@ const CatDetail = () => {
                                                     </Grid>
                                                 </div>
 
-                                                <div className='cat-detail-section' aria-label="private notes">
+                                                <div className='pet-detail-section' aria-label="private notes">
                                                     <Grid xs={12}>
                                                         <Text b size={24} color="secondary">
                                                             My Private Notes
@@ -1242,8 +1242,8 @@ const CatDetail = () => {
 
 
                                     {/* Only show Adoption, Organization website and Facebook page buttons if links exists in data */}
-                                    {cat.data[0].attributes.url || orgDetails[0]?.url || orgDetails[0]?.facebookUrl || cat.data[0].attributes.adoptionProcess
-                                        ? <div className='cat-detail-section' aria-label="map">
+                                    {pet.data[0].attributes.url || orgDetails[0]?.url || orgDetails[0]?.facebookUrl || pet.data[0].attributes.adoptionProcess
+                                        ? <div className='pet-detail-section' aria-label="map">
                                             <Grid xs={12}>
                                                 <Text b size={24} color="secondary">
                                                     Learn more
@@ -1251,8 +1251,8 @@ const CatDetail = () => {
                                             </Grid>
                                             <Grid xs={12}>
                                                 {
-                                                    cat.data[0].attributes.url
-                                                        ? <Button as="a" color="secondary" style={{ marginBottom: "1rem" }} href={cat.data[0].attributes.url} target="_blank" rel="noopener noreferrer" >Adoption link for {cat.data[0].attributes.name}</Button>
+                                                    pet.data[0].attributes.url
+                                                        ? <Button as="a" color="secondary" style={{ marginBottom: "1rem" }} href={pet.data[0].attributes.url} target="_blank" rel="noopener noreferrer" >Adoption link for {pet.data[0].attributes.name}</Button>
                                                         : ''
                                                 }
 
@@ -1293,7 +1293,7 @@ const CatDetail = () => {
                         {/* For displaying the comments from the users */}
                         <Row style={{ marginBottom: "2rem" }
                         }>
-                            <Col xs={12} className='cat-detail-section'>
+                            <Col xs={12} className='pet-detail-section'>
                                 <Text h2 color="secondary" style={{ textAlign: "center" }}>Comments from users</Text>
 
                                 {   // if coments have loaded, display them
@@ -1348,7 +1348,7 @@ const CatDetail = () => {
                                                                     <Col>
                                                                         <Text>
                                                                             {/* DIsplays the actual comment */}
-                                                                            {comment.publicComments[parseInt(cat.data[0].id)]}
+                                                                            {comment.publicComments[parseInt(pet.data[0].id)]}
                                                                         </Text>
                                                                     </Col>
 
@@ -1410,10 +1410,10 @@ const CatDetail = () => {
                                     // if the user is loaded / logged in / exists
                                     currentUser ?
                                         // if the user already has a public comment, display nothing
-                                        currentUser.publicComments[cat.data[0].id]
+                                        currentUser.publicComments[pet.data[0].id]
                                             ? ''
                                             // if the user hasn't commented yet, show an area where that can be done
-                                            : <div className='cat-detail-section' aria-label="public comments" style={{ marginTop: "0" }}>
+                                            : <div className='pet-detail-section' aria-label="public comments" style={{ marginTop: "0" }}>
                                                 <Grid xs={12}>
                                                     <Text b size={24} color="secondary">
                                                         Add a Public Comment
@@ -1476,6 +1476,6 @@ const CatDetail = () => {
 
 }
 
-export default CatDetail;
+export default PetDetail;
 
 

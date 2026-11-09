@@ -10,18 +10,18 @@ import ListItem from './ListItem';
 const AdoptList = () => {
     // receiving the global context for current user
     const { currentUser } = useContext(GlobalContext);
-    // using state to keep track of cats
-    const [cats, setCats] = useState();
+    // using state to keep track of pets
+    const [pets, setPets] = useState();
 
     // getting all the items when the component loads
     useEffect(() => {
         // if the current user changes, runs our custom method below
         // once the method finished running, using the return of the method
         // and storing it into the state
-        getAdoptList(currentUser).then(setCats)
+        getAdoptList(currentUser).then(setPets)
 
         // for debugging
-        // console.log("cats state >>>", cats);
+        // console.log("pets state >>>", pets);
     }, [currentUser])
 
     // custom function to grab the want to adopt lis from user's profile and then making multiple calls to get the full details of the animal
@@ -39,19 +39,19 @@ const AdoptList = () => {
             // for every id in the wantToAdopt array
             for (let id of user.wantToAdopt) {
 
-                // sending a request to back-end to get information of every cat
-                let res = await AdoptalApi.getSingleCat(id);
+                // sending a request to back-end to get information of every pet
+                let res = await AdoptalApi.getSinglePet(id);
 
                 // for debugging
                 // console.log("Front-end > AdoptList > getAdoptList > res > ", res);
 
-                // If the request doesn't error, adding the cat to the array of cats
+                // If the request doesn't error, adding the pet to the array of pets
                 if (res !== "Not found") { arr.push(res) }
             }
             // for debugging
-            // console.log("Front-end > AdoptList > getAdoptList > cats array >", arr);
+            console.log("Front-end > AdoptList > getAdoptList > pets array >", arr);
 
-            // returning the array of cats after looping is finished
+            // returning the array of pets after looping is finished
             return arr;
         } catch (err) {
             console.log("Adoptal > Front-end > lists > AdoptList.js > getAdoptList > ", err);
@@ -59,10 +59,10 @@ const AdoptList = () => {
 
     }
 
-    // if cats have finished loading / processing
-    if (cats) {
+    // if pets have finished loading / processing
+    if (pets) {
         // check if the length of the state is 0 (empty)
-        if (cats.length === 0) {
+        if (pets.length === 0) {
             // displaying a message saying the list is empty
             return (
                 <Container style={{
@@ -88,25 +88,25 @@ const AdoptList = () => {
                 </div>
 
                 {/* for debugging */}
-                {/* {console.log("cats state >>>", cats)} */}
+                {/* {console.log("pets state >>>", pets)} */}
 
                 <Grid.Container gap={2}>
                     {
-                        // if cats are loaded
-                        cats
+                        // if pets are loaded
+                        pets
                             // map through the array
-                            ? cats.map(cat =>
-                                // and render a list item custom component and pass the cat as a prop
-                                <ListItem cat={cat} key={cat.data[0].id}></ListItem>
+                            ? pets.map(pet =>
+                                // and render a list item custom component and pass the pet as a prop
+                                <ListItem pet={pet} key={pet.data[0].id}></ListItem>
                             )
-                            // if the cats are still loading, display a loading spinner
+                            // if the pets are still loading, display a loading spinner
                             : <img src={loadingSvg} alt='loading spinner' style={{ margin: "0 auto" }}></img>
                     }
                 </Grid.Container>
             </Container>
         }
     }
-    // if the cats haven't finished loading yet, show a spinner
+    // if the pets haven't finished loading yet, show a spinner
     else {
         return <Container style={{
             textAlign: "center"

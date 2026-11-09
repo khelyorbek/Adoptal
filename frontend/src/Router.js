@@ -3,8 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react"
 
 // importing the custom components
-import CatList from './cats/CatList'
-import CatDetail from "./cats/CatDetail";
+import PetList from './pets/PetList'
+import PetDetail from "./pets/PetDetail";
 import AdoptList from "./lists/AdoptList";
 import MyComments from "./lists/MyComments";
 import MyNotes from "./lists/MyNotes";
@@ -26,9 +26,9 @@ const Router = () => {
     return (<>
         <Routes>
             <Route
-                path="/"
+                path="/cats"
                 element={
-                    <CatList currentPage={currentPage} setCurrentPage={setCurrentPage}></CatList>
+                    <PetList currentPage={currentPage} setCurrentPage={setCurrentPage} type="cat"></PetList>
                 }>
             </Route>
 
@@ -60,9 +60,9 @@ const Router = () => {
             </Route>
 
             <Route
-                path="/cat/:id"
+                path="/pet/:id"
                 element={
-                    <CatDetail></CatDetail>
+                    <PetDetail></PetDetail>
                 }>
 
             </Route>
@@ -70,7 +70,7 @@ const Router = () => {
             <Route
                 path="*"
                 element={
-                    <Navigate to='/'></Navigate>
+                    <Navigate to='/cats'></Navigate>
                 }>
             </Route>
         </Routes>

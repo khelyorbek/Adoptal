@@ -11,22 +11,22 @@ import NotesItem from './NotesItem';
 const MyComments = () => {
     // receiving the global context for current user
     const { currentUser } = useContext(GlobalContext);
-    // using state to keep track of cats
-    const [cats, setCats] = useState();
+    // using state to keep track of pets
+    const [pets, setPets] = useState();
 
     // getting all the items when the component loads
     useEffect(() => {
         // if the current user changes, runs our custom method below
         // once the method finished running, using the return of the method
         // and storing it into the state
-        getCatList(currentUser).then(setCats)
+        getPetList(currentUser).then(setPets)
 
         // for debugging
-        // console.log("cats state >>>", cats);
+        // console.log("pets state >>>", pets);
     }, [currentUser])
 
     // custom function to grab the want to adopt lis from user's profile and then making multiple calls to get the full details of the animal
-    async function getCatList(user) {
+    async function getPetList(user) {
         try {
             // creating an empty array
             const arr = [];
@@ -41,8 +41,8 @@ const MyComments = () => {
                 // console.log("PUBLIC COMMENTS >>>", user.publicComments)
                 // console.log("IDDDDDDDDDD >>>", id)
 
-                // sending a request to back-end to get information of every cat
-                let res = await AdoptalApi.getSingleCat(id);
+                // sending a request to back-end to get information of every pet
+                let res = await AdoptalApi.getSinglePet(id);
 
                 // If the request doesn't error, 
                 if (res !== 'Not found') {
@@ -54,20 +54,20 @@ const MyComments = () => {
             }
 
             // for debugging
-            // console.log("cats array >>>", arr)
+            // console.log("pets array >>>", arr)
 
             // returning the array of public comments
             return arr;
         } catch (err) {
-            console.log("Adoptal > Front-end > lists > MyComments.js > getCatList > ", err);
+            console.log("Adoptal > Front-end > lists > MyComments.js > getPetList > ", err);
         }
 
     }
 
-    // if cats have finished loading / processing
-    if (cats) {
+    // if pets have finished loading / processing
+    if (pets) {
         // check if the length of the state is 0 (empty)
-        if (cats.length === 0) {
+        if (pets.length === 0) {
             // displaying a message saying the list is empty
             return (
                 <Container style={{
@@ -93,25 +93,25 @@ const MyComments = () => {
                 </div>
 
                 {/* for debugging */}
-                {/* {console.log("cats state >>>", cats)} */}
+                {/* {console.log("pets state >>>", pets)} */}
 
                 <Grid.Container gap={2}>
                     {
-                        // if cats are loaded
-                        cats
+                        // if pets are loaded
+                        pets
                             // map through the array
-                            ? cats.map(cat =>
-                                // and render a notes item custom component and pass the cat as a prop
-                                <NotesItem cat={cat} key={cat.data[0].id}></NotesItem>
+                            ? pets.map(pet =>
+                                // and render a notes item custom component and pass the pet as a prop
+                                <NotesItem pet={pet} key={pet.data[0].id}></NotesItem>
                             )
-                            // if the cats are still loading, display a loading spinner
+                            // if the pets are still loading, display a loading spinner
                             : <img src={loadingSvg} alt='loading spinner' style={{ margin: "0 auto" }}></img>
                     }
                 </Grid.Container>
             </Container>
         }
     }
-    // if the cats haven't finished loading yet, show a spinner
+    // if the pets haven't finished loading yet, show a spinner
     else {
         return <Container style={{
             textAlign: "center"

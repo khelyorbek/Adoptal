@@ -14,9 +14,9 @@ const cors = require('cors');
 const passport = require('passport');
 
 // importing the routes for the router
-const catRoutes = require("./routes/cats");
-const orgRoutes = require("./routes/orgs");
 const petRoutes = require("./routes/pets");
+const orgRoutes = require("./routes/orgs");
+const listsRoutes = require("./routes/lists");
 const userRoutes = require("./routes/users");
 
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
@@ -108,9 +108,9 @@ require('./auth/passport')(passport);
 
 // ------------------------- ROUTER -------------------------
 // telling express to use the routes
-app.use("/cat", catRoutes);
-app.use("/org", orgRoutes);
 app.use("/pet", petRoutes);
+app.use("/org", orgRoutes);
+app.use("/lists", listsRoutes);
 app.use("/user", userRoutes);
 app.use((req, res, next) => {
   // console.log("req.session >>>", req.session)

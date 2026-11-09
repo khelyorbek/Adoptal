@@ -1,6 +1,6 @@
 {
   "name": "adoptal",
-  "version": "1.7",
+  "version": "1.8",
   "description": "Web application to assist in finding and adopting your next fabulous furry friend",
   "main": "server.js",
   "scripts": {

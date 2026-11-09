@@ -7,7 +7,7 @@ const API_KEY = process.env.RESCUE_GROUPS_API_KEY
 
 let includeData = 'breeds,colors,patterns,species,statuses,fosters,locations,orgs,pictures,videos,videourls'
 
-// ------------------------- PETFINDER MODELS - START -------------------------
+// ------------------------- RESCUEGORUPS MODELS - START -------------------------
 // Query params to API and what they mean
 // Attribute	Description
 // count	
@@ -28,7 +28,7 @@ let includeData = 'breeds,colors,patterns,species,statuses,fosters,locations,org
 // transactionId	
 // The identifier for your request. Provide this information if you request help from RescueGroups.org for this specific request.
 
-// custom method for getting all the cats from Petfinder API
+// custom method for getting all the pets from RescueGroups API
 async function getAllPets(filters) {
     console.log("BACKEND > getAllPets > Request Filters", filters.query);
     try {
@@ -166,7 +166,7 @@ async function getAllPets(filters) {
     }
 }
 
-// custom method for getting a single the cats from Petfinder API
+// custom method for getting a single pet from RescueGroups API
 async function getSinglePet(id) {
     try {
         // sending an axios POST request to RescueGroups API with headers and payload

@@ -1,11 +1,11 @@
 // importing the necessary files
 import React, { useState, useEffect } from 'react';
 import { Card, Col, Row, Text } from "@nextui-org/react";
-import './CatCard.css'
+import './PetCard.css'
 import { useNavigate } from "react-router-dom";
 
 // creating a function which accepts a cat as a prop
-const CatCard = ({ cat }) => {
+const PetCard = ({ pet }) => {
     //debug purposes
     // console.log("Frontend > CatCard > cat > ", cat);
 
@@ -18,26 +18,26 @@ const CatCard = ({ cat }) => {
     useEffect(() => {
         if (id) {
             // soft redirects to the Cat Details page
-            navigate(`/cat/${id}`);
+            navigate(`/pet/${id}`);
         }
     }, [id, navigate])
 
-    let catPhoto = cat?.attributes?.pictureThumbnailUrl
-        ? cat.attributes.pictureThumbnailUrl.replace(/width=\d+/, 'width=400')
+    let petPhoto = pet?.attributes?.pictureThumbnailUrl
+        ? pet.attributes.pictureThumbnailUrl.replace(/width=\d+/, 'width=400')
         : "/no_photo.png";
 
-    // returns a card with Cat's photo and information
+    // returns a card with pet's photo and information
     // sets the id on press which triggers the redirect using useEffect
     return (<>
         <Card
-            onPress={() => setId(cat.id)}
+            onPress={() => setId(pet.id)}
             css={{ w: "300px", h: "300px", }}
             isPressable
             isHoverable
             className="loaded">
             <Card.Body css={{ p: 0 }}>
                 <Card.Image
-                    src={catPhoto}
+                    src={petPhoto}
                     objectFit="cover"
                     width="100%"
                     height="100%"
@@ -64,7 +64,7 @@ const CatCard = ({ cat }) => {
                                     color="white"
                                     size={20}
                                     b>
-                                    {cat.attributes.name}
+                                    {pet.attributes.name}
                                 </Text>
 
                             </Col>
@@ -77,7 +77,7 @@ const CatCard = ({ cat }) => {
                                             b
                                             color="#e5e5e5"
                                             size={13}>
-                                            {cat.attributes.ageGroup} {cat.attributes.sex}
+                                            {pet.attributes.ageGroup} {pet.attributes.sex}
                                         </Text>
 
                                         <Text
@@ -96,4 +96,4 @@ const CatCard = ({ cat }) => {
     </>)
 }
 
-export default CatCard;
+export default PetCard;
